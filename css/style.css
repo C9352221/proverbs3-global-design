@@ -99,7 +99,7 @@ p { margin-bottom: 1rem; }
 .nav-logo-img {
   height: 40px;
   width: auto;
-  filter: brightness(0) invert(1);
+  mix-blend-mode: lighten;
 }
 .nav-links {
   display: flex;
@@ -516,7 +516,7 @@ p { margin-bottom: 1rem; }
 .footer-logo {
   height: 36px;
   width: auto;
-  filter: brightness(0) invert(1);
+  mix-blend-mode: lighten;
   margin-bottom: 14px;
 }
 .footer-brand p { font-size: 0.9rem; line-height: 1.7; }
