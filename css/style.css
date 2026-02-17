@@ -93,14 +93,13 @@ p { margin-bottom: 1rem; }
   height: 72px;
 }
 .nav-logo {
-  display: flex;
-  align-items: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.5px;
 }
-.nav-logo-img {
-  height: 40px;
-  width: auto;
-  mix-blend-mode: lighten;
-}
+.nav-logo span { color: var(--gold); }
 .nav-links {
   display: flex;
   align-items: center;
@@ -513,12 +512,13 @@ p { margin-bottom: 1rem; }
   gap: 40px;
   margin-bottom: 40px;
 }
-.footer-logo {
-  height: 36px;
-  width: auto;
-  mix-blend-mode: lighten;
-  margin-bottom: 14px;
+.footer-brand h3 {
+  font-family: 'Playfair Display', serif;
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
 }
+.footer-brand h3 span { color: var(--gold); }
 .footer-brand p { font-size: 0.9rem; line-height: 1.7; }
 .footer-col h4 {
   color: #fff;
