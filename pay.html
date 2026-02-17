@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment — Proverbs 3 Global Design</title>
+  <meta name="description" content="Secure payment for your web design project.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .payment-section {
+      padding: 60px 0;
+    }
+    .payment-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 20px;
+      padding: 50px 40px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .payment-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(56,161,105,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 2rem;
+    }
+    .payment-card h2 {
+      margin-bottom: 12px;
+    }
+    .payment-card > p {
+      color: var(--text-light);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .payment-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy-deep);
+      padding: 18px 50px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      letter-spacing: 0.3px;
+    }
+    .payment-btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(232,185,35,0.3);
+    }
+    .payment-secure {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+      color: var(--text-light);
+      font-size: 0.85rem;
+    }
+    .payment-secure span {
+      color: var(--green);
+    }
+    .payment-details {
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      text-align: left;
+    }
+    .payment-details h3 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-size: 0.95rem;
+    }
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+    .detail-label {
+      color: var(--text-light);
+    }
+    .detail-value {
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    .trust-badge {
+      text-align: center;
+    }
+    .trust-badge-icon {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+    .trust-badge-text {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    @media (max-width: 640px) {
+      .payment-card { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo">Proverbs 3 <span>Global Design</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="shop.html">Packages</a>
+      <a href="moodboards/">Mood Boards</a>
+      <a href="onboarding.html" class="nav-cta">Start Your Project</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══ PAGE HERO ═══ -->
+<section class="hero" style="min-height:auto; padding: 140px 0 40px;">
+  <div class="container">
+    <div class="hero-content" style="text-align:center;max-width:700px;margin:0 auto;">
+      <div class="hero-badge">Secure Payment</div>
+      <h1>Invest in Your <span class="gold">Digital Future.</span></h1>
+      <p>Fast, secure payment powered by Stripe. Your transaction is protected with bank-level encryption.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAYMENT ═══ -->
+<section class="payment-section">
+  <div class="container">
+    <div class="payment-card">
+      <div class="payment-icon">
+        <span style="color:var(--green);">&#128179;</span>
+      </div>
+      <h2>Make a Payment</h2>
+      <p>Click below to securely pay for your web design project through Stripe.</p>
+
+      <a href="https://buy.stripe.com/cNi8wO1w5dID4n672Lbwk00" class="payment-btn" target="_blank" rel="noopener">Pay Now</a>
+
+      <div class="payment-secure">
+        <span>&#128274;</span> Secured by Stripe &mdash; 256-bit SSL encryption
+      </div>
+
+      <div class="payment-details">
+        <h3>What to Expect</h3>
+        <div class="detail-row">
+          <span class="detail-label">Payment Processor</span>
+          <span class="detail-value">Stripe</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Accepted Methods</span>
+          <span class="detail-value">Credit / Debit / Apple Pay</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Encryption</span>
+          <span class="detail-value">256-bit SSL</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Receipt</span>
+          <span class="detail-value">Emailed instantly</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust Badges -->
+    <div class="trust-badges">
+      <div class="trust-badge">
+        <div class="trust-badge-icon">&#128274;</div>
+        <div class="trust-badge-text">Secure Checkout</div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">&#9889;</div>
+        <div class="trust-badge-text">Instant Processing</div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">&#128231;</div>
+        <div class="trust-badge-text">Email Receipt</div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">&#128179;</div>
+        <div class="trust-badge-text">All Cards Accepted</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUESTIONS ═══ -->
+<section class="section section-alt">
+  <div class="container text-center" style="max-width:600px;">
+    <h2>Have Questions?</h2>
+    <p style="margin-bottom:24px;">If you need to discuss pricing, payment plans, or project scope before paying, we're happy to help.</p>
+    <div class="btn-group" style="justify-content:center;">
+      <a href="mailto:sales@provb3global.com" class="btn btn-navy">Email Us</a>
+      <a href="tel:7244135224" class="btn btn-outline" style="color:var(--navy);border-color:var(--border);">Call (724) 413-5224</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Proverbs 3 <span>Global Design</span></h3>
+        <p>Strategic website design and branding for businesses and ministries ready to build with excellence and purpose.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="shop.html">Packages</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get Started</h4>
+        <a href="onboarding.html">Start Your Project</a>
+        <a href="pay.html">Make a Payment</a>
+        <a href="moodboards/">View Mood Boards</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:sales@provb3global.com">sales@provb3global.com</a>
+        <a href="tel:7244135224">(724) 413-5224</a>
+        <a>Riverview, FL</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Proverbs 3 Global Design. All rights reserved.</span>
+      <span>Built with excellence and purpose.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
