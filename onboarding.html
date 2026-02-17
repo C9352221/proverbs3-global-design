@@ -1,0 +1,2327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proverbs 3 Global Design — Client Onboarding</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ── Design Tokens ── */
+        :root {
+            --royal-blue: #1e3a5f;
+            --royal-blue-light: #2a4f7a;
+            --royal-blue-dark: #152c49;
+            --gold: #e8b923;
+            --gold-light: #f0cc55;
+            --gold-warm: #d4a41a;
+            --cream: #fdf8ef;
+            --warm-white: #fffcf5;
+            --white: #ffffff;
+            --text-dark: #1e3a5f;
+            --text-body: #4a5568;
+            --text-light: #718096;
+            --border: #e8dcc8;
+            --error: #c53030;
+            --error-bg: #fff5f5;
+            --success: #38a169;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --radius-lg: 16px;
+            --transition: all 0.3s ease;
+        }
+
+        /* ── Reset ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-body);
+            line-height: 1.7;
+            background: var(--cream);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        /* ── Typography ── */
+        h1, h2, h3, h4 { font-family: 'Lora', serif; color: var(--text-dark); }
+        h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.2; }
+        h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 700; margin-bottom: 8px; }
+        h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 6px; }
+
+        /* ── Welcome Screen ── */
+        #welcome {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(160deg, var(--royal-blue) 0%, var(--royal-blue-dark) 100%);
+            padding: 40px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        #welcome::before {
+            content: '';
+            position: absolute;
+            top: -30%; right: -15%;
+            width: 700px; height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(232,185,35,0.06) 0%, transparent 70%);
+        }
+        #welcome::after {
+            content: '';
+            position: absolute;
+            bottom: -20%; left: -10%;
+            width: 500px; height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+        }
+        .welcome-content { position: relative; z-index: 1; max-width: 600px; }
+        .welcome-badge {
+            display: inline-block;
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: rgba(232,185,35,0.1);
+            padding: 8px 24px;
+            border-radius: 100px;
+            border: 1px solid rgba(232,185,35,0.2);
+            margin-bottom: 32px;
+            font-weight: 600;
+        }
+        .welcome-content h1 { color: var(--white); margin-bottom: 20px; }
+        .welcome-content p { color: rgba(255,255,255,0.7); font-size: 1.1rem; line-height: 1.8; margin-bottom: 40px; }
+        .welcome-data { margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .welcome-data p { font-size: 0.95rem; margin-bottom: 16px; }
+
+        /* ── Buttons ── */
+        .btn-gold {
+            display: inline-block;
+            padding: 16px 44px;
+            background: var(--gold);
+            color: var(--royal-blue-dark);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            letter-spacing: 0.3px;
+        }
+        .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .btn-gold:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 3px; }
+        .btn-outline-light {
+            display: inline-block;
+            padding: 14px 36px;
+            background: transparent;
+            color: rgba(255,255,255,0.85);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            border: 2px solid rgba(255,255,255,0.25);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            margin-left: 12px;
+        }
+        .btn-outline-light:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+        .btn-link {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: 16px;
+            display: block;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .btn-link:hover { color: rgba(255,255,255,0.8); }
+        .btn-primary {
+            display: inline-block;
+            padding: 14px 36px;
+            background: var(--royal-blue);
+            color: var(--white);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-primary:hover { background: var(--royal-blue-light); }
+        .btn-primary:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+        .btn-secondary {
+            display: inline-block;
+            padding: 14px 36px;
+            background: transparent;
+            color: var(--royal-blue);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-secondary:hover { border-color: var(--royal-blue); }
+
+        /* ── Progress Bar ── */
+        #progress-bar {
+            display: none;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+            box-shadow: var(--shadow-sm);
+        }
+        #progress-bar.visible { display: block; }
+        .progress-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4px;
+        }
+        .progress-step {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 8px;
+            transition: var(--transition);
+            border: none;
+            background: none;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .progress-step:hover { background: var(--cream); }
+        .progress-step:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+        .progress-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            border: 2px solid var(--border);
+            color: var(--text-light);
+            background: var(--white);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .progress-step.completed .progress-dot {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--royal-blue-dark);
+        }
+        .progress-step.active .progress-dot {
+            border-color: var(--royal-blue);
+            color: var(--royal-blue);
+            background: var(--cream);
+        }
+        .progress-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+        .progress-step.active .progress-label { color: var(--royal-blue); }
+        .progress-step.completed .progress-label { color: var(--gold-warm); }
+
+        /* ── Form Container ── */
+        #form-container {
+            display: none;
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+        #form-container.visible { display: block; }
+        .form-header {
+            margin-bottom: 36px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+        }
+        .form-header p { color: var(--text-light); margin-top: 6px; }
+        .step-section { display: none; }
+        .step-section.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+        /* ── Form Elements ── */
+        .form-group { margin-bottom: 24px; }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+        .form-group .hint {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 400;
+            margin-left: 4px;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="url"],
+        .form-group input[type="number"],
+        .form-group input[type="color"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 15px;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: var(--transition);
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--gold);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232,185,35,0.15);
+        }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .form-group select { cursor: pointer; }
+        .form-group input[type="color"] { height: 48px; padding: 4px 8px; cursor: pointer; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+        /* ── Character Count ── */
+        .char-count { text-align: right; font-size: 12px; color: var(--text-light); margin-top: 4px; }
+
+        /* ── Validation ── */
+        .field-error {
+            font-size: 13px;
+            color: var(--error);
+            margin-top: 6px;
+            display: none;
+        }
+        .form-group.has-error input,
+        .form-group.has-error select,
+        .form-group.has-error textarea { border-color: var(--error); background: var(--error-bg); }
+        .form-group.has-error .field-error { display: block; }
+
+        /* ── Dynamic List Inputs ── */
+        .dynamic-list { display: flex; flex-direction: column; gap: 10px; }
+        .dynamic-item {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .dynamic-item input { flex: 1; }
+        .dynamic-item .remove-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--white);
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .dynamic-item .remove-btn:hover { border-color: var(--error); color: var(--error); }
+        .add-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            background: var(--cream);
+            border: 1px dashed var(--border);
+            border-radius: var(--radius);
+            color: var(--royal-blue);
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 8px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .add-btn:hover { background: var(--warm-white); border-color: var(--royal-blue); }
+
+        /* ── Tag Selector ── */
+        .tag-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tag-option {
+            padding: 10px 20px;
+            border: 2px solid var(--border);
+            border-radius: 100px;
+            background: var(--white);
+            color: var(--text-body);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Open Sans', sans-serif;
+        }
+        .tag-option:hover { border-color: var(--royal-blue-light); }
+        .tag-option.selected {
+            background: var(--royal-blue);
+            border-color: var(--royal-blue);
+            color: var(--white);
+        }
+        .tag-option:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+        /* ── Keyword Tags Input ── */
+        .tag-input-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--white);
+            min-height: 48px;
+            cursor: text;
+            transition: var(--transition);
+        }
+        .tag-input-wrap:focus-within { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(232,185,35,0.15); }
+        .tag-input-wrap .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: var(--royal-blue);
+            color: var(--white);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .tag-input-wrap .tag .tag-remove {
+            cursor: pointer;
+            opacity: 0.7;
+            font-size: 16px;
+            line-height: 1;
+        }
+        .tag-input-wrap .tag .tag-remove:hover { opacity: 1; }
+        .tag-input-wrap input {
+            border: none;
+            outline: none;
+            font-size: 15px;
+            font-family: 'Open Sans', sans-serif;
+            min-width: 120px;
+            flex: 1;
+            color: var(--text-dark);
+            background: transparent;
+        }
+
+        /* ── Toggle ── */
+        .toggle-group {
+            display: flex;
+            gap: 12px;
+        }
+        .toggle-btn {
+            padding: 12px 28px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--white);
+            color: var(--text-body);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Open Sans', sans-serif;
+        }
+        .toggle-btn.active {
+            background: var(--royal-blue);
+            border-color: var(--royal-blue);
+            color: var(--white);
+        }
+        .toggle-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+        .toggle-content { display: none; margin-top: 20px; }
+        .toggle-content.visible { display: block; }
+
+        /* ── Radio / Checkbox Groups ── */
+        .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+        .radio-group.grid, .checkbox-group.grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+        }
+        .radio-option, .check-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--white);
+        }
+        .radio-option:hover, .check-option:hover { border-color: var(--royal-blue-light); }
+        .radio-option input, .check-option input { accent-color: var(--royal-blue); width: 18px; height: 18px; cursor: pointer; }
+        .radio-option span, .check-option span { font-size: 14px; font-weight: 500; color: var(--text-dark); }
+        .radio-option:has(input:checked), .check-option:has(input:checked) {
+            border-color: var(--royal-blue);
+            background: rgba(30,58,95,0.03);
+        }
+
+        /* ── File Upload Zones ── */
+        .upload-zone {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-lg);
+            padding: 36px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--white);
+            margin-bottom: 12px;
+        }
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: var(--gold);
+            background: rgba(232,185,35,0.03);
+        }
+        .upload-zone:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+        .upload-icon { font-size: 2rem; margin-bottom: 8px; }
+        .upload-text { font-weight: 600; color: var(--text-dark); font-size: 14px; }
+        .upload-hint { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+        .upload-zone input[type="file"] { display: none; }
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .preview-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--white);
+        }
+        .preview-item img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            display: block;
+        }
+        .preview-info {
+            padding: 8px;
+            font-size: 11px;
+            color: var(--text-light);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .preview-item .delete-preview {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ── Navigation Footer ── */
+        .step-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Review Screen ── */
+        .review-section {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        .review-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .review-section-header h3 { margin-bottom: 0; color: var(--royal-blue); }
+        .edit-link {
+            font-size: 13px;
+            color: var(--gold-warm);
+            font-weight: 600;
+            cursor: pointer;
+            background: none;
+            border: none;
+            text-decoration: underline;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .edit-link:hover { color: var(--gold); }
+        .review-field { margin-bottom: 14px; }
+        .review-label { font-size: 12px; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .review-value { font-size: 15px; color: var(--text-dark); }
+        .review-list { padding-left: 20px; }
+        .review-list li { margin-bottom: 4px; font-size: 14px; }
+
+        /* ── Consent ── */
+        .consent-box {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 32px 0;
+        }
+        .consent-box label {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        .consent-box input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--royal-blue);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        /* ── Export Buttons ── */
+        .export-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        .export-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .export-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .export-btn.copy { background: var(--gold); color: var(--royal-blue-dark); }
+        .export-btn.copy:hover:not(:disabled) { background: var(--gold-light); }
+        .export-btn.download { background: var(--royal-blue); color: var(--white); }
+        .export-btn.download:hover:not(:disabled) { background: var(--royal-blue-light); }
+        .export-btn.print { background: var(--white); color: var(--royal-blue); border: 2px solid var(--border); }
+        .export-btn.print:hover:not(:disabled) { border-color: var(--royal-blue); }
+
+        /* ── Thank You ── */
+        .thank-you {
+            display: none;
+            text-align: center;
+            padding: 60px 24px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-top: 32px;
+        }
+        .thank-you.visible { display: block; animation: fadeIn 0.4s ease; }
+        .thank-you h2 { color: var(--royal-blue); margin-bottom: 16px; }
+        .thank-you p { max-width: 500px; margin: 0 auto 20px; }
+
+        /* ── Privacy Section ── */
+        .privacy-section {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-top: 40px;
+            border: 1px solid var(--border);
+        }
+        .privacy-section h3 { color: var(--royal-blue); margin-bottom: 16px; }
+        .privacy-section p, .privacy-section li { font-size: 14px; line-height: 1.7; color: var(--text-body); }
+        .privacy-section ul { padding-left: 20px; margin: 10px 0; }
+
+        /* ── Toast ── */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--royal-blue);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            white-space: nowrap;
+        }
+        .toast.visible { transform: translateX(-50%) translateY(0); }
+        .toast.success { background: var(--success); }
+
+        /* ── Data Safety Banner ── */
+        .data-safety {
+            text-align: center;
+            padding: 10px 20px;
+            background: rgba(56,161,105,0.08);
+            border-bottom: 1px solid rgba(56,161,105,0.15);
+            font-size: 13px;
+            color: var(--success);
+            font-weight: 500;
+        }
+        .data-safety-welcome {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 24px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 100px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ── Clear Draft ── */
+        .clear-draft-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 18px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 12px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Open Sans', sans-serif;
+            z-index: 50;
+            box-shadow: var(--shadow-sm);
+            display: none;
+        }
+        .clear-draft-btn.visible { display: block; }
+        .clear-draft-btn:hover { color: var(--error); border-color: var(--error); }
+
+        /* ── Print Styles ── */
+        @media print {
+            body { background: white; }
+            #progress-bar, .step-nav, .export-group, .consent-box,
+            .clear-draft-btn, .toast, .data-safety, .edit-link, .btn-gold, .btn-link { display: none !important; }
+            .review-section { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+            #form-container { max-width: 100%; padding: 20px; }
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .form-row, .form-row-3 { grid-template-columns: 1fr; }
+            .progress-label { display: none; }
+            .progress-inner { justify-content: center; }
+            .export-group { flex-direction: column; }
+            .step-nav { flex-direction: column-reverse; gap: 12px; }
+            .step-nav .btn-primary, .step-nav .btn-secondary { width: 100%; text-align: center; }
+            .welcome-content h1 { font-size: 1.8rem; }
+            .review-section { padding: 20px; }
+        }
+        @media (max-width: 480px) {
+            #form-container { padding: 20px 16px 80px; }
+            .progress-dot { width: 24px; height: 24px; font-size: 11px; }
+            .tag-grid { gap: 8px; }
+            .tag-option { padding: 8px 14px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Data Safety Banner (visible in form mode) -->
+<div class="data-safety" id="dataSafetyBanner" style="display:none;">
+    This form runs locally in your browser. Nothing is uploaded to a server.
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- WELCOME SCREEN                             -->
+<!-- ═══════════════════════════════════════════ -->
+<section id="welcome">
+    <div class="welcome-content">
+        <div class="welcome-badge">Proverbs 3 Global Design</div>
+        <h1>Welcome to Your Website Project</h1>
+        <p>This questionnaire takes about 10-15 minutes. Your answers help us design a website that perfectly represents your brand. You can save and come back anytime.</p>
+        <button class="btn-gold" id="btnStart" onclick="startForm()">Let's Get Started</button>
+        <div class="welcome-data" id="resumeSection" style="display:none;">
+            <p style="color: rgba(255,255,255,0.6);">You have a saved draft from a previous session.</p>
+            <button class="btn-outline-light" onclick="resumeForm()">Resume Your Progress</button>
+            <button class="btn-link" onclick="startFresh()">Start Fresh</button>
+        </div>
+        <div class="data-safety-welcome">This form runs locally in your browser. Nothing is uploaded to a server.</div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PROGRESS BAR                               -->
+<!-- ═══════════════════════════════════════════ -->
+<nav id="progress-bar" role="navigation" aria-label="Form progress">
+    <div class="progress-inner" id="progressInner"></div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- FORM CONTAINER                             -->
+<!-- ═══════════════════════════════════════════ -->
+<main id="form-container">
+
+    <!-- ── STEP 1: Business Overview ── -->
+    <div class="step-section" data-step="1" id="step1">
+        <div class="form-header">
+            <h2>Business Overview</h2>
+            <p>Tell us about your business and who we'll be working with.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="contactName">Your Name <span class="hint">(person filling this out)</span></label>
+            <input type="text" id="contactName" name="contactName" placeholder="Full name">
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="contactEmail">Email Address</label>
+                <input type="email" id="contactEmail" name="contactEmail" placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+                <label for="contactPhone">Phone Number</label>
+                <input type="tel" id="contactPhone" name="contactPhone" placeholder="(555) 123-4567">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="businessName">Business Name <span class="hint">(required)</span></label>
+            <input type="text" id="businessName" name="businessName" placeholder="Your business name" required aria-required="true">
+            <div class="field-error" id="businessNameError" role="alert">Please enter your business name.</div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="industry">Industry / Niche</label>
+                <select id="industry" name="industry">
+                    <option value="">Select an industry...</option>
+                    <option value="Accounting / Finance">Accounting / Finance</option>
+                    <option value="Automotive">Automotive</option>
+                    <option value="Beauty / Salon / Spa">Beauty / Salon / Spa</option>
+                    <option value="Church / Ministry">Church / Ministry</option>
+                    <option value="Coaching / Consulting">Coaching / Consulting</option>
+                    <option value="Construction / Trades">Construction / Trades</option>
+                    <option value="E-commerce / Retail">E-commerce / Retail</option>
+                    <option value="Education / Training">Education / Training</option>
+                    <option value="Entertainment / Events">Entertainment / Events</option>
+                    <option value="Fitness / Wellness">Fitness / Wellness</option>
+                    <option value="Food / Restaurant">Food / Restaurant</option>
+                    <option value="Healthcare / Medical">Healthcare / Medical</option>
+                    <option value="Legal">Legal</option>
+                    <option value="Marketing / Agency">Marketing / Agency</option>
+                    <option value="Non-Profit">Non-Profit</option>
+                    <option value="Photography / Videography">Photography / Videography</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="Technology / SaaS">Technology / SaaS</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="yearsOperating">Years in Operation</label>
+                <input type="number" id="yearsOperating" name="yearsOperating" placeholder="e.g. 5" min="0">
+            </div>
+        </div>
+        <div class="form-group" id="industryOtherGroup" style="display:none;">
+            <label for="industryOther">Specify Your Industry</label>
+            <input type="text" id="industryOther" name="industryOther" placeholder="Your industry...">
+        </div>
+        <div class="form-row-3">
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" placeholder="City">
+            </div>
+            <div class="form-group">
+                <label for="state">State / Province</label>
+                <input type="text" id="state" name="state" placeholder="State">
+            </div>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" id="country" name="country" placeholder="Country">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="currentWebsite">Current Website URL <span class="hint">(if any)</span></label>
+            <input type="url" id="currentWebsite" name="currentWebsite" placeholder="https://example.com">
+        </div>
+        <div class="form-group">
+            <label for="elevatorPitch">Elevator Pitch <span class="hint">— In one sentence, what does your business do?</span></label>
+            <textarea id="elevatorPitch" name="elevatorPitch" placeholder="We help [audience] achieve [result] through [method]..." maxlength="300"></textarea>
+            <div class="char-count"><span id="elevatorPitchCount">0</span>/300</div>
+        </div>
+
+        <div class="step-nav">
+            <div></div>
+            <button class="btn-primary" onclick="nextStep()">Continue</button>
+        </div>
+    </div>
+
+    <!-- ── STEP 2: About the Owner ── -->
+    <div class="step-section" data-step="2" id="step2">
+        <div class="form-header">
+            <h2>About the Owner</h2>
+            <p>Help us understand your story and vision.</p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="ownerName">Owner / Founder Name(s)</label>
+                <input type="text" id="ownerName" name="ownerName" placeholder="Full name(s)">
+            </div>
+            <div class="form-group">
+                <label for="ownerTitle">Title / Role</label>
+                <input type="text" id="ownerTitle" name="ownerTitle" placeholder="e.g. CEO, Founder, Pastor">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="originStory">Your Story <span class="hint">— Why did you start this business?</span></label>
+            <textarea id="originStory" name="originStory" placeholder="Tell us about your journey..." maxlength="2000"></textarea>
+            <div class="char-count"><span id="originStoryCount">0</span>/2000</div>
+        </div>
+        <div class="form-group">
+            <label for="visionStatement">Vision Statement <span class="hint">— Where do you see this business in 5 years?</span></label>
+            <textarea id="visionStatement" name="visionStatement" placeholder="In 5 years, we will..." maxlength="1000" style="min-height:80px;"></textarea>
+            <div class="char-count"><span id="visionStatementCount">0</span>/1000</div>
+        </div>
+        <div class="form-group">
+            <label for="missionStatement">Mission Statement <span class="hint">— What drives you every day?</span></label>
+            <textarea id="missionStatement" name="missionStatement" placeholder="Our mission is to..." maxlength="1000" style="min-height:80px;"></textarea>
+            <div class="char-count"><span id="missionStatementCount">0</span>/1000</div>
+        </div>
+
+        <div class="step-nav">
+            <button class="btn-secondary" onclick="prevStep()">Back</button>
+            <button class="btn-primary" onclick="nextStep()">Continue</button>
+        </div>
+    </div>
+
+    <!-- ── STEP 3: Products, Services & Differentiators ── -->
+    <div class="step-section" data-step="3" id="step3">
+        <div class="form-header">
+            <h2>Products, Services &amp; Differentiators</h2>
+            <p>What do you offer and what makes you stand out?</p>
+        </div>
+
+        <div class="form-group">
+            <label>Top 3-5 Services or Products</label>
+            <div class="dynamic-list" id="servicesList">
+                <div class="dynamic-item">
+                    <input type="text" name="services[]" placeholder="Service or product #1">
+                    <button type="button" class="remove-btn" onclick="removeItem(this)" aria-label="Remove">&times;</button>
+                </div>
+                <div class="dynamic-item">
+                    <input type="text" name="services[]" placeholder="Service or product #2">
+                    <button type="button" class="remove-btn" onclick="removeItem(this)" aria-label="Remove">&times;</button>
+                </div>
+                <div class="dynamic-item">
+                    <input type="text" name="services[]" placeholder="Service or product #3">
+                    <button type="button" class="remove-btn" onclick="removeItem(this)" aria-label="Remove">&times;</button>
+                </div>
+            </div>
+            <button type="button" class="add-btn" onclick="addItem('servicesList', 'Service or product')">+ Add Another</button>
+        </div>
+        <div class="form-group">
+            <label for="differentiator">What makes you different from your competitors?</label>
+            <textarea id="differentiator" name="differentiator" placeholder="What's your unique advantage?" maxlength="1500"></textarea>
+            <div class="char-count"><span id="differentiatorCount">0</span>/1500</div>
+        </div>
+        <div class="form-group">
+            <label>Top 3 Benefits Your Clients Get</label>
+            <div class="dynamic-list" id="benefitsList">
+                <div class="dynamic-item">
+                    <input type="text" name="benefits[]" placeholder="Benefit #1">
+                    <button type="button" class="remove-btn" onclick="removeItem(this)" aria-label="Remove">&times;</button>
+                </div>
+                <div class="dynamic-item">
+                    <input type="text" name="benefits[]" placeholder="Benefit #2">
+                    <button type="button" class="remove-btn" onclick="removeItem(this)" aria-label="Remove">&times;</button>
+                </div>
+                <div class="dynamic-item">
+                    <input type="text" name="benefits[]" placeholder="Benefit #3">
+                    <button type="button" class="remove-btn" onclick="removeItem(this)" aria-label="Remove">&times;</button>
+                </div>
+            </div>
+            <button type="button" class="add-btn" onclick="addItem('benefitsList', 'Benefit')">+ Add Another</button>
+        </div>
+        <div class="form-group">
+            <label for="targetAudience">Ideal Customer <span class="hint">— Describe your ideal customer</span></label>
+            <textarea id="targetAudience" name="targetAudience" placeholder="Age, interests, pain points, goals..." maxlength="1500"></textarea>
+            <div class="char-count"><span id="targetAudienceCount">0</span>/1500</div>
+        </div>
+
+        <div class="step-nav">
+            <button class="btn-secondary" onclick="prevStep()">Back</button>
+            <button class="btn-primary" onclick="nextStep()">Continue</button>
+        </div>
+    </div>
+
+    <!-- ── STEP 4: Brand Identity & Voice ── -->
+    <div class="step-section" data-step="4" id="step4">
+        <div class="form-header">
+            <h2>Brand Identity &amp; Voice</h2>
+            <p>Let's capture the look, feel, and personality of your brand.</p>
+        </div>
+
+        <div class="form-group">
+            <label>Do you have existing branding?</label>
+            <div class="toggle-group">
+                <button type="button" class="toggle-btn" data-toggle="brandYes" onclick="toggleBrand(true)">Yes</button>
+                <button type="button" class="toggle-btn" data-toggle="brandNo" onclick="toggleBrand(false)">No</button>
+            </div>
+        </div>
+
+        <!-- If YES — existing branding -->
+        <div class="toggle-content" id="brandYesContent">
+            <div class="form-row-3">
+                <div class="form-group">
+                    <label for="colorPrimary">Primary Color</label>
+                    <input type="color" id="colorPrimary" name="colorPrimary" value="#1e3a5f">
+                    <div style="font-size:12px;color:var(--text-light);margin-top:4px;text-align:center;" id="colorPrimaryHex">#1e3a5f</div>
+                </div>
+                <div class="form-group">
+                    <label for="colorSecondary">Secondary Color</label>
+                    <input type="color" id="colorSecondary" name="colorSecondary" value="#e8b923">
+                    <div style="font-size:12px;color:var(--text-light);margin-top:4px;text-align:center;" id="colorSecondaryHex">#e8b923</div>
+                </div>
+                <div class="form-group">
+                    <label for="colorAccent">Accent Color</label>
+                    <input type="color" id="colorAccent" name="colorAccent" value="#38a169">
+                    <div style="font-size:12px;color:var(--text-light);margin-top:4px;text-align:center;" id="colorAccentHex">#38a169</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fontPreferences">Font Preferences <span class="hint">(if any)</span></label>
+                <input type="text" id="fontPreferences" name="fontPreferences" placeholder="e.g. Montserrat for headings, Roboto for body">
+            </div>
+        </div>
+
+        <!-- If NO — brand feel picker -->
+        <div class="toggle-content" id="brandNoContent">
+            <div class="form-group">
+                <label>Pick 3 words that describe how you want your brand to feel:</label>
+                <div class="tag-grid" id="brandFeelTags">
+                    <button type="button" class="tag-option" data-value="Professional">Professional</button>
+                    <button type="button" class="tag-option" data-value="Friendly">Friendly</button>
+                    <button type="button" class="tag-option" data-value="Bold">Bold</button>
+                    <button type="button" class="tag-option" data-value="Elegant">Elegant</button>
+                    <button type="button" class="tag-option" data-value="Playful">Playful</button>
+                    <button type="button" class="tag-option" data-value="Authoritative">Authoritative</button>
+                    <button type="button" class="tag-option" data-value="Warm">Warm</button>
+                    <button type="button" class="tag-option" data-value="Modern">Modern</button>
+                    <button type="button" class="tag-option" data-value="Classic">Classic</button>
+                    <button type="button" class="tag-option" data-value="Edgy">Edgy</button>
+                    <button type="button" class="tag-option" data-value="Trustworthy">Trustworthy</button>
+                    <button type="button" class="tag-option" data-value="Creative">Creative</button>
+                    <button type="button" class="tag-option" data-value="Luxurious">Luxurious</button>
+                    <button type="button" class="tag-option" data-value="Approachable">Approachable</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top:24px;">
+            <label for="brandVoice">Brand Voice</label>
+            <select id="brandVoice" name="brandVoice">
+                <option value="">Select a voice...</option>
+                <option value="Professional">Professional</option>
+                <option value="Friendly">Friendly</option>
+                <option value="Bold">Bold</option>
+                <option value="Elegant">Elegant</option>
+                <option value="Playful">Playful</option>
+                <option value="Authoritative">Authoritative</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Websites You Admire <span class="hint">(we'll study their design)</span></label>
+            <div class="dynamic-list" id="inspirationList">
+                <div class="dynamic-item">
+                    <input type="url" name="inspiration[]" placeholder="https://example.com">
+                    <button type="button" class="remove-btn" onclick="removeItem(this)" aria-label="Remove">&times;</button>
+                </div>
+                <div class="dynamic-item">
+                    <input type="url" name="inspiration[]" placeholder="https://example.com">
+                    <button type="button" class="remove-btn" onclick="removeItem(this)" aria-label="Remove">&times;</button>
+                </div>
+            </div>
+            <button type="button" class="add-btn" onclick="addItem('inspirationList', 'https://example.com', 'url')">+ Add Another</button>
+        </div>
+
+        <div class="form-group">
+            <label>Keywords <span class="hint">— Words that describe your brand perception (press Enter to add)</span></label>
+            <div class="tag-input-wrap" id="keywordsWrap" onclick="document.getElementById('keywordsInput').focus()">
+                <input type="text" id="keywordsInput" placeholder="Type a keyword and press Enter...">
+            </div>
+        </div>
+
+        <div class="step-nav">
+            <button class="btn-secondary" onclick="prevStep()">Back</button>
+            <button class="btn-primary" onclick="nextStep()">Continue</button>
+        </div>
+    </div>
+
+    <!-- ── STEP 5: Visual Assets ── -->
+    <div class="step-section" data-step="5" id="step5">
+        <div class="form-header">
+            <h2>Visual Assets</h2>
+            <p>Upload any logos, photos, or images you'd like us to consider. These are stored locally in your browser only.</p>
+        </div>
+
+        <div class="form-group">
+            <label>Logo <span class="hint">(1 file)</span></label>
+            <div class="upload-zone" id="logoZone" tabindex="0" role="button" aria-label="Upload logo" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'logo', 1)" onclick="document.getElementById('logoInput').click()">
+                <div class="upload-icon">+</div>
+                <div class="upload-text">Drop your logo here or click to browse</div>
+                <div class="upload-hint">PNG, JPG, SVG recommended</div>
+                <input type="file" id="logoInput" accept="image/*" onchange="handleFiles(this.files, 'logo', 1)">
+            </div>
+            <div class="preview-grid" id="logoPreview"></div>
+            <div class="form-group" style="margin-top:8px;">
+                <input type="text" id="logoNotes" name="logoNotes" placeholder="Notes about your logo (optional)" style="font-size:13px;">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Hero / Banner Photos <span class="hint">(up to 5)</span></label>
+            <div class="upload-zone" id="heroZone" tabindex="0" role="button" aria-label="Upload hero photos" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'hero', 5)" onclick="document.getElementById('heroInput').click()">
+                <div class="upload-icon">+</div>
+                <div class="upload-text">Drop hero/banner photos here or click to browse</div>
+                <div class="upload-hint">Up to 5 images</div>
+                <input type="file" id="heroInput" accept="image/*" multiple onchange="handleFiles(this.files, 'hero', 5)">
+            </div>
+            <div class="preview-grid" id="heroPreview"></div>
+            <div class="form-group" style="margin-top:8px;">
+                <input type="text" id="heroNotes" name="heroNotes" placeholder="Notes about hero photos (optional)" style="font-size:13px;">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Team / Headshot Photos <span class="hint">(up to 3)</span></label>
+            <div class="upload-zone" id="teamZone" tabindex="0" role="button" aria-label="Upload team photos" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'team', 3)" onclick="document.getElementById('teamInput').click()">
+                <div class="upload-icon">+</div>
+                <div class="upload-text">Drop team/headshot photos here or click to browse</div>
+                <div class="upload-hint">Up to 3 images</div>
+                <input type="file" id="teamInput" accept="image/*" multiple onchange="handleFiles(this.files, 'team', 3)">
+            </div>
+            <div class="preview-grid" id="teamPreview"></div>
+            <div class="form-group" style="margin-top:8px;">
+                <input type="text" id="teamNotes" name="teamNotes" placeholder="Notes about team photos (optional)" style="font-size:13px;">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Other Images <span class="hint">(up to 5)</span></label>
+            <div class="upload-zone" id="otherZone" tabindex="0" role="button" aria-label="Upload other images" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'other', 5)" onclick="document.getElementById('otherInput').click()">
+                <div class="upload-icon">+</div>
+                <div class="upload-text">Drop other images here or click to browse</div>
+                <div class="upload-hint">Up to 5 images</div>
+                <input type="file" id="otherInput" accept="image/*" multiple onchange="handleFiles(this.files, 'other', 5)">
+            </div>
+            <div class="preview-grid" id="otherPreview"></div>
+            <div class="form-group" style="margin-top:8px;">
+                <input type="text" id="otherNotes" name="otherNotes" placeholder="Notes about these images (optional)" style="font-size:13px;">
+            </div>
+        </div>
+
+        <div class="step-nav">
+            <button class="btn-secondary" onclick="prevStep()">Back</button>
+            <button class="btn-primary" onclick="nextStep()">Continue</button>
+        </div>
+    </div>
+
+    <!-- ── STEP 6: Goals & Project Fit ── -->
+    <div class="step-section" data-step="6" id="step6">
+        <div class="form-header">
+            <h2>Goals &amp; Project Fit</h2>
+            <p>What do you want your website to achieve?</p>
+        </div>
+
+        <div class="form-group">
+            <label>Primary Website Goal <span class="hint">(required)</span></label>
+            <div class="radio-group grid" id="primaryGoalGroup">
+                <label class="radio-option"><input type="radio" name="primaryGoal" value="Lead Generation"><span>Lead Generation</span></label>
+                <label class="radio-option"><input type="radio" name="primaryGoal" value="E-commerce"><span>E-commerce</span></label>
+                <label class="radio-option"><input type="radio" name="primaryGoal" value="Portfolio"><span>Portfolio</span></label>
+                <label class="radio-option"><input type="radio" name="primaryGoal" value="Information"><span>Information</span></label>
+                <label class="radio-option"><input type="radio" name="primaryGoal" value="Community"><span>Community</span></label>
+                <label class="radio-option"><input type="radio" name="primaryGoal" value="Blog/Content"><span>Blog / Content</span></label>
+            </div>
+            <div class="field-error" id="primaryGoalError" role="alert">Please select a primary goal.</div>
+        </div>
+
+        <div class="form-group">
+            <label>Must-Have Pages</label>
+            <div class="checkbox-group grid">
+                <label class="check-option"><input type="checkbox" name="pages[]" value="Home"><span>Home</span></label>
+                <label class="check-option"><input type="checkbox" name="pages[]" value="About"><span>About</span></label>
+                <label class="check-option"><input type="checkbox" name="pages[]" value="Services"><span>Services</span></label>
+                <label class="check-option"><input type="checkbox" name="pages[]" value="Contact"><span>Contact</span></label>
+                <label class="check-option"><input type="checkbox" name="pages[]" value="Blog"><span>Blog</span></label>
+                <label class="check-option"><input type="checkbox" name="pages[]" value="Shop/Store"><span>Shop / Store</span></label>
+                <label class="check-option"><input type="checkbox" name="pages[]" value="Gallery/Portfolio"><span>Gallery / Portfolio</span></label>
+                <label class="check-option"><input type="checkbox" name="pages[]" value="Testimonials"><span>Testimonials</span></label>
+                <label class="check-option"><input type="checkbox" name="pages[]" value="FAQ"><span>FAQ</span></label>
+                <label class="check-option"><input type="checkbox" name="pages[]" value="Pricing"><span>Pricing</span></label>
+                <label class="check-option"><input type="checkbox" name="pages[]" value="Team"><span>Team</span></label>
+                <label class="check-option"><input type="checkbox" name="pages[]" value="Events"><span>Events</span></label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="primaryCTA">Primary CTA <span class="hint">(required) — What's the #1 thing you want visitors to do?</span></label>
+            <textarea id="primaryCTA" name="primaryCTA" placeholder="e.g. Book a free consultation, Buy our product, Join our newsletter..." maxlength="500" style="min-height:80px;" required aria-required="true"></textarea>
+            <div class="char-count"><span id="primaryCTACount">0</span>/500</div>
+            <div class="field-error" id="primaryCTAError" role="alert">Please describe your primary call to action.</div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="timeline">Preferred Timeline</label>
+                <select id="timeline" name="timeline">
+                    <option value="">Select timeline...</option>
+                    <option value="ASAP">ASAP</option>
+                    <option value="2-4 weeks">2-4 weeks</option>
+                    <option value="1-2 months">1-2 months</option>
+                    <option value="3+ months">3+ months</option>
+                    <option value="No rush">No rush</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="budget">Budget Range</label>
+                <select id="budget" name="budget">
+                    <option value="">Select budget...</option>
+                    <option value="$500-$1K">$500 - $1K</option>
+                    <option value="$1K-$2.5K">$1K - $2.5K</option>
+                    <option value="$2.5K-$5K">$2.5K - $5K</option>
+                    <option value="$5K-$10K">$5K - $10K</option>
+                    <option value="$10K+">$10K+</option>
+                    <option value="Let's discuss">Let's discuss</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="specialFeatures">Special Features Needed <span class="hint">(e.g. booking, payments, multilingual)</span></label>
+            <textarea id="specialFeatures" name="specialFeatures" placeholder="Any specific features or integrations?" maxlength="1000" style="min-height:80px;"></textarea>
+            <div class="char-count"><span id="specialFeaturesCount">0</span>/1000</div>
+        </div>
+
+        <div class="form-group">
+            <label for="additionalNotes">Anything Else? <span class="hint">(optional)</span></label>
+            <textarea id="additionalNotes" name="additionalNotes" placeholder="Anything else you want us to know..." maxlength="2000"></textarea>
+            <div class="char-count"><span id="additionalNotesCount">0</span>/2000</div>
+        </div>
+
+        <div class="step-nav">
+            <button class="btn-secondary" onclick="prevStep()">Back</button>
+            <button class="btn-primary" onclick="nextStep()">Review Your Answers</button>
+        </div>
+    </div>
+
+    <!-- ── STEP 7: Review ── -->
+    <div class="step-section" data-step="7" id="step7">
+        <div class="form-header">
+            <h2>Review Your Answers</h2>
+            <p>Please review everything below. Click "Edit" next to any section to make changes.</p>
+        </div>
+
+        <div id="reviewContent"></div>
+
+        <!-- Consent -->
+        <div class="consent-box" id="consentBox">
+            <label>
+                <input type="checkbox" id="consentCheckbox">
+                I confirm I own or have permission to share these assets and consent to their use for design exploration and mood boards. I acknowledge the privacy notice below and agree to submit my information.
+            </label>
+            <div class="field-error" id="consentError" role="alert">You must agree before submitting.</div>
+        </div>
+
+        <!-- Export Buttons -->
+        <div class="export-group" id="exportGroup">
+            <button class="export-btn copy" onclick="submitToEmail()" id="btnSubmit" disabled style="background:var(--success);color:#fff;font-size:16px;padding:16px 36px;">Submit Application</button>
+            <button class="export-btn download" onclick="downloadJSON()" id="btnDownload" disabled>Download a Copy</button>
+            <button class="export-btn print" onclick="printForm()" id="btnPrint" disabled>Print / Save as PDF</button>
+        </div>
+
+        <!-- Thank You -->
+        <div class="thank-you" id="thankYou">
+            <h2>Thank You!</h2>
+            <p>Your application has been submitted successfully! We've received your information and will be in touch soon. Please remember to send your image files.</p>
+            <div style="background:var(--cream);padding:24px;border-radius:var(--radius);text-align:left;margin-top:20px;">
+                <h3>Asset Checklist</h3>
+                <p style="font-size:14px;margin-top:8px;">Please email your image files or share a Google Drive / Dropbox folder. Include:</p>
+                <ul id="assetChecklist" style="padding-left:20px;margin-top:10px;font-size:14px;"></ul>
+            </div>
+        </div>
+
+        <!-- Privacy Notice -->
+        <div class="privacy-section">
+            <h3>Privacy Notice</h3>
+            <p><strong>What data is collected:</strong> Business information, branding preferences, website goals, and image filenames that you provide in this form.</p>
+            <p><strong>How it's used:</strong> Your responses are used solely to create a website proposal and mood boards for your project.</p>
+            <p><strong>Where it's stored:</strong> Your form data is sent securely to our team via email when you submit. A local draft is also saved in your browser while you work.</p>
+            <p><strong>Retention:</strong> You can clear your saved draft at any time using the "Clear Draft" button. Your data remains in your browser until you clear it.</p>
+            <p><strong>Deletion requests:</strong> Since data is stored only in your browser, you can delete it yourself. If you have shared an exported summary and would like it deleted, please contact us by email.</p>
+        </div>
+
+        <div class="step-nav">
+            <button class="btn-secondary" onclick="prevStep()">Back to Edit</button>
+            <div></div>
+        </div>
+    </div>
+
+</main>
+
+<!-- Clear Draft Button -->
+<button class="clear-draft-btn" id="clearDraftBtn" onclick="clearDraft()">Clear Draft</button>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════════ */
+/* STATE & CONFIG                                 */
+/* ═══════════════════════════════════════════════ */
+const STORAGE_KEY = 'client-onboarding-draft';
+const FORM_VERSION = '1.0';
+const STEP_LABELS = ['Business', 'Owner', 'Services', 'Brand', 'Assets', 'Goals', 'Review'];
+const TOTAL_STEPS = 7;
+let currentStep = 0; // 0 = welcome
+let uploadedFiles = { logo: [], hero: [], team: [], other: [] };
+let brandFeel = [];
+let keywords = [];
+let hasExistingBranding = null;
+let saveTimeout = null;
+
+/* ═══════════════════════════════════════════════ */
+/* INITIALIZATION                                 */
+/* ═══════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', function() {
+    buildProgressBar();
+    setupCharCounters();
+    setupIndustryToggle();
+    setupColorHexDisplay();
+    setupTagSelector();
+    setupKeywordsInput();
+    setupConsentToggle();
+    checkForDraft();
+});
+
+function checkForDraft() {
+    const draft = localStorage.getItem(STORAGE_KEY);
+    if (draft) {
+        try {
+            JSON.parse(draft);
+            document.getElementById('resumeSection').style.display = 'block';
+        } catch(e) {
+            localStorage.removeItem(STORAGE_KEY);
+        }
+    }
+}
+
+/* ═══════════════════════════════════════════════ */
+/* WELCOME → FORM                                */
+/* ═══════════════════════════════════════════════ */
+function startForm() {
+    currentStep = 1;
+    showForm();
+}
+
+function resumeForm() {
+    loadDraft();
+    showForm();
+}
+
+function startFresh() {
+    localStorage.removeItem(STORAGE_KEY);
+    currentStep = 1;
+    showForm();
+}
+
+function showForm() {
+    document.getElementById('welcome').style.display = 'none';
+    document.getElementById('form-container').classList.add('visible');
+    document.getElementById('progress-bar').classList.add('visible');
+    document.getElementById('dataSafetyBanner').style.display = 'block';
+    document.getElementById('clearDraftBtn').classList.add('visible');
+    showStep(currentStep);
+}
+
+/* ═══════════════════════════════════════════════ */
+/* STEP NAVIGATION                                */
+/* ═══════════════════════════════════════════════ */
+function showStep(step) {
+    currentStep = step;
+    document.querySelectorAll('.step-section').forEach(s => s.classList.remove('active'));
+    const target = document.querySelector(`[data-step="${step}"]`);
+    if (target) {
+        target.classList.add('active');
+        // Focus first heading or input
+        const firstFocusable = target.querySelector('h2, input:not([type="hidden"]):not([type="file"]), select, textarea');
+        if (firstFocusable) {
+            setTimeout(() => firstFocusable.focus(), 100);
+        }
+    }
+    updateProgressBar();
+    if (step === 7) buildReview();
+    saveDraft();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function nextStep() {
+    if (!validateStep(currentStep)) return;
+    if (currentStep < TOTAL_STEPS) {
+        showStep(currentStep + 1);
+    }
+}
+
+function prevStep() {
+    if (currentStep > 1) {
+        showStep(currentStep - 1);
+    }
+}
+
+function goToStep(step) {
+    if (step <= currentStep || step <= getHighestCompletedStep()) {
+        showStep(step);
+    }
+}
+
+function getHighestCompletedStep() {
+    return currentStep;
+}
+
+/* ═══════════════════════════════════════════════ */
+/* PROGRESS BAR                                   */
+/* ═══════════════════════════════════════════════ */
+function buildProgressBar() {
+    const inner = document.getElementById('progressInner');
+    inner.innerHTML = '';
+    for (let i = 1; i <= TOTAL_STEPS; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'progress-step';
+        btn.setAttribute('aria-label', `Step ${i}: ${STEP_LABELS[i-1]}`);
+        btn.onclick = () => goToStep(i);
+        btn.innerHTML = `
+            <span class="progress-dot">${i}</span>
+            <span class="progress-label">${STEP_LABELS[i-1]}</span>
+        `;
+        inner.appendChild(btn);
+    }
+}
+
+function updateProgressBar() {
+    const steps = document.querySelectorAll('.progress-step');
+    steps.forEach((s, i) => {
+        const stepNum = i + 1;
+        s.classList.remove('active', 'completed');
+        if (stepNum === currentStep) s.classList.add('active');
+        else if (stepNum < currentStep) {
+            s.classList.add('completed');
+            s.querySelector('.progress-dot').textContent = '\u2713';
+        } else {
+            s.querySelector('.progress-dot').textContent = stepNum;
+        }
+    });
+}
+
+/* ═══════════════════════════════════════════════ */
+/* VALIDATION                                     */
+/* ═══════════════════════════════════════════════ */
+function validateStep(step) {
+    clearErrors();
+    let valid = true;
+
+    if (step === 1) {
+        const bName = document.getElementById('businessName');
+        if (!bName.value.trim()) {
+            showFieldError('businessName', 'businessNameError');
+            valid = false;
+        }
+    }
+
+    if (step === 6) {
+        const goal = document.querySelector('input[name="primaryGoal"]:checked');
+        if (!goal) {
+            document.getElementById('primaryGoalError').style.display = 'block';
+            document.getElementById('primaryGoalGroup').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            valid = false;
+        }
+        const cta = document.getElementById('primaryCTA');
+        if (!cta.value.trim()) {
+            showFieldError('primaryCTA', 'primaryCTAError');
+            if (valid) valid = false;
+        }
+    }
+
+    return valid;
+}
+
+function showFieldError(fieldId, errorId) {
+    const field = document.getElementById(fieldId);
+    const error = document.getElementById(errorId);
+    field.closest('.form-group').classList.add('has-error');
+    error.style.display = 'block';
+    field.setAttribute('aria-describedby', errorId);
+    field.focus();
+}
+
+function clearErrors() {
+    document.querySelectorAll('.has-error').forEach(g => g.classList.remove('has-error'));
+    document.querySelectorAll('.field-error').forEach(e => e.style.display = 'none');
+}
+
+/* ═══════════════════════════════════════════════ */
+/* AUTOSAVE                                       */
+/* ═══════════════════════════════════════════════ */
+document.addEventListener('input', function(e) {
+    if (e.target.closest('#form-container')) {
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(saveDraft, 500);
+    }
+});
+
+function saveDraft() {
+    if (currentStep === 0) return;
+    const data = collectAllData();
+    data._meta = { step: currentStep, version: FORM_VERSION, savedAt: new Date().toISOString() };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    showToast('Progress saved');
+}
+
+function loadDraft() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) { currentStep = 1; return; }
+    try {
+        const data = JSON.parse(raw);
+        currentStep = data._meta?.step || 1;
+
+        // Restore simple fields
+        const simpleFields = [
+            'contactName','contactEmail','contactPhone','businessName','industry',
+            'industryOther','yearsOperating','city','state','country',
+            'currentWebsite','elevatorPitch','ownerName','ownerTitle','originStory',
+            'visionStatement','missionStatement','differentiator','targetAudience',
+            'brandVoice','fontPreferences','colorPrimary','colorSecondary','colorAccent',
+            'primaryCTA','timeline','budget','specialFeatures','additionalNotes',
+            'logoNotes','heroNotes','teamNotes','otherNotes'
+        ];
+        simpleFields.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && data[id] !== undefined) {
+                el.value = data[id];
+            }
+        });
+
+        // Restore industry other toggle
+        if (data.industry === 'Other') {
+            document.getElementById('industryOtherGroup').style.display = 'block';
+        }
+
+        // Restore color hex displays
+        ['colorPrimary','colorSecondary','colorAccent'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) document.getElementById(id + 'Hex').textContent = el.value;
+        });
+
+        // Restore dynamic lists
+        if (data.services) restoreDynamicList('servicesList', data.services, 'Service or product');
+        if (data.benefits) restoreDynamicList('benefitsList', data.benefits, 'Benefit');
+        if (data.inspiration) restoreDynamicList('inspirationList', data.inspiration, 'https://example.com', 'url');
+
+        // Restore primary goal
+        if (data.primaryGoal) {
+            const radio = document.querySelector(`input[name="primaryGoal"][value="${data.primaryGoal}"]`);
+            if (radio) radio.checked = true;
+        }
+
+        // Restore pages
+        if (data.pages) {
+            data.pages.forEach(p => {
+                const cb = document.querySelector(`input[name="pages[]"][value="${p}"]`);
+                if (cb) cb.checked = true;
+            });
+        }
+
+        // Restore brand toggle
+        if (data.hasExistingBranding !== undefined && data.hasExistingBranding !== null) {
+            toggleBrand(data.hasExistingBranding);
+        }
+
+        // Restore brand feel tags
+        if (data.brandFeel) {
+            brandFeel = data.brandFeel;
+            document.querySelectorAll('#brandFeelTags .tag-option').forEach(t => {
+                if (brandFeel.includes(t.dataset.value)) t.classList.add('selected');
+            });
+        }
+
+        // Restore keywords
+        if (data.keywords) {
+            keywords = data.keywords;
+            renderKeywordTags();
+        }
+
+        // Restore file metadata (not actual files)
+        if (data.uploadedFiles) {
+            uploadedFiles = data.uploadedFiles;
+        }
+
+        // Update char counters
+        updateAllCharCounters();
+
+    } catch(e) {
+        console.error('Failed to load draft:', e);
+        currentStep = 1;
+    }
+}
+
+function clearDraft() {
+    if (confirm('Are you sure you want to clear your saved draft? This cannot be undone.')) {
+        localStorage.removeItem(STORAGE_KEY);
+        location.reload();
+    }
+}
+
+/* ═══════════════════════════════════════════════ */
+/* COLLECT ALL DATA                               */
+/* ═══════════════════════════════════════════════ */
+function collectAllData() {
+    const data = {};
+
+    // Simple fields
+    const fields = [
+        'contactName','contactEmail','contactPhone','businessName','industry',
+        'industryOther','yearsOperating','city','state','country',
+        'currentWebsite','elevatorPitch','ownerName','ownerTitle','originStory',
+        'visionStatement','missionStatement','differentiator','targetAudience',
+        'brandVoice','fontPreferences','colorPrimary','colorSecondary','colorAccent',
+        'primaryCTA','timeline','budget','specialFeatures','additionalNotes',
+        'logoNotes','heroNotes','teamNotes','otherNotes'
+    ];
+    fields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) data[id] = el.value;
+    });
+
+    // Dynamic lists
+    data.services = getDynamicListValues('servicesList');
+    data.benefits = getDynamicListValues('benefitsList');
+    data.inspiration = getDynamicListValues('inspirationList');
+
+    // Radio: primary goal
+    const goal = document.querySelector('input[name="primaryGoal"]:checked');
+    data.primaryGoal = goal ? goal.value : '';
+
+    // Checkboxes: pages
+    data.pages = [...document.querySelectorAll('input[name="pages[]"]:checked')].map(c => c.value);
+
+    // Brand state
+    data.hasExistingBranding = hasExistingBranding;
+    data.brandFeel = brandFeel;
+    data.keywords = keywords;
+
+    // File metadata (names only, no base64)
+    data.uploadedFiles = {};
+    for (const cat in uploadedFiles) {
+        data.uploadedFiles[cat] = uploadedFiles[cat].map(f => ({
+            name: f.name,
+            size: f.size,
+            type: f.type
+        }));
+    }
+
+    return data;
+}
+
+/* ═══════════════════════════════════════════════ */
+/* DYNAMIC LISTS                                  */
+/* ═══════════════════════════════════════════════ */
+function addItem(listId, placeholder, inputType) {
+    const list = document.getElementById(listId);
+    const count = list.querySelectorAll('.dynamic-item').length;
+    if (count >= 10) return;
+    const type = inputType || 'text';
+    const div = document.createElement('div');
+    div.className = 'dynamic-item';
+    div.innerHTML = `
+        <input type="${type}" name="${listId === 'servicesList' ? 'services[]' : listId === 'benefitsList' ? 'benefits[]' : 'inspiration[]'}" placeholder="${placeholder} #${count + 1}">
+        <button type="button" class="remove-btn" onclick="removeItem(this)" aria-label="Remove">&times;</button>
+    `;
+    list.appendChild(div);
+    div.querySelector('input').focus();
+}
+
+function removeItem(btn) {
+    const item = btn.closest('.dynamic-item');
+    const list = item.parentElement;
+    if (list.querySelectorAll('.dynamic-item').length > 1) {
+        item.remove();
+    }
+}
+
+function getDynamicListValues(listId) {
+    return [...document.querySelectorAll(`#${listId} input`)].map(i => i.value).filter(v => v.trim());
+}
+
+function restoreDynamicList(listId, values, placeholder, inputType) {
+    const list = document.getElementById(listId);
+    const type = inputType || 'text';
+    const nameAttr = listId === 'servicesList' ? 'services[]' : listId === 'benefitsList' ? 'benefits[]' : 'inspiration[]';
+    list.innerHTML = '';
+    values.forEach((v, i) => {
+        const div = document.createElement('div');
+        div.className = 'dynamic-item';
+        div.innerHTML = `
+            <input type="${type}" name="${nameAttr}" placeholder="${placeholder} #${i+1}" value="${escapeHtml(v)}">
+            <button type="button" class="remove-btn" onclick="removeItem(this)" aria-label="Remove">&times;</button>
+        `;
+        list.appendChild(div);
+    });
+    if (values.length === 0) {
+        const div = document.createElement('div');
+        div.className = 'dynamic-item';
+        div.innerHTML = `
+            <input type="${type}" name="${nameAttr}" placeholder="${placeholder} #1">
+            <button type="button" class="remove-btn" onclick="removeItem(this)" aria-label="Remove">&times;</button>
+        `;
+        list.appendChild(div);
+    }
+}
+
+/* ═══════════════════════════════════════════════ */
+/* INDUSTRY TOGGLE                                */
+/* ═══════════════════════════════════════════════ */
+function setupIndustryToggle() {
+    document.getElementById('industry').addEventListener('change', function() {
+        document.getElementById('industryOtherGroup').style.display = this.value === 'Other' ? 'block' : 'none';
+    });
+}
+
+/* ═══════════════════════════════════════════════ */
+/* BRAND TOGGLE                                   */
+/* ═══════════════════════════════════════════════ */
+function toggleBrand(hasIt) {
+    hasExistingBranding = hasIt;
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    if (hasIt) {
+        document.querySelector('[data-toggle="brandYes"]').classList.add('active');
+        document.getElementById('brandYesContent').classList.add('visible');
+        document.getElementById('brandNoContent').classList.remove('visible');
+    } else {
+        document.querySelector('[data-toggle="brandNo"]').classList.add('active');
+        document.getElementById('brandNoContent').classList.add('visible');
+        document.getElementById('brandYesContent').classList.remove('visible');
+    }
+}
+
+/* ═══════════════════════════════════════════════ */
+/* TAG SELECTOR (Brand Feel)                      */
+/* ═══════════════════════════════════════════════ */
+function setupTagSelector() {
+    document.querySelectorAll('#brandFeelTags .tag-option').forEach(tag => {
+        tag.addEventListener('click', function() {
+            const val = this.dataset.value;
+            if (this.classList.contains('selected')) {
+                this.classList.remove('selected');
+                brandFeel = brandFeel.filter(v => v !== val);
+            } else {
+                if (brandFeel.length >= 3) {
+                    showToast('Maximum 3 selections');
+                    return;
+                }
+                this.classList.add('selected');
+                brandFeel.push(val);
+            }
+        });
+    });
+}
+
+/* ═══════════════════════════════════════════════ */
+/* KEYWORDS TAG INPUT                             */
+/* ═══════════════════════════════════════════════ */
+function setupKeywordsInput() {
+    const input = document.getElementById('keywordsInput');
+    input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ',') {
+            e.preventDefault();
+            const val = this.value.trim().replace(/,/g, '');
+            if (val && !keywords.includes(val)) {
+                keywords.push(val);
+                renderKeywordTags();
+            }
+            this.value = '';
+        }
+        if (e.key === 'Backspace' && !this.value && keywords.length) {
+            keywords.pop();
+            renderKeywordTags();
+        }
+    });
+}
+
+function renderKeywordTags() {
+    const wrap = document.getElementById('keywordsWrap');
+    wrap.querySelectorAll('.tag').forEach(t => t.remove());
+    const input = document.getElementById('keywordsInput');
+    keywords.forEach((kw, i) => {
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.innerHTML = `${escapeHtml(kw)} <span class="tag-remove" onclick="removeKeyword(${i})">&times;</span>`;
+        wrap.insertBefore(tag, input);
+    });
+}
+
+function removeKeyword(index) {
+    keywords.splice(index, 1);
+    renderKeywordTags();
+}
+
+/* ═══════════════════════════════════════════════ */
+/* COLOR HEX DISPLAY                              */
+/* ═══════════════════════════════════════════════ */
+function setupColorHexDisplay() {
+    ['colorPrimary','colorSecondary','colorAccent'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('input', function() {
+                document.getElementById(id + 'Hex').textContent = this.value;
+            });
+        }
+    });
+}
+
+/* ═══════════════════════════════════════════════ */
+/* CHARACTER COUNTERS                             */
+/* ═══════════════════════════════════════════════ */
+function setupCharCounters() {
+    const textareas = ['elevatorPitch','originStory','visionStatement','missionStatement',
+        'differentiator','targetAudience','primaryCTA','specialFeatures','additionalNotes'];
+    textareas.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('input', function() {
+                const counter = document.getElementById(id + 'Count');
+                if (counter) counter.textContent = this.value.length;
+            });
+        }
+    });
+}
+
+function updateAllCharCounters() {
+    const textareas = ['elevatorPitch','originStory','visionStatement','missionStatement',
+        'differentiator','targetAudience','primaryCTA','specialFeatures','additionalNotes'];
+    textareas.forEach(id => {
+        const el = document.getElementById(id);
+        const counter = document.getElementById(id + 'Count');
+        if (el && counter) counter.textContent = el.value.length;
+    });
+}
+
+/* ═══════════════════════════════════════════════ */
+/* FILE UPLOADS                                   */
+/* ═══════════════════════════════════════════════ */
+function handleDragOver(e) {
+    e.preventDefault();
+    e.currentTarget.classList.add('dragover');
+}
+
+function handleDragLeave(e) {
+    e.currentTarget.classList.remove('dragover');
+}
+
+function handleDrop(e, category, maxFiles) {
+    e.preventDefault();
+    e.currentTarget.classList.remove('dragover');
+    handleFiles(e.dataTransfer.files, category, maxFiles);
+}
+
+function handleFiles(fileList, category, maxFiles) {
+    const files = Array.from(fileList);
+    const existing = uploadedFiles[category].length;
+    const remaining = maxFiles - existing;
+
+    if (remaining <= 0) {
+        showToast(`Maximum ${maxFiles} file(s) for this category`);
+        return;
+    }
+
+    const toAdd = files.slice(0, remaining);
+    toAdd.forEach(file => {
+        if (!file.type.startsWith('image/')) {
+            showToast('Only image files are accepted');
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            uploadedFiles[category].push({
+                name: file.name,
+                size: file.size,
+                type: file.type,
+                dataUrl: e.target.result
+            });
+            renderPreviews(category);
+            saveDraft();
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+function renderPreviews(category) {
+    const grid = document.getElementById(category + 'Preview');
+    grid.innerHTML = '';
+    uploadedFiles[category].forEach((file, index) => {
+        const item = document.createElement('div');
+        item.className = 'preview-item';
+        const sizeStr = file.size ? formatFileSize(file.size) : '';
+        item.innerHTML = `
+            <img src="${file.dataUrl || ''}" alt="${escapeHtml(file.name)}">
+            <button class="delete-preview" onclick="removeFile('${category}', ${index})" aria-label="Remove file">&times;</button>
+            <div class="preview-info">${escapeHtml(file.name)} ${sizeStr ? '(' + sizeStr + ')' : ''}</div>
+        `;
+        grid.appendChild(item);
+    });
+}
+
+function removeFile(category, index) {
+    uploadedFiles[category].splice(index, 1);
+    renderPreviews(category);
+    saveDraft();
+}
+
+function formatFileSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / 1048576).toFixed(1) + ' MB';
+}
+
+/* ═══════════════════════════════════════════════ */
+/* CONSENT TOGGLE                                 */
+/* ═══════════════════════════════════════════════ */
+function setupConsentToggle() {
+    const cb = document.getElementById('consentCheckbox');
+    cb.addEventListener('change', function() {
+        const disabled = !this.checked;
+        document.getElementById('btnSubmit').disabled = disabled;
+        document.getElementById('btnDownload').disabled = disabled;
+        document.getElementById('btnPrint').disabled = disabled;
+        if (this.checked) {
+            document.getElementById('consentBox').classList.remove('has-error');
+            document.getElementById('consentError').style.display = 'none';
+        }
+    });
+}
+
+/* ═══════════════════════════════════════════════ */
+/* REVIEW BUILDER                                 */
+/* ═══════════════════════════════════════════════ */
+function buildReview() {
+    const data = collectAllData();
+    const container = document.getElementById('reviewContent');
+    container.innerHTML = '';
+
+    // Helper
+    function section(title, stepNum, fields) {
+        let html = `<div class="review-section">
+            <div class="review-section-header">
+                <h3>${title}</h3>
+                <button class="edit-link" onclick="goToStep(${stepNum})">Edit</button>
+            </div>`;
+        fields.forEach(f => {
+            if (f.type === 'list' && f.value && f.value.length) {
+                html += `<div class="review-field">
+                    <div class="review-label">${f.label}</div>
+                    <ul class="review-list">${f.value.map(v => `<li>${escapeHtml(v)}</li>`).join('')}</ul>
+                </div>`;
+            } else if (f.value) {
+                html += `<div class="review-field">
+                    <div class="review-label">${f.label}</div>
+                    <div class="review-value">${escapeHtml(String(f.value))}</div>
+                </div>`;
+            }
+        });
+        html += '</div>';
+        return html;
+    }
+
+    const location = [data.city, data.state, data.country].filter(Boolean).join(', ');
+    const industryDisplay = data.industry === 'Other' ? data.industryOther : data.industry;
+
+    container.innerHTML += section('Client Contact', 1, [
+        { label: 'Name', value: data.contactName },
+        { label: 'Email', value: data.contactEmail },
+        { label: 'Phone', value: data.contactPhone }
+    ]);
+
+    container.innerHTML += section('Business Overview', 1, [
+        { label: 'Business Name', value: data.businessName },
+        { label: 'Industry/Niche', value: industryDisplay },
+        { label: 'Location', value: location },
+        { label: 'Years Operating', value: data.yearsOperating },
+        { label: 'Current Website', value: data.currentWebsite },
+        { label: 'One-Liner', value: data.elevatorPitch }
+    ]);
+
+    container.innerHTML += section('About the Owner', 2, [
+        { label: 'Owner', value: data.ownerName },
+        { label: 'Role/Title', value: data.ownerTitle },
+        { label: 'Origin Story', value: data.originStory },
+        { label: 'Vision', value: data.visionStatement },
+        { label: 'Mission', value: data.missionStatement }
+    ]);
+
+    container.innerHTML += section('Products, Services & Differentiators', 3, [
+        { label: 'Offerings', type: 'list', value: data.services },
+        { label: 'Differentiator (USP)', value: data.differentiator },
+        { label: 'Top Customer Benefits', type: 'list', value: data.benefits },
+        { label: 'Target Audience', value: data.targetAudience }
+    ]);
+
+    const brandFields = [
+        { label: 'Brand Voice', value: data.brandVoice },
+        { label: 'Keywords', value: data.keywords?.join(', ') }
+    ];
+    if (data.hasExistingBranding) {
+        brandFields.push({ label: 'Primary Color', value: data.colorPrimary });
+        brandFields.push({ label: 'Secondary Color', value: data.colorSecondary });
+        brandFields.push({ label: 'Accent Color', value: data.colorAccent });
+        brandFields.push({ label: 'Font Preferences', value: data.fontPreferences });
+    } else {
+        brandFields.push({ label: 'Brand Feel', value: data.brandFeel?.join(', ') });
+    }
+    brandFields.push({ label: 'Inspiration Sites', type: 'list', value: data.inspiration });
+    container.innerHTML += section('Brand Identity & Voice', 4, brandFields);
+
+    // Assets
+    const assetFields = [];
+    for (const cat of ['logo','hero','team','other']) {
+        const files = data.uploadedFiles?.[cat] || [];
+        if (files.length) {
+            const catLabel = cat === 'logo' ? 'Logo' : cat === 'hero' ? 'Hero/Banner' : cat === 'team' ? 'Team/Headshots' : 'Other';
+            assetFields.push({ label: catLabel, type: 'list', value: files.map(f => f.name) });
+        }
+    }
+    const noteFields = [];
+    if (data.logoNotes) noteFields.push('Logo: ' + data.logoNotes);
+    if (data.heroNotes) noteFields.push('Hero: ' + data.heroNotes);
+    if (data.teamNotes) noteFields.push('Team: ' + data.teamNotes);
+    if (data.otherNotes) noteFields.push('Other: ' + data.otherNotes);
+    if (noteFields.length) assetFields.push({ label: 'Asset Notes', type: 'list', value: noteFields });
+    container.innerHTML += section('Visual Assets', 5, assetFields.length ? assetFields : [{ label: 'No assets uploaded', value: '-' }]);
+
+    container.innerHTML += section('Website Goals', 6, [
+        { label: 'Primary Goal', value: data.primaryGoal },
+        { label: 'Must-Have Pages', value: data.pages?.join(', ') },
+        { label: 'Primary CTA', value: data.primaryCTA },
+        { label: 'Timeline', value: data.timeline },
+        { label: 'Budget Range', value: data.budget },
+        { label: 'Special Features', value: data.specialFeatures },
+        { label: 'Additional Notes', value: data.additionalNotes }
+    ]);
+}
+
+/* ═══════════════════════════════════════════════ */
+/* EXPORTS                                        */
+/* ═══════════════════════════════════════════════ */
+function checkConsent() {
+    if (!document.getElementById('consentCheckbox').checked) {
+        document.getElementById('consentBox').classList.add('has-error');
+        document.getElementById('consentError').style.display = 'block';
+        return false;
+    }
+    return true;
+}
+
+async function submitToEmail() {
+    if (!checkConsent()) return;
+    const btn = document.getElementById('btnSubmit');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    const data = collectAllData();
+    const text = buildIntakeText();
+
+    try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                access_key: 'YOUR_WEB3FORMS_ACCESS_KEY',
+                subject: `New Website Intake: ${data.businessName || 'Unknown'}`,
+                from_name: data.contactName || 'Website Form',
+                replyto: data.contactEmail || '',
+                message: text,
+                business_name: data.businessName || '',
+                contact_name: data.contactName || '',
+                contact_email: data.contactEmail || '',
+                contact_phone: data.contactPhone || '',
+                industry: data.industry || '',
+                budget: data.budget || '',
+                timeline: data.timeline || '',
+                json_data: JSON.stringify(data, null, 2)
+            })
+        });
+        const result = await response.json();
+        if (result.success) {
+            showToast('Application submitted successfully!', true);
+            showThankYou();
+        } else {
+            showToast('Submission failed. Please try downloading instead.');
+            btn.disabled = false;
+            btn.textContent = 'Submit Application';
+        }
+    } catch (err) {
+        showToast('Network error. Please try downloading instead.');
+        btn.disabled = false;
+        btn.textContent = 'Submit Application';
+    }
+}
+
+function copyIntake() {
+    if (!checkConsent()) return;
+    const text = buildIntakeText();
+    navigator.clipboard.writeText(text).then(() => {
+        showToast('Intake summary copied to clipboard!', true);
+        showThankYou();
+    }).catch(() => {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('Intake summary copied to clipboard!', true);
+        showThankYou();
+    });
+}
+
+function downloadJSON() {
+    if (!checkConsent()) return;
+    const data = collectAllData();
+    data._export = { timestamp: new Date().toISOString(), version: FORM_VERSION };
+    // Remove dataUrl from uploaded files for export
+    if (data.uploadedFiles) {
+        for (const cat in data.uploadedFiles) {
+            data.uploadedFiles[cat] = data.uploadedFiles[cat].map(f => ({
+                category: cat,
+                filename: f.name,
+                filetype: f.type || 'unknown',
+                notes: ''
+            }));
+        }
+    }
+    // Add notes to asset entries
+    const noteMap = { logo: data.logoNotes, hero: data.heroNotes, team: data.teamNotes, other: data.otherNotes };
+    for (const cat in noteMap) {
+        if (data.uploadedFiles?.[cat]) {
+            data.uploadedFiles[cat].forEach(f => f.notes = noteMap[cat] || '');
+        }
+    }
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const bName = (data.businessName || 'client').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    a.download = `${bName}-intake.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('JSON downloaded!', true);
+    showThankYou();
+}
+
+function printForm() {
+    if (!checkConsent()) return;
+    window.print();
+}
+
+function showThankYou() {
+    document.getElementById('thankYou').classList.add('visible');
+    // Build asset checklist
+    const checklist = document.getElementById('assetChecklist');
+    checklist.innerHTML = '';
+    const items = [];
+    for (const cat of ['logo','hero','team','other']) {
+        const files = uploadedFiles[cat] || [];
+        if (files.length) {
+            const label = cat === 'logo' ? 'Logo files' : cat === 'hero' ? 'Hero/banner images' : cat === 'team' ? 'Team/headshot photos' : 'Other images';
+            items.push(`${label} (${files.length} file${files.length > 1 ? 's' : ''})`);
+        }
+    }
+    if (items.length === 0) items.push('Any logo, photos, or images you mentioned');
+    items.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        checklist.appendChild(li);
+    });
+    document.getElementById('thankYou').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ═══════════════════════════════════════════════ */
+/* INTAKE TEXT BUILDER                            */
+/* ═══════════════════════════════════════════════ */
+function buildIntakeText() {
+    const d = collectAllData();
+    const location = [d.city, d.state, d.country].filter(Boolean).join(', ');
+    const industryDisplay = d.industry === 'Other' ? d.industryOther : d.industry;
+
+    // Numbered list helper
+    function numberedList(arr) {
+        if (!arr || !arr.length) return '(none provided)';
+        return arr.map((v, i) => `${i+1}) ${v}`).join('\n');
+    }
+
+    function bulletList(arr) {
+        if (!arr || !arr.length) return '(none provided)';
+        return arr.map(v => `- ${v}`).join('\n');
+    }
+
+    // Build asset listing
+    let assetSection = '';
+    const categories = { logo: 'Logo', hero: 'Hero/Banner', team: 'Team/Headshots', other: 'Other' };
+    for (const [cat, label] of Object.entries(categories)) {
+        const files = d.uploadedFiles?.[cat] || [];
+        assetSection += `${label}:\n`;
+        if (files.length) {
+            files.forEach(f => { assetSection += `- ${f.name || f.filename}\n`; });
+        } else {
+            assetSection += '- (none)\n';
+        }
+    }
+    const assetNotes = [d.logoNotes, d.heroNotes, d.teamNotes, d.otherNotes].filter(Boolean).join('; ');
+
+    // Colors section
+    let colorsSection = '';
+    if (d.hasExistingBranding) {
+        colorsSection = `Existing Colors:\n- Primary: ${d.colorPrimary}\n- Secondary: ${d.colorSecondary}\n- Accent: ${d.colorAccent}\nPreferred Typography: ${d.fontPreferences || '(none specified)'}`;
+    } else {
+        colorsSection = `Brand Feel Words: ${d.brandFeel?.join(', ') || '(none selected)'}\nExisting Colors: (no existing branding)`;
+    }
+
+    const text = `============================================================
+CLIENT INTAKE \u2014 WEBSITE BUILD
+============================================================
+
+CLIENT CONTACT
+Name: ${d.contactName || ''}
+Email: ${d.contactEmail || ''}
+Phone: ${d.contactPhone || ''}
+
+BUSINESS OVERVIEW
+Business Name: ${d.businessName || ''}
+Industry/Niche: ${industryDisplay || ''}
+Location: ${location || ''}
+Years Operating: ${d.yearsOperating || ''}
+Current Website: ${d.currentWebsite || ''}
+One-Liner: ${d.elevatorPitch || ''}
+
+ABOUT THE OWNER
+Owner: ${d.ownerName || ''}
+Role/Title: ${d.ownerTitle || ''}
+Origin Story: ${d.originStory || ''}
+Mission/Vision: ${d.missionStatement || ''} / ${d.visionStatement || ''}
+
+PRODUCTS, SERVICES & DIFFERENTIATORS
+Offerings (Top 3\u20135):
+${numberedList(d.services)}
+
+Differentiator (USP): ${d.differentiator || ''}
+
+Top Customer Benefits:
+${numberedList(d.benefits)}
+
+Target Audience: ${d.targetAudience || ''}
+
+BRAND IDENTITY & VOICE
+Brand Voice: ${d.brandVoice || ''}
+Keywords: ${d.keywords?.join(', ') || ''}
+${colorsSection}
+Inspiration/Competitors:
+${bulletList(d.inspiration)}
+
+WEBSITE GOALS
+Primary Goal: ${d.primaryGoal || ''}
+Must-Have Pages: ${d.pages?.join(', ') || ''}
+Primary CTA: ${d.primaryCTA || ''}
+Timeline: ${d.timeline || ''}
+Budget Range: ${d.budget || ''}
+Additional Notes: ${d.additionalNotes || ''}
+Special Features: ${d.specialFeatures || ''}
+
+ASSETS PROVIDED (FILENAMES ONLY)
+${assetSection}Asset Notes: ${assetNotes || '(none)'}
+
+============================================================
+CLAUDE PROMPT \u2014 GENERATE MOODBOARDS
+============================================================
+Using the client intake above, generate 3\u20134 distinct moodboards
+(Style A\u2013D) using the provided moodboard-template.html structure.
+
+Rules:
+- Do NOT change the template structure or section order.
+- Fill placeholders only.
+- Each moodboard must include: palette (5 swatches), typography
+  pairing, component styles, layout guidance, tone description,
+  imagery guidance, and sample copy.
+- Each moodboard should be a standalone HTML file that opens
+  independently in a browser.
+- File naming: clientname-style-a.html, clientname-style-b.html, etc.`;
+
+    return text;
+}
+
+/* ═══════════════════════════════════════════════ */
+/* TOAST                                          */
+/* ═══════════════════════════════════════════════ */
+function showToast(msg, success) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.className = 'toast' + (success ? ' success' : '');
+    setTimeout(() => toast.classList.add('visible'), 10);
+    setTimeout(() => toast.classList.remove('visible'), 2500);
+}
+
+/* ═══════════════════════════════════════════════ */
+/* UTILITIES                                      */
+/* ═══════════════════════════════════════════════ */
+function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
+</script>
+</body>
+</html>
