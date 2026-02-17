@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mood Board 2 — Dark Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Outfit', sans-serif; background: #0a0a0a; color: #f0ece2; }
+
+  .board-header {
+    background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
+    text-align: center;
+    padding: 50px 30px;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+  }
+  .board-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    letter-spacing: 6px;
+    color: #d4af37;
+    text-transform: uppercase;
+  }
+  .board-header p {
+    font-size: 0.9rem;
+    opacity: 0.4;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
+
+  .direction { text-align: center; margin-bottom: 60px; }
+  .direction h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    color: #d4af37;
+    margin-bottom: 12px;
+  }
+  .direction p { font-size: 1.05rem; color: #888; max-width: 700px; margin: 0 auto; line-height: 1.8; }
+
+  .section-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #555;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  /* Palette */
+  .palette {
+    display: flex;
+    gap: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 60px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .swatch {
+    flex: 1;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 16px;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+  .swatch .hex { opacity: 0.6; margin-top: 4px; font-weight: 300; }
+  .swatch.dark-text { color: #111; }
+
+  /* Keywords */
+  .keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 60px;
+  }
+  .keyword {
+    background: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* Typography */
+  .type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+  .type-card {
+    background: #141414;
+    border-radius: 12px;
+    padding: 44px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .type-card .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  .type-card.heading-font h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    line-height: 1.15;
+    color: #f0ece2;
+  }
+  .type-card.body-font p {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #999;
+    font-weight: 300;
+  }
+
+  /* Hero Mockup */
+  .hero-mockup {
+    background: linear-gradient(135deg, #111 0%, #1a1a1a 50%, #111 100%);
+    border-radius: 16px;
+    padding: 90px 60px;
+    text-align: center;
+    color: #f0ece2;
+    margin-bottom: 60px;
+    border: 1px solid rgba(212,175,55,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-mockup::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center top, rgba(212,175,55,0.08) 0%, transparent 60%);
+  }
+  .hero-mockup h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem;
+    margin-bottom: 16px;
+    position: relative;
+    letter-spacing: 2px;
+  }
+  .hero-mockup .gold { color: #d4af37; }
+  .hero-mockup p {
+    font-size: 1.1rem;
+    color: #888;
+    max-width: 600px;
+    margin: 0 auto 35px;
+    line-height: 1.8;
+    position: relative;
+    font-weight: 300;
+  }
+  .btn-gold {
+    display: inline-block;
+    background: #d4af37;
+    color: #0a0a0a;
+    padding: 16px 44px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    position: relative;
+  }
+  .btn-ghost {
+    display: inline-block;
+    background: transparent;
+    color: #d4af37;
+    padding: 14px 42px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid rgba(212,175,55,0.4);
+    cursor: pointer;
+    margin-left: 14px;
+    position: relative;
+  }
+
+  /* UI Elements */
+  .ui-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+  .ui-card {
+    background: #141414;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .accent-line {
+    width: 40px;
+    height: 2px;
+    background: #d4af37;
+    margin: 0 auto 18px;
+  }
+  .ui-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #f0ece2;
+  }
+  .ui-card p { font-size: 0.9rem; color: #666; line-height: 1.7; font-weight: 300; }
+
+  .board-footer {
+    text-align: center;
+    padding: 40px;
+    color: #333;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  @media (max-width: 768px) {
+    .type-grid, .ui-grid { grid-template-columns: 1fr; }
+    .hero-mockup h2 { font-size: 2.2rem; }
+    .hero-mockup { padding: 60px 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="board-header">
+  <h1>Proverbs 3 Global Design</h1>
+  <p>Mood Board &mdash; Option 2</p>
+</div>
+
+<div class="container">
+  <div class="direction">
+    <h2>Dark Premium</h2>
+    <p>Luxury meets performance. A dark, sophisticated aesthetic that positions the brand as high-end and exclusive. Rich blacks with warm gold accents create an elevated, aspirational experience that commands attention.</p>
+  </div>
+
+  <p class="section-title">Color Palette</p>
+  <div class="palette">
+    <div class="swatch" style="background:#0a0a0a;">Onyx Black<span class="hex">#0A0A0A</span></div>
+    <div class="swatch" style="background:#1a1a1a;">Charcoal<span class="hex">#1A1A1A</span></div>
+    <div class="swatch" style="background:#d4af37;">Warm Gold<span class="hex">#D4AF37</span></div>
+    <div class="swatch dark-text" style="background:#f0ece2;">Ivory<span class="hex">#F0ECE2</span></div>
+    <div class="swatch" style="background:#2d2d2d;">Graphite<span class="hex">#2D2D2D</span></div>
+  </div>
+
+  <p class="section-title" style="text-align:center;">Brand Keywords</p>
+  <div class="keywords">
+    <span class="keyword">Luxury</span>
+    <span class="keyword">Exclusive</span>
+    <span class="keyword">Sophisticated</span>
+    <span class="keyword">High-End</span>
+    <span class="keyword">Commanding</span>
+    <span class="keyword">Elevated</span>
+  </div>
+
+  <p class="section-title">Typography</p>
+  <div class="type-grid">
+    <div class="type-card heading-font">
+      <p class="label">Heading Font — Cormorant Garamond</p>
+      <h3>Websites That<br>Don't Just Exist.<br><span style="color:#d4af37;">They Perform.</span></h3>
+    </div>
+    <div class="type-card body-font">
+      <p class="label">Body Font — Outfit</p>
+      <p>We help businesses and ministries turn their vision into a powerful online presence through strategic website design and branding. We don't just build websites — we build digital platforms that attract attention and convert.</p>
+    </div>
+  </div>
+
+  <p class="section-title">Hero Section Concept</p>
+  <div class="hero-mockup">
+    <h2>Precision. Purpose. <span class="gold">Performance.</span></h2>
+    <p>Strategic digital platforms built for organizations that refuse to settle for average.</p>
+    <div>
+      <button class="btn-gold">Start Your Project</button>
+      <button class="btn-ghost">Our Process</button>
+    </div>
+  </div>
+
+  <p class="section-title">UI Elements</p>
+  <div class="ui-grid">
+    <div class="ui-card">
+      <div style="margin-bottom:20px;"><button class="btn-gold">Start Your Project</button></div>
+      <div><button class="btn-ghost">Our Process</button></div>
+    </div>
+    <div class="ui-card">
+      <div class="accent-line"></div>
+      <h4>Built to Scale</h4>
+      <p>Every platform is engineered for growth — designed to evolve as your business expands.</p>
+    </div>
+    <div class="ui-card">
+      <div style="width:60px;height:60px;border:2px solid #d4af37;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;">
+        <span style="color:#d4af37;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;">P3</span>
+      </div>
+      <h4>Brand Mark</h4>
+      <p>Refined monogram with gold and dark contrast.</p>
+    </div>
+  </div>
+</div>
+
+<div class="board-footer">
+  Proverbs 3 Global Design &mdash; Mood Board 2 of 4 &mdash; Prepared by Proverbs 3 Global Design
+</div>
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mood Board 4 — Bold &amp; Energetic</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Cabinet+Grotesk:wght@800;900&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Manrope', sans-serif; background: #fafafa; color: #121212; }
+
+  .board-header {
+    background: linear-gradient(135deg, #121212 0%, #1e1e2f 100%);
+    text-align: center;
+    padding: 50px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .board-header::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255,107,53,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .board-header::after {
+    content: '';
+    position: absolute;
+    bottom: -40%; left: -10%;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .board-header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #fff;
+    position: relative;
+    letter-spacing: -0.5px;
+  }
+  .board-header h1 span { color: #ff6b35; }
+  .board-header p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 8px;
+    position: relative;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
+
+  .direction { text-align: center; margin-bottom: 60px; }
+  .direction h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .direction p { font-size: 1.05rem; color: #777; max-width: 720px; margin: 0 auto; line-height: 1.8; }
+
+  .section-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #bbb;
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+
+  /* Palette */
+  .palette {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 60px;
+  }
+  .swatch {
+    flex: 1;
+    height: 170px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 14px;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .swatch .hex { opacity: 0.7; margin-top: 4px; font-weight: 400; }
+  .swatch.dark-text { color: #121212; }
+
+  /* Keywords */
+  .keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 60px;
+  }
+  .keyword {
+    background: linear-gradient(135deg, #ff6b35, #ff8f65);
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Typography */
+  .type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+  .type-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 44px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    border: 1px solid #f0f0f0;
+  }
+  .type-card .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #bbb;
+    margin-bottom: 18px;
+    font-weight: 700;
+  }
+  .type-card.heading-font h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem;
+    line-height: 1.15;
+    color: #121212;
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+  .type-card.body-font p {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #666;
+    font-weight: 400;
+  }
+
+  /* Hero Mockup */
+  .hero-mockup {
+    background: linear-gradient(135deg, #121212 0%, #1e1e2f 100%);
+    border-radius: 20px;
+    padding: 80px 60px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-mockup .gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+  }
+  .hero-mockup .orb-1 {
+    top: -60px; right: 10%;
+    width: 300px; height: 300px;
+    background: rgba(255,107,53,0.3);
+  }
+  .hero-mockup .orb-2 {
+    bottom: -80px; left: 5%;
+    width: 250px; height: 250px;
+    background: rgba(99,102,241,0.25);
+  }
+  .hero-mockup h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+    position: relative;
+    line-height: 1.1;
+  }
+  .hero-mockup .orange { color: #ff6b35; }
+  .hero-mockup p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.6);
+    max-width: 580px;
+    margin: 0 auto 35px;
+    line-height: 1.8;
+    position: relative;
+  }
+  .btn-orange {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff6b35, #ff8f65);
+    color: #fff;
+    padding: 16px 42px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(255,107,53,0.3);
+  }
+  .btn-glass {
+    display: inline-block;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    padding: 14px 40px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    cursor: pointer;
+    margin-left: 12px;
+    position: relative;
+    backdrop-filter: blur(10px);
+  }
+
+  /* UI Elements */
+  .ui-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+  .ui-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 36px;
+    text-align: center;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    border: 1px solid #f0f0f0;
+  }
+  .gradient-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+  }
+  .ui-card h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #121212;
+  }
+  .ui-card p { font-size: 0.88rem; color: #888; line-height: 1.6; }
+
+  .board-footer {
+    text-align: center;
+    padding: 40px;
+    color: #ccc;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  @media (max-width: 768px) {
+    .type-grid, .ui-grid { grid-template-columns: 1fr; }
+    .hero-mockup h2 { font-size: 2.2rem; }
+    .hero-mockup { padding: 50px 30px; }
+    .palette { flex-wrap: wrap; }
+    .swatch { min-width: 45%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="board-header">
+  <h1>Proverbs 3 <span>Global Design</span></h1>
+  <p>Mood Board &mdash; Option 4</p>
+</div>
+
+<div class="container">
+  <div class="direction">
+    <h2>Bold &amp; Energetic</h2>
+    <p>Dynamic energy with a creative edge. This direction uses warm, fiery orange paired with deep indigo to create a brand that feels alive, disruptive, and unapologetically bold. For the client who wants to stand out, not blend in.</p>
+  </div>
+
+  <p class="section-title">Color Palette</p>
+  <div class="palette">
+    <div class="swatch" style="background:#121212;">Rich Black<span class="hex">#121212</span></div>
+    <div class="swatch" style="background:#1e1e2f;">Deep Indigo<span class="hex">#1E1E2F</span></div>
+    <div class="swatch" style="background:#ff6b35;">Blaze Orange<span class="hex">#FF6B35</span></div>
+    <div class="swatch" style="background:#6366f1;">Vivid Violet<span class="hex">#6366F1</span></div>
+    <div class="swatch dark-text" style="background:#fafafa;">Pure White<span class="hex">#FAFAFA</span></div>
+  </div>
+
+  <p class="section-title" style="text-align:center;">Brand Keywords</p>
+  <div class="keywords">
+    <span class="keyword">Disruptive</span>
+    <span class="keyword">Dynamic</span>
+    <span class="keyword">Creative</span>
+    <span class="keyword">Bold</span>
+    <span class="keyword">High-Impact</span>
+    <span class="keyword">Fearless</span>
+  </div>
+
+  <p class="section-title">Typography</p>
+  <div class="type-grid">
+    <div class="type-card heading-font">
+      <p class="label">Heading Font — Space Grotesk</p>
+      <h3>We Don't Build<br>Websites. We Build<br><span style="color:#ff6b35;">Digital Engines.</span></h3>
+    </div>
+    <div class="type-card body-font">
+      <p class="label">Body Font — Manrope</p>
+      <p>We help businesses and ministries turn their vision into a powerful online presence through strategic website design and branding. Bold platforms built for bold organizations ready to make an impact.</p>
+    </div>
+  </div>
+
+  <p class="section-title">Hero Section Concept</p>
+  <div class="hero-mockup">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <h2>Stop Blending In.<br><span class="orange">Start Standing Out.</span></h2>
+    <p>We design high-impact digital platforms for organizations ready to dominate their space online.</p>
+    <div>
+      <button class="btn-orange">Launch Your Project</button>
+      <button class="btn-glass">Watch Showreel</button>
+    </div>
+  </div>
+
+  <p class="section-title">UI Elements</p>
+  <div class="ui-grid">
+    <div class="ui-card">
+      <div style="margin-bottom:16px;"><button class="btn-orange">Launch Your Project</button></div>
+      <div><button class="btn-glass" style="color:#121212;border-color:#ddd;">Watch Showreel</button></div>
+    </div>
+    <div class="ui-card">
+      <div class="gradient-icon" style="background:linear-gradient(135deg,#ff6b35,#ff8f65);">01</div>
+      <h4>Ignite Your Brand</h4>
+      <p>We start with strategy and end with a platform that turns heads and drives results.</p>
+    </div>
+    <div class="ui-card">
+      <div class="gradient-icon" style="background:linear-gradient(135deg,#6366f1,#818cf8);">P3</div>
+      <h4>Brand System</h4>
+      <p>Bold gradient mark that captures energy and forward momentum.</p>
+    </div>
+  </div>
+</div>
+
+<div class="board-footer">
+  Proverbs 3 Global Design &mdash; Mood Board 4 of 4 &mdash; Prepared by Proverbs 3 Global Design
+</div>
+
+</body>
+</html>
