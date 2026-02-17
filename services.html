@@ -47,63 +47,136 @@
       <h2>Services Built for Growth</h2>
     </div>
 
-    <!-- Service Cards -->
-    <div style="display:flex;flex-direction:column;gap:0;">
-
-      <!-- Service 1 -->
-      <div style="display:grid;grid-template-columns:auto 1fr;gap:40px;padding:50px 0;border-bottom:1px solid var(--border);align-items:start;">
-        <div style="width:72px;height:72px;background:var(--navy);border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <span style="color:var(--gold);font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;">01</span>
-        </div>
-        <div>
-          <h2 style="margin-bottom:14px;">Website Design &amp; Development</h2>
-          <p style="font-size:1.05rem;line-height:1.8;margin-bottom:24px;">We create modern, responsive websites that look exceptional on every device and perform seamlessly. From layout and user experience to speed and functionality, every site is built to engage visitors, communicate clearly, and convert attention into action.</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 30px;">
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">Custom responsive design</span></div>
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">Mobile-first development</span></div>
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">SEO-optimized structure</span></div>
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">Fast load times &amp; performance</span></div>
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">Cross-browser compatibility</span></div>
+    <!-- Service 1 -->
+    <div class="split-section" style="margin-bottom: 80px;">
+      <div>
+        <span class="section-badge">01</span>
+        <h2>Website Design &amp; Development</h2>
+        <p>We create modern, responsive websites that look exceptional on every device and perform seamlessly. From layout and user experience to speed and functionality, every site is built to engage visitors, communicate clearly, and convert attention into action.</p>
+        <ul style="list-style:none;margin-top:20px;">
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Custom responsive design</li>
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Mobile-first development</li>
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> SEO-optimized structure</li>
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Fast load times &amp; performance</li>
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Cross-browser compatibility</li>
+        </ul>
+      </div>
+      <div class="split-image">
+        <div style="width:100%;height:420px;background:linear-gradient(135deg, #1e3a5f 0%, #0f1f35 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+          <!-- Browser mockup -->
+          <div style="position:absolute;top:0;right:0;width:100%;height:100%;opacity:0.06;">
+            <div style="position:absolute;top:30px;left:30px;right:30px;bottom:30px;border:1px solid #fff;border-radius:8px;"></div>
+            <div style="position:absolute;top:30px;left:30px;right:30px;height:28px;border-bottom:1px solid #fff;display:flex;align-items:center;padding-left:10px;gap:6px;">
+              <div style="width:8px;height:8px;border-radius:50%;border:1px solid #fff;"></div>
+              <div style="width:8px;height:8px;border-radius:50%;border:1px solid #fff;"></div>
+              <div style="width:8px;height:8px;border-radius:50%;border:1px solid #fff;"></div>
+            </div>
           </div>
+          <!-- Floating UI elements -->
+          <div style="position:relative;z-index:1;text-align:center;">
+            <div style="background:rgba(232,185,35,0.15);border:1px solid rgba(232,185,35,0.3);border-radius:12px;padding:24px 36px;margin-bottom:16px;backdrop-filter:blur(10px);">
+              <div style="color:var(--gold);font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;letter-spacing:-0.5px;">&#60;/&#62;</div>
+              <div style="color:rgba(255,255,255,0.7);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;margin-top:6px;">Design &amp; Code</div>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:center;">
+              <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 16px;font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:1px;">HTML</div>
+              <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 16px;font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:1px;">CSS</div>
+              <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 16px;font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:1px;">JS</div>
+            </div>
+          </div>
+          <!-- Glow -->
+          <div style="position:absolute;top:-40%;right:-20%;width:300px;height:300px;background:radial-gradient(circle,rgba(232,185,35,0.12) 0%,transparent 70%);border-radius:50%;"></div>
+          <div style="position:absolute;bottom:-30%;left:-10%;width:250px;height:250px;background:radial-gradient(circle,rgba(56,161,105,0.1) 0%,transparent 70%);border-radius:50%;"></div>
         </div>
       </div>
+    </div>
 
-      <!-- Service 2 -->
-      <div style="display:grid;grid-template-columns:auto 1fr;gap:40px;padding:50px 0;border-bottom:1px solid var(--border);align-items:start;">
-        <div style="width:72px;height:72px;background:var(--gold);border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <span style="color:var(--navy-deep);font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;">02</span>
-        </div>
-        <div>
-          <h2 style="margin-bottom:14px;">Brand Strategy &amp; Identity</h2>
-          <p style="font-size:1.05rem;line-height:1.8;margin-bottom:24px;">Your brand is more than a logo. We build comprehensive brand systems that establish your voice, visual identity, and market positioning — creating a cohesive experience across every touchpoint.</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 30px;">
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">Logo &amp; visual identity design</span></div>
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">Color palette &amp; typography systems</span></div>
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">Brand voice &amp; messaging</span></div>
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">Mood boards &amp; style guides</span></div>
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">Brand consistency across platforms</span></div>
+    <!-- Service 2 -->
+    <div class="split-section reverse" style="margin-bottom: 80px;">
+      <div>
+        <span class="section-badge">02</span>
+        <h2>Brand Strategy &amp; Identity</h2>
+        <p>Your brand is more than a logo. We build comprehensive brand systems that establish your voice, visual identity, and market positioning — creating a cohesive experience across every touchpoint.</p>
+        <ul style="list-style:none;margin-top:20px;">
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Logo &amp; visual identity design</li>
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Color palette &amp; typography systems</li>
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Brand voice &amp; messaging</li>
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Mood boards &amp; style guides</li>
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Brand consistency across platforms</li>
+        </ul>
+      </div>
+      <div class="split-image">
+        <div style="width:100%;height:420px;background:linear-gradient(160deg, #e8b923 0%, #d4a41a 50%, #c49415 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+          <!-- Color swatches -->
+          <div style="position:relative;z-index:1;text-align:center;">
+            <div style="font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;color:var(--navy-deep);line-height:1;margin-bottom:20px;">Aa</div>
+            <div style="display:flex;gap:8px;justify-content:center;margin-bottom:16px;">
+              <div style="width:40px;height:40px;border-radius:50%;background:#0f1f35;border:3px solid rgba(255,255,255,0.3);"></div>
+              <div style="width:40px;height:40px;border-radius:50%;background:#1e3a5f;border:3px solid rgba(255,255,255,0.3);"></div>
+              <div style="width:40px;height:40px;border-radius:50%;background:#e8b923;border:3px solid rgba(255,255,255,0.3);"></div>
+              <div style="width:40px;height:40px;border-radius:50%;background:#38a169;border:3px solid rgba(255,255,255,0.3);"></div>
+              <div style="width:40px;height:40px;border-radius:50%;background:#f5f5f0;border:3px solid rgba(255,255,255,0.3);"></div>
+            </div>
+            <div style="background:rgba(15,31,53,0.12);border-radius:10px;padding:14px 24px;display:inline-block;">
+              <div style="color:var(--navy-deep);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;">Brand Identity System</div>
+            </div>
           </div>
+          <!-- Decorative lines -->
+          <div style="position:absolute;top:20px;left:20px;right:20px;bottom:20px;border:1px solid rgba(15,31,53,0.08);border-radius:12px;"></div>
+          <div style="position:absolute;top:40px;left:40px;right:40px;bottom:40px;border:1px solid rgba(15,31,53,0.05);border-radius:8px;"></div>
         </div>
       </div>
+    </div>
 
-      <!-- Service 3 -->
-      <div style="display:grid;grid-template-columns:auto 1fr;gap:40px;padding:50px 0;align-items:start;">
-        <div style="width:72px;height:72px;background:var(--green);border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <span style="color:#fff;font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;">03</span>
-        </div>
-        <div>
-          <h2 style="margin-bottom:14px;">Digital Platform Building</h2>
-          <p style="font-size:1.05rem;line-height:1.8;margin-bottom:24px;">We go beyond single websites to build complete digital ecosystems. From automation and integrations to scalable architecture, we create platforms designed to grow with your organization.</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 30px;">
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">Full digital ecosystem design</span></div>
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">Workflow automation</span></div>
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">Third-party integrations</span></div>
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">Scalable architecture</span></div>
-            <div style="display:flex;gap:10px;align-items:center;padding:6px 0;"><span style="color:var(--green);font-weight:700;font-size:1.1rem;">&#10003;</span><span style="color:var(--text-body);font-size:0.95rem;">Ongoing maintenance &amp; support</span></div>
+    <!-- Service 3 -->
+    <div class="split-section">
+      <div>
+        <span class="section-badge">03</span>
+        <h2>Digital Platform Building</h2>
+        <p>We go beyond single websites to build complete digital ecosystems. From automation and integrations to scalable architecture, we create platforms designed to grow with your organization.</p>
+        <ul style="list-style:none;margin-top:20px;">
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Full digital ecosystem design</li>
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Workflow automation</li>
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Third-party integrations</li>
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Scalable architecture</li>
+          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Ongoing maintenance &amp; support</li>
+        </ul>
+      </div>
+      <div class="split-image">
+        <div style="width:100%;height:420px;background:linear-gradient(135deg, #0f1f35 0%, #0a1628 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+          <!-- Connected nodes -->
+          <div style="position:relative;z-index:1;text-align:center;">
+            <!-- Center hub -->
+            <div style="width:80px;height:80px;border-radius:50%;background:rgba(56,161,105,0.15);border:2px solid rgba(56,161,105,0.4);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+              <span style="color:var(--green);font-size:2rem;">&#9881;</span>
+            </div>
+            <!-- Connected items -->
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;max-width:280px;">
+              <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;text-align:center;">
+                <div style="color:var(--gold);font-size:1.2rem;margin-bottom:4px;">&#128279;</div>
+                <div style="color:rgba(255,255,255,0.5);font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;">APIs</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;text-align:center;">
+                <div style="color:var(--gold);font-size:1.2rem;margin-bottom:4px;">&#9889;</div>
+                <div style="color:rgba(255,255,255,0.5);font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;">Automation</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;text-align:center;">
+                <div style="color:var(--gold);font-size:1.2rem;margin-bottom:4px;">&#128200;</div>
+                <div style="color:rgba(255,255,255,0.5);font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;">Scale</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;text-align:center;">
+                <div style="color:var(--gold);font-size:1.2rem;margin-bottom:4px;">&#128274;</div>
+                <div style="color:rgba(255,255,255,0.5);font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;">Security</div>
+              </div>
+            </div>
           </div>
+          <!-- Glows -->
+          <div style="position:absolute;top:-30%;right:-15%;width:250px;height:250px;background:radial-gradient(circle,rgba(56,161,105,0.12) 0%,transparent 70%);border-radius:50%;"></div>
+          <div style="position:absolute;bottom:-25%;left:-10%;width:200px;height:200px;background:radial-gradient(circle,rgba(232,185,35,0.08) 0%,transparent 70%);border-radius:50%;"></div>
+          <!-- Grid pattern -->
+          <div style="position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:24px 24px;"></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
