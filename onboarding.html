@@ -2073,27 +2073,26 @@ async function submitToEmail() {
     const text = buildIntakeText();
 
     try {
-        const response = await fetch('https://api.web3forms.com/submit', {
+        const formData = new FormData();
+        formData.append('_subject', `New Website Intake: ${data.businessName || 'Unknown'}`);
+        formData.append('_replyto', data.contactEmail || '');
+        formData.append('_template', 'box');
+        formData.append('_captcha', 'false');
+        formData.append('Business Name', data.businessName || '');
+        formData.append('Contact Name', data.contactName || '');
+        formData.append('Contact Email', data.contactEmail || '');
+        formData.append('Contact Phone', data.contactPhone || '');
+        formData.append('Industry', data.industry || '');
+        formData.append('Budget', data.budget || '');
+        formData.append('Timeline', data.timeline || '');
+        formData.append('Full Intake Summary', text);
+
+        const response = await fetch('https://formsubmit.co/ajax/sales@provb3global.com', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                access_key: 'YOUR_WEB3FORMS_ACCESS_KEY',
-                subject: `New Website Intake: ${data.businessName || 'Unknown'}`,
-                from_name: data.contactName || 'Website Form',
-                replyto: data.contactEmail || '',
-                message: text,
-                business_name: data.businessName || '',
-                contact_name: data.contactName || '',
-                contact_email: data.contactEmail || '',
-                contact_phone: data.contactPhone || '',
-                industry: data.industry || '',
-                budget: data.budget || '',
-                timeline: data.timeline || '',
-                json_data: JSON.stringify(data, null, 2)
-            })
+            body: formData
         });
         const result = await response.json();
-        if (result.success) {
+        if (result.success === 'true' || result.success === true) {
             showToast('Application submitted successfully!', true);
             showThankYou();
         } else {
