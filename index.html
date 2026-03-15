@@ -176,5 +176,29 @@
 </footer>
 
 <script src="js/main.js"></script>
+
+<!-- Alfano Ministries Redirect Popup -->
+<div id="alfanoPopup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;justify-content:center;align-items:center;">
+  <div style="background:#fff;border-radius:12px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);position:relative;">
+    <button onclick="closeAlfanoPopup()" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:24px;cursor:pointer;color:#666;">&times;</button>
+    <h2 style="font-family:'Playfair Display',serif;color:#1e3a5f;margin:0 0 12px;font-size:22px;">Looking for Alfano Ministries?</h2>
+    <p style="color:#555;margin:0 0 24px;font-size:15px;">You're on the Proverbs 3 Global Design website. Click below to visit Alfano Ministries.</p>
+    <a href="https://alfanoministries.com" style="display:inline-block;background:#1e3a5f;color:#fff;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Go to Alfano Ministries</a>
+    <p style="margin:16px 0 0;font-size:13px;color:#999;cursor:pointer;" onclick="closeAlfanoPopup()">No, I'm in the right place</p>
+  </div>
+</div>
+<script>
+(function(){
+  if(localStorage.getItem('alfanoPopupDismissed')) return;
+  setTimeout(function(){
+    document.getElementById('alfanoPopup').style.display='flex';
+  }, 2000);
+})();
+function closeAlfanoPopup(){
+  document.getElementById('alfanoPopup').style.display='none';
+  localStorage.setItem('alfanoPopupDismissed','1');
+}
+</script>
+
 </body>
 </html>
