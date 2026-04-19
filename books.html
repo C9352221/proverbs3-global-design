@@ -23,6 +23,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Brighten pricing card text on dark sections */
+    .section-dark .pricing-card .pricing-features li {
+      color: #ffffff !important;
+      border-bottom-color: rgba(255,255,255,0.15);
+    }
+    .section-dark .pricing-card .pricing-features li::before {
+      color: var(--gold);
+    }
+    .section-dark .pricing-card .pricing-tier {
+      color: var(--gold);
+    }
+    .section-dark ol {
+      color: #ffffff !important;
+    }
+    .section-dark ol li {
+      color: #ffffff !important;
+      margin-bottom: 8px;
+    }
+  </style>
 </head>
 <body>
 
@@ -34,6 +54,7 @@
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
       <a href="shop.html">Packages</a>
       <a href="books.html" class="active">Books</a>
       <a href="moodboards/">Mood Boards</a>
@@ -326,6 +347,7 @@
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
         <a href="shop.html">Packages</a>
         <a href="books.html">Books</a>
       </div>
