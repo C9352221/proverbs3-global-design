@@ -184,6 +184,212 @@
   </div>
 </section>
 
+<!-- ═══ ADD-ONS / À LA CARTE ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 50px;">
+      <span class="section-badge">À La Carte</span>
+      <h2>Add-Ons &amp; <span style="color:var(--gold);">Extras</span></h2>
+      <p class="section-subtitle">Mix and match with any package. Already launched? Add these any time.</p>
+    </div>
+
+    <style>
+      .addons-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .addon-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 22px 22px 20px;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+      .addon-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 26px -10px rgba(15, 31, 53, 0.25);
+        border-color: var(--gold);
+      }
+      .addon-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .addon-name {
+        font-family: var(--font-heading, 'Playfair Display', serif);
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.25;
+      }
+      .addon-price {
+        font-family: var(--font-heading, 'Playfair Display', serif);
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--gold);
+        white-space: nowrap;
+      }
+      .addon-desc {
+        font-size: 0.9rem;
+        color: var(--text-light);
+        line-height: 1.5;
+        margin-bottom: 16px;
+        flex-grow: 1;
+      }
+      .addon-btn {
+        display: inline-block;
+        text-align: center;
+        padding: 9px 14px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--navy);
+        background: transparent;
+        border: 1.5px solid var(--navy);
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background 0.18s ease, color 0.18s ease;
+      }
+      .addon-btn:hover {
+        background: var(--navy);
+        color: #fff;
+      }
+    </style>
+
+    <div class="addons-grid">
+
+      <!-- Additional Revision -->
+      <div class="addon-card">
+        <div class="addon-head">
+          <div class="addon-name">Additional Revision Round</div>
+          <div class="addon-price">$97</div>
+        </div>
+        <p class="addon-desc">Need more changes after your included revisions are used? Add another full round.</p>
+        <a href="pay.html#addon-revision" class="addon-btn">Add to Project</a>
+      </div>
+
+      <!-- Video Embed -->
+      <div class="addon-card">
+        <div class="addon-head">
+          <div class="addon-name">Video Embed</div>
+          <div class="addon-price">$50</div>
+        </div>
+        <p class="addon-desc">Embed any YouTube or Vimeo video on your site, sized and styled to fit your brand.</p>
+        <a href="pay.html#addon-video" class="addon-btn">Add to Project</a>
+      </div>
+
+      <!-- Extra Page -->
+      <div class="addon-card">
+        <div class="addon-head">
+          <div class="addon-name">Extra Page</div>
+          <div class="addon-price">$150</div>
+        </div>
+        <p class="addon-desc">One additional fully-styled page beyond what your package includes (per page).</p>
+        <a href="pay.html#addon-page" class="addon-btn">Add to Project</a>
+      </div>
+
+      <!-- Calendly Booking -->
+      <div class="addon-card">
+        <div class="addon-head">
+          <div class="addon-name">Booking Calendar Embed</div>
+          <div class="addon-price">$97</div>
+        </div>
+        <p class="addon-desc">Calendly, Acuity, or similar — embedded and styled so clients can book straight from your site.</p>
+        <a href="pay.html#addon-booking" class="addon-btn">Add to Project</a>
+      </div>
+
+      <!-- Form to CRM -->
+      <div class="addon-card">
+        <div class="addon-head">
+          <div class="addon-name">Form &rarr; CRM Integration</div>
+          <div class="addon-price">$97</div>
+        </div>
+        <p class="addon-desc">Connect your contact form to GoHighLevel, Mailchimp, or another CRM so leads land in the right inbox.</p>
+        <a href="pay.html#addon-form-crm" class="addon-btn">Add to Project</a>
+      </div>
+
+      <!-- Google Analytics -->
+      <div class="addon-card">
+        <div class="addon-head">
+          <div class="addon-name">Google Analytics 4 Setup</div>
+          <div class="addon-price">$75</div>
+        </div>
+        <p class="addon-desc">Install GA4, verify tracking, and set up basic events so you actually know who's visiting.</p>
+        <a href="pay.html#addon-ga4" class="addon-btn">Add to Project</a>
+      </div>
+
+      <!-- Meta Pixel -->
+      <div class="addon-card">
+        <div class="addon-head">
+          <div class="addon-name">Meta Pixel Install</div>
+          <div class="addon-price">$75</div>
+        </div>
+        <p class="addon-desc">Facebook/Instagram ad tracking installed and verified so you can run paid ads with real data.</p>
+        <a href="pay.html#addon-meta-pixel" class="addon-btn">Add to Project</a>
+      </div>
+
+      <!-- Reviews Widget -->
+      <div class="addon-card">
+        <div class="addon-head">
+          <div class="addon-name">Live Reviews Widget</div>
+          <div class="addon-price">$97</div>
+        </div>
+        <p class="addon-desc">Pull your Google or Facebook reviews live onto your site &mdash; no manual updating ever again.</p>
+        <a href="pay.html#addon-reviews" class="addon-btn">Add to Project</a>
+      </div>
+
+      <!-- Logo Design -->
+      <div class="addon-card">
+        <div class="addon-head">
+          <div class="addon-name">Logo Design</div>
+          <div class="addon-price">$397</div>
+        </div>
+        <p class="addon-desc">Custom logo with multiple concepts and final files in PNG, SVG, and color variants.</p>
+        <a href="pay.html#addon-logo" class="addon-btn">Add to Project</a>
+      </div>
+
+      <!-- Favicon -->
+      <div class="addon-card">
+        <div class="addon-head">
+          <div class="addon-name">Favicon Design</div>
+          <div class="addon-price">$50</div>
+        </div>
+        <p class="addon-desc">The little icon in the browser tab. Designed and installed so your site looks finished.</p>
+        <a href="pay.html#addon-favicon" class="addon-btn">Add to Project</a>
+      </div>
+
+      <!-- Newsletter Popup -->
+      <div class="addon-card">
+        <div class="addon-head">
+          <div class="addon-name">Newsletter Popup</div>
+          <div class="addon-price">$97</div>
+        </div>
+        <p class="addon-desc">Timed or exit-intent popup that captures email addresses straight into your CRM.</p>
+        <a href="pay.html#addon-popup" class="addon-btn">Add to Project</a>
+      </div>
+
+      <!-- Speed Optimization -->
+      <div class="addon-card">
+        <div class="addon-head">
+          <div class="addon-name">Speed Optimization Pass</div>
+          <div class="addon-price">$197</div>
+        </div>
+        <p class="addon-desc">Full PageSpeed audit and fixes &mdash; image compression, caching, lazy loading, and more.</p>
+        <a href="pay.html#addon-speed" class="addon-btn">Add to Project</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ═══ WHAT'S INCLUDED ═══ -->
 <section class="section section-alt">
   <div class="container">
