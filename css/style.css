@@ -498,6 +498,17 @@ p { margin-bottom: 1rem; }
 }
 .pricing-card .btn { width: 100%; }
 
+/* Maintenance cards (dark background) — override readability */
+.section-dark .pricing-card .pricing-tier { color: #fff; }
+.section-dark .pricing-card .pricing-desc { color: rgba(255,255,255,0.85); }
+.section-dark .pricing-card .pricing-features li {
+  color: #ffffff;
+  border-bottom-color: rgba(255,255,255,0.15);
+}
+.section-dark .pricing-card .pricing-features li::before {
+  color: var(--gold);
+}
+
 /* ══════════════════════════════════════ */
 /* FOOTER                                */
 /* ══════════════════════════════════════ */
