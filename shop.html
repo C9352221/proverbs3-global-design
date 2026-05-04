@@ -39,12 +39,45 @@
       <a href="books.html">Books</a>
       <a href="moodboards/">Mood Boards</a>
       <a href="shop.html" class="nav-cta">Start Your Project</a>
+      <button class="cart-toggle" id="cartToggle" aria-label="Open cart">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="cart-count" id="cartCount" hidden>0</span>
+      </button>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
+
+<!-- ═══ CART DRAWER ═══ -->
+<div class="cart-overlay" id="cartOverlay" hidden></div>
+<aside class="cart-drawer" id="cartDrawer" hidden aria-label="Shopping cart">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="cart-close" id="cartClose" aria-label="Close cart">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <!-- items injected here -->
+  </div>
+  <div class="cart-empty" id="cartEmpty">
+    <p>Your cart is empty.</p>
+    <p style="font-size:0.85rem;color:var(--text-light);margin-top:8px;">Browse the add-ons below to get started.</p>
+  </div>
+  <div class="cart-footer" id="cartFooter" hidden>
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">$0</span>
+    </div>
+    <button class="cart-checkout-btn" id="cartCheckoutBtn">Checkout</button>
+    <p class="cart-note">Secure payment via Stripe. You'll be sent to Stripe's hosted checkout.</p>
+    <p class="cart-error" id="cartError" hidden></p>
+  </div>
+</aside>
 
 <!-- ═══ PAGE HERO ═══ -->
 <section class="hero" style="min-height:auto; padding: 140px 0 80px;">
@@ -256,11 +289,223 @@
         border: 1.5px solid var(--navy);
         border-radius: 4px;
         text-decoration: none;
+        font-family: inherit;
+        cursor: pointer;
         transition: background 0.18s ease, color 0.18s ease;
       }
       .addon-btn:hover {
         background: var(--navy);
         color: #fff;
+      }
+      .addon-btn.added {
+        background: var(--gold);
+        color: #fff;
+        border-color: var(--gold);
+      }
+
+      /* === Cart toggle in nav === */
+      .cart-toggle {
+        position: relative;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        margin-left: 8px;
+        color: var(--navy);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.18s ease;
+      }
+      .cart-toggle:hover { color: var(--gold); }
+      .cart-count {
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 5px;
+        border-radius: 9px;
+        background: var(--gold);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 0 2px #fff;
+      }
+
+      /* === Cart drawer === */
+      .cart-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 31, 53, 0.55);
+        z-index: 998;
+        opacity: 0;
+        animation: cart-fade-in 0.2s ease forwards;
+      }
+      @keyframes cart-fade-in { to { opacity: 1; } }
+      .cart-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 380px;
+        max-width: 100%;
+        height: 100vh;
+        background: #fff;
+        z-index: 999;
+        box-shadow: -10px 0 40px rgba(15, 31, 53, 0.18);
+        display: flex;
+        flex-direction: column;
+        transform: translateX(100%);
+        animation: cart-slide-in 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+      @keyframes cart-slide-in { to { transform: translateX(0); } }
+      .cart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 22px 24px;
+        border-bottom: 1px solid var(--border);
+      }
+      .cart-header h3 {
+        margin: 0;
+        font-family: var(--font-heading, 'Playfair Display', serif);
+        font-size: 1.25rem;
+        color: var(--navy);
+      }
+      .cart-close {
+        background: transparent;
+        border: none;
+        font-size: 1.8rem;
+        line-height: 1;
+        cursor: pointer;
+        color: var(--text-light);
+        padding: 0 6px;
+        transition: color 0.15s ease;
+      }
+      .cart-close:hover { color: var(--navy); }
+      .cart-items {
+        flex: 1;
+        overflow-y: auto;
+        padding: 12px 24px;
+      }
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .cart-item-name {
+        font-size: 0.92rem;
+        color: var(--navy);
+        font-weight: 600;
+        line-height: 1.3;
+      }
+      .cart-item-qty {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 6px;
+        font-size: 0.85rem;
+        color: var(--text-light);
+      }
+      .qty-btn {
+        width: 24px;
+        height: 24px;
+        border: 1px solid var(--border);
+        background: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--navy);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.15s ease, border-color 0.15s ease;
+      }
+      .qty-btn:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+      .cart-item-price {
+        font-size: 0.95rem;
+        color: var(--navy);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .cart-item-remove {
+        background: transparent;
+        border: none;
+        color: var(--text-light);
+        font-size: 0.78rem;
+        cursor: pointer;
+        text-decoration: underline;
+        padding: 4px 0;
+        margin-top: 4px;
+      }
+      .cart-item-remove:hover { color: #c0392b; }
+      .cart-empty {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 30px;
+        color: var(--text-light);
+      }
+      .cart-empty[hidden] { display: none; }
+      .cart-footer {
+        padding: 18px 24px 22px;
+        border-top: 1px solid var(--border);
+        background: var(--bg-soft, #f9f7f2);
+      }
+      .cart-footer[hidden] { display: none; }
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--font-heading, 'Playfair Display', serif);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 14px;
+      }
+      .cart-checkout-btn {
+        width: 100%;
+        padding: 14px;
+        background: var(--gold);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.92rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-family: inherit;
+        transition: background 0.18s ease;
+      }
+      .cart-checkout-btn:hover { background: #c79a1f; }
+      .cart-checkout-btn:disabled { opacity: 0.6; cursor: wait; }
+      .cart-note {
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--text-light);
+        margin-top: 10px;
+      }
+      .cart-error {
+        margin-top: 10px;
+        padding: 8px 10px;
+        background: #fdecea;
+        color: #b03a2e;
+        border-radius: 4px;
+        font-size: 0.82rem;
+        text-align: center;
+      }
+      .cart-error[hidden] { display: none; }
+      @media (max-width: 480px) {
+        .cart-drawer { width: 100%; }
       }
     </style>
 
@@ -273,7 +518,7 @@
           <div class="addon-price">$100</div>
         </div>
         <p class="addon-desc">Need more changes after your included revisions are used? Add another full round.</p>
-        <a href="pay.html#addon-revision" class="addon-btn">Add to Project</a>
+        <button class="addon-btn" data-addon='{"price_id":"price_1TTPLIA4sVJmlCYROZoRHkQ2","name":"Additional Revision Round","price":100}'>Add to Cart</button>
       </div>
 
       <!-- Video Embed -->
@@ -283,7 +528,7 @@
           <div class="addon-price">$52</div>
         </div>
         <p class="addon-desc">Embed any YouTube or Vimeo video on your site, sized and styled to fit your brand.</p>
-        <a href="pay.html#addon-video" class="addon-btn">Add to Project</a>
+        <button class="addon-btn" data-addon='{"price_id":"price_1TTPLuA4sVJmlCYRZAhmyoIn","name":"Video Embed","price":52}'>Add to Cart</button>
       </div>
 
       <!-- Extra Page -->
@@ -293,7 +538,7 @@
           <div class="addon-price">$155</div>
         </div>
         <p class="addon-desc">One additional fully-styled page beyond what your package includes (per page).</p>
-        <a href="pay.html#addon-page" class="addon-btn">Add to Project</a>
+        <button class="addon-btn" data-addon='{"price_id":"price_1TTPMQA4sVJmlCYRzkIMXGoJ","name":"Extra Page","price":155}'>Add to Cart</button>
       </div>
 
       <!-- Calendly Booking -->
@@ -303,7 +548,7 @@
           <div class="addon-price">$100</div>
         </div>
         <p class="addon-desc">Calendly, Acuity, or similar — embedded and styled so clients can book straight from your site.</p>
-        <a href="pay.html#addon-booking" class="addon-btn">Add to Project</a>
+        <button class="addon-btn" data-addon='{"price_id":"price_1TTPNiA4sVJmlCYRAGr1HsD5","name":"Booking Calendar Embed","price":100}'>Add to Cart</button>
       </div>
 
       <!-- Form to CRM -->
@@ -313,7 +558,7 @@
           <div class="addon-price">$100</div>
         </div>
         <p class="addon-desc">Connect your contact form to GoHighLevel, Mailchimp, or another CRM so leads land in the right inbox.</p>
-        <a href="pay.html#addon-form-crm" class="addon-btn">Add to Project</a>
+        <button class="addon-btn" data-addon='{"price_id":"price_1TTPOMA4sVJmlCYRzGvnjhII","name":"Form to CRM Integration","price":100}'>Add to Cart</button>
       </div>
 
       <!-- Google Analytics -->
@@ -323,7 +568,7 @@
           <div class="addon-price">$77</div>
         </div>
         <p class="addon-desc">Install GA4, verify tracking, and set up basic events so you actually know who's visiting.</p>
-        <a href="pay.html#addon-ga4" class="addon-btn">Add to Project</a>
+        <button class="addon-btn" data-addon='{"price_id":"price_1TTPPDA4sVJmlCYR8tiC0quE","name":"Google Analytics 4 Setup","price":77}'>Add to Cart</button>
       </div>
 
       <!-- Meta Pixel -->
@@ -333,7 +578,7 @@
           <div class="addon-price">$77</div>
         </div>
         <p class="addon-desc">Facebook/Instagram ad tracking installed and verified so you can run paid ads with real data.</p>
-        <a href="pay.html#addon-meta-pixel" class="addon-btn">Add to Project</a>
+        <button class="addon-btn" data-addon='{"price_id":"price_1TTPR2A4sVJmlCYR7ZuEpWcl","name":"Meta Pixel Install","price":77}'>Add to Cart</button>
       </div>
 
       <!-- Reviews Widget -->
@@ -343,7 +588,7 @@
           <div class="addon-price">$100</div>
         </div>
         <p class="addon-desc">Pull your Google or Facebook reviews live onto your site &mdash; no manual updating ever again.</p>
-        <a href="pay.html#addon-reviews" class="addon-btn">Add to Project</a>
+        <button class="addon-btn" data-addon='{"price_id":"price_1TTPTEA4sVJmlCYRmGQ4t3PF","name":"Live Reviews Widget","price":100}'>Add to Cart</button>
       </div>
 
       <!-- Logo Design -->
@@ -353,7 +598,7 @@
           <div class="addon-price">$409</div>
         </div>
         <p class="addon-desc">Custom logo with multiple concepts and final files in PNG, SVG, and color variants.</p>
-        <a href="pay.html#addon-logo" class="addon-btn">Add to Project</a>
+        <button class="addon-btn" data-addon='{"price_id":"price_1TTPVFA4sVJmlCYROWUxkYQG","name":"Logo Design","price":409}'>Add to Cart</button>
       </div>
 
       <!-- Favicon -->
@@ -363,7 +608,7 @@
           <div class="addon-price">$52</div>
         </div>
         <p class="addon-desc">The little icon in the browser tab. Designed and installed so your site looks finished.</p>
-        <a href="pay.html#addon-favicon" class="addon-btn">Add to Project</a>
+        <button class="addon-btn" data-addon='{"price_id":"price_1TTPVmA4sVJmlCYR1sAp2TUq","name":"Favicon Design","price":52}'>Add to Cart</button>
       </div>
 
       <!-- Newsletter Popup -->
@@ -373,7 +618,7 @@
           <div class="addon-price">$100</div>
         </div>
         <p class="addon-desc">Timed or exit-intent popup that captures email addresses straight into your CRM.</p>
-        <a href="pay.html#addon-popup" class="addon-btn">Add to Project</a>
+        <button class="addon-btn" data-addon='{"price_id":"price_1TTPWVA4sVJmlCYR0OTwGaB8","name":"Newsletter Popup","price":100}'>Add to Cart</button>
       </div>
 
       <!-- Speed Optimization -->
@@ -383,7 +628,7 @@
           <div class="addon-price">$203</div>
         </div>
         <p class="addon-desc">Full PageSpeed audit and fixes &mdash; image compression, caching, lazy loading, and more.</p>
-        <a href="pay.html#addon-speed" class="addon-btn">Add to Project</a>
+        <button class="addon-btn" data-addon='{"price_id":"price_1TTPXGA4sVJmlCYRsAmH73YI","name":"Speed Optimization Pass","price":203}'>Add to Cart</button>
       </div>
 
     </div>
@@ -506,6 +751,195 @@
 </footer>
 
 <script src="js/main.js"></script>
+
+<!-- ═══ CART LOGIC ═══ -->
+<script>
+(function() {
+  // === CONFIG ===
+  // Replace with your deployed Cloudflare Worker URL
+  const CHECKOUT_WORKER_URL = 'https://provb3-cart.alfanoministries.workers.dev';
+  const STORAGE_KEY = 'p3_cart_v1';
+  const SUCCESS_URL = window.location.origin + '/thank-you.html';
+  const CANCEL_URL  = window.location.origin + '/shop.html';
+
+  // === STATE ===
+  let cart = loadCart();
+
+  function loadCart() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch { return []; }
+  }
+  function saveCart() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+  }
+
+  // === DOM ===
+  const overlay     = document.getElementById('cartOverlay');
+  const drawer      = document.getElementById('cartDrawer');
+  const toggleBtn   = document.getElementById('cartToggle');
+  const closeBtn    = document.getElementById('cartClose');
+  const itemsEl     = document.getElementById('cartItems');
+  const emptyEl     = document.getElementById('cartEmpty');
+  const footerEl    = document.getElementById('cartFooter');
+  const totalEl     = document.getElementById('cartTotal');
+  const countEl     = document.getElementById('cartCount');
+  const checkoutBtn = document.getElementById('cartCheckoutBtn');
+  const errorEl     = document.getElementById('cartError');
+
+  // === CART OPERATIONS ===
+  function addToCart(addon) {
+    const existing = cart.find(i => i.price_id === addon.price_id);
+    if (existing) existing.quantity += 1;
+    else cart.push({ ...addon, quantity: 1 });
+    saveCart();
+    render();
+    openCart();
+  }
+  function removeFromCart(priceId) {
+    cart = cart.filter(i => i.price_id !== priceId);
+    saveCart();
+    render();
+  }
+  function setQuantity(priceId, qty) {
+    const item = cart.find(i => i.price_id === priceId);
+    if (!item) return;
+    item.quantity = Math.max(1, Math.min(50, qty));
+    saveCart();
+    render();
+  }
+
+  // === DRAWER ===
+  function openCart()  { overlay.hidden = false; drawer.hidden = false; render(); }
+  function closeCart() { overlay.hidden = true;  drawer.hidden = true; }
+
+  // === RENDER ===
+  function render() {
+    // Count badge
+    const totalQty = cart.reduce((s, i) => s + i.quantity, 0);
+    if (totalQty > 0) {
+      countEl.textContent = totalQty;
+      countEl.hidden = false;
+    } else {
+      countEl.hidden = true;
+    }
+
+    // Items list
+    itemsEl.innerHTML = '';
+    if (cart.length === 0) {
+      emptyEl.hidden = false;
+      footerEl.hidden = true;
+      itemsEl.hidden = true;
+      return;
+    }
+    emptyEl.hidden = true;
+    footerEl.hidden = false;
+    itemsEl.hidden = false;
+
+    cart.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'cart-item';
+      row.innerHTML = `
+        <div>
+          <div class="cart-item-name">${escapeHtml(item.name)}</div>
+          <div class="cart-item-qty">
+            <button class="qty-btn" data-action="dec" data-id="${item.price_id}" aria-label="Decrease quantity">&minus;</button>
+            <span>Qty ${item.quantity}</span>
+            <button class="qty-btn" data-action="inc" data-id="${item.price_id}" aria-label="Increase quantity">+</button>
+          </div>
+          <button class="cart-item-remove" data-action="remove" data-id="${item.price_id}">Remove</button>
+        </div>
+        <div class="cart-item-price">$${item.price * item.quantity}</div>
+      `;
+      itemsEl.appendChild(row);
+    });
+
+    // Total
+    const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+    totalEl.textContent = `$${total}`;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[c]));
+  }
+
+  // === EVENTS ===
+  // "Add to Cart" buttons on the page
+  document.querySelectorAll('.addon-btn[data-addon]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      try {
+        const addon = JSON.parse(btn.getAttribute('data-addon'));
+        addToCart(addon);
+        // Quick visual feedback
+        const original = btn.textContent;
+        btn.textContent = 'Added ✓';
+        btn.classList.add('added');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('added');
+        }, 1200);
+      } catch (e) { console.error('Add to cart failed:', e); }
+    });
+  });
+
+  // Cart drawer open/close
+  toggleBtn.addEventListener('click', openCart);
+  closeBtn.addEventListener('click', closeCart);
+  overlay.addEventListener('click', closeCart);
+
+  // Cart item interactions (delegate)
+  itemsEl.addEventListener('click', (e) => {
+    const target = e.target.closest('[data-action]');
+    if (!target) return;
+    const action = target.getAttribute('data-action');
+    const id = target.getAttribute('data-id');
+    const item = cart.find(i => i.price_id === id);
+    if (!item) return;
+    if (action === 'inc') setQuantity(id, item.quantity + 1);
+    else if (action === 'dec') setQuantity(id, item.quantity - 1);
+    else if (action === 'remove') removeFromCart(id);
+  });
+
+  // Checkout
+  checkoutBtn.addEventListener('click', async () => {
+    if (cart.length === 0) return;
+    errorEl.hidden = true;
+    checkoutBtn.disabled = true;
+    checkoutBtn.textContent = 'Redirecting…';
+
+    try {
+      const res = await fetch(CHECKOUT_WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: cart.map(i => ({ price_id: i.price_id, quantity: i.quantity })),
+          success_url: SUCCESS_URL,
+          cancel_url: CANCEL_URL,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.url) {
+        throw new Error(data.error || 'Checkout failed. Try again.');
+      }
+      // Clear cart on successful redirect (so back button doesn't re-show items)
+      cart = [];
+      saveCart();
+      window.location.href = data.url;
+    } catch (err) {
+      errorEl.textContent = err.message || 'Something went wrong. Please try again.';
+      errorEl.hidden = false;
+      checkoutBtn.disabled = false;
+      checkoutBtn.textContent = 'Checkout';
+    }
+  });
+
+  // Initial render
+  render();
+})();
+</script>
 
 <script type="application/ld+json">
 {
