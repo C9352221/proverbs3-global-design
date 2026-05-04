@@ -42,6 +42,22 @@
       color: #ffffff !important;
       margin-bottom: 8px;
     }
+    /* Book cover thumbnails */
+    .book-cover-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: 220px;
+      margin-bottom: 18px;
+    }
+    .book-cover-wrap img {
+      max-height: 100%;
+      width: auto;
+      max-width: 100%;
+      display: block;
+      box-shadow: 0 12px 28px -8px rgba(15, 31, 53, 0.35);
+      border-radius: 3px;
+    }
   </style>
 </head>
 <body>
@@ -87,16 +103,25 @@
     </div>
     <div class="card-grid">
       <div class="card">
+        <div class="book-cover-wrap">
+          <img src="https://alfanoministries.com/assets/books/faith-to-build-cover.jpg" alt="Faith to Build book cover" loading="lazy">
+        </div>
         <div class="accent-bar"></div>
         <h3>Faith to Build</h3>
         <p>Published in English, Spanish, Italian, and Polish. Paperback, hardcover, and Kindle ebook on KDP.</p>
       </div>
       <div class="card">
+        <div class="book-cover-wrap">
+          <img src="https://alfanoministries.com/assets/books/go-cover.jpg" alt="GO book cover" loading="lazy">
+        </div>
         <div class="accent-bar"></div>
         <h3>GO</h3>
         <p>A 14-chapter book built entirely from preached sermons — the same Sermon-to-Book process I now offer ministers.</p>
       </div>
       <div class="card">
+        <div class="book-cover-wrap">
+          <img src="https://alfanoministries.com/assets/books/now-faith-cover.jpg" alt="Now Faith book cover" loading="lazy">
+        </div>
         <div class="accent-bar"></div>
         <h3>Now Faith</h3>
         <p>A faith-building manuscript drawn from teaching on Hebrews 11 — proof that faith is real and substantive.</p>
