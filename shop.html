@@ -797,7 +797,6 @@
     else cart.push({ ...addon, quantity: 1 });
     saveCart();
     render();
-    openCart();
   }
   function removeFromCart(priceId) {
     cart = cart.filter(i => i.price_id !== priceId);
