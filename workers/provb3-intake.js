@@ -89,6 +89,49 @@ async function appendNote(contactId, note, apiKey) {
   });
 }
 
+function buildResendAttachments(rawAttachments) {
+  if (!Array.isArray(rawAttachments) || rawAttachments.length === 0) return [];
+  const out = [];
+  for (const att of rawAttachments) {
+    if (!att || !att.dataUrl || !att.filename) continue;
+    const commaIdx = att.dataUrl.indexOf(',');
+    if (commaIdx < 0) continue;
+    const base64 = att.dataUrl.slice(commaIdx + 1);
+    if (!base64) continue;
+    const safeName = att.category
+      ? `${att.category}-${att.filename}`
+      : att.filename;
+    out.push({ filename: safeName, content: base64 });
+  }
+  return out;
+}
+
+async function sendNotificationEmail(env, subject, plainBody, replyTo, attachments) {
+  if (!env.RESEND_API_KEY) return;
+  const payload = {
+    from: 'Proverbs 3 Intake <onboarding@resend.dev>',
+    to: ['sales@provb3global.com'],
+    subject,
+    text: plainBody,
+    reply_to: replyTo || undefined,
+  };
+  if (Array.isArray(attachments) && attachments.length > 0) {
+    payload.attachments = attachments;
+  }
+  try {
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (err) {
+    console.error('Resend error:', err);
+  }
+}
+
 function splitName(fullName) {
   if (!fullName) return { firstName: '', lastName: '' };
   const parts = fullName.trim().split(/\s+/);
@@ -99,12 +142,20 @@ function splitName(fullName) {
 
 function buildNote(body) {
   const lines = [];
-  const skip = new Set(['email', 'phone', 'firstName', 'lastName', 'formType', 'contactName', 'contactEmail', 'contactPhone']);
+  const skip = new Set(['email', 'phone', 'firstName', 'lastName', 'formType', 'contactName', 'contactEmail', 'contactPhone', 'attachments']);
   for (const [key, value] of Object.entries(body)) {
     if (skip.has(key)) continue;
     if (value === null || value === undefined || value === '') continue;
     const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase());
     lines.push(`${label}: ${value}`);
+  }
+  if (Array.isArray(body.attachments) && body.attachments.length > 0) {
+    const fileList = body.attachments
+      .filter(a => a && a.filename)
+      .map(a => `  - ${a.category ? `[${a.category}] ` : ''}${a.filename}`)
+      .join('\n');
+    lines.push(`Files Attached: ${body.attachments.length}`);
+    if (fileList) lines.push(fileList);
   }
   return lines.join('\n');
 }
@@ -168,6 +219,7 @@ export default {
     if (phone) ghlPayload.phone = phone;
 
     const noteText = `${formType === 'book-intake' ? 'Book Intake' : 'Design Intake'}\n${buildNote(body)}`;
+    const resendAttachments = buildResendAttachments(body.attachments);
 
     try {
       const ghlRes = await fetch(GHL_API_URL, {
@@ -182,6 +234,19 @@ export default {
         if (contactId && noteText) {
           await appendNote(contactId, noteText, env.GHL_API_KEY);
         }
+        const subject = `New ${formType === 'book-intake' ? 'Book' : 'Design'} Intake: ${contactName || email || 'Unknown'}`;
+        const emailBody = [
+          `A new intake just came through provb3global.com.`,
+          ``,
+          `Name: ${contactName || '—'}`,
+          `Email: ${email || '—'}`,
+          `Phone: ${phone || '—'}`,
+          `GHL Contact ID: ${contactId}`,
+          ``,
+          `--- Intake Details ---`,
+          buildNote(body),
+        ].join('\n');
+        await sendNotificationEmail(env, subject, emailBody, email, resendAttachments);
         return jsonResponse({
           success: true,
           message: 'Intake received',
@@ -212,6 +277,20 @@ export default {
             }
           }
         }
+
+        const subject = `Returning ${formType === 'book-intake' ? 'Book' : 'Design'} Intake: ${contactName || email || 'Unknown'}`;
+        const emailBody = [
+          `A returning contact just submitted an intake on provb3global.com.`,
+          ``,
+          `Name: ${contactName || '—'}`,
+          `Email: ${email || '—'}`,
+          `Phone: ${phone || '—'}`,
+          `GHL Contact ID: ${existingId || '(not resolved)'}`,
+          ``,
+          `--- Intake Details ---`,
+          buildNote(body),
+        ].join('\n');
+        await sendNotificationEmail(env, subject, emailBody, email, resendAttachments);
 
         return jsonResponse({
           success: true,

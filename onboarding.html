@@ -2089,6 +2089,21 @@ async function submitToEmail() {
     const data = collectAllData();
     const text = buildIntakeText();
 
+    const attachments = [];
+    for (const category in uploadedFiles) {
+        for (const file of uploadedFiles[category]) {
+            if (file.dataUrl) {
+                attachments.push({
+                    category,
+                    filename: file.name,
+                    contentType: file.type || 'application/octet-stream',
+                    size: file.size || 0,
+                    dataUrl: file.dataUrl,
+                });
+            }
+        }
+    }
+
     try {
         const payload = {
             formType: 'design-intake',
@@ -2100,6 +2115,7 @@ async function submitToEmail() {
             budget: data.budget || '',
             timeline: data.timeline || '',
             fullIntakeSummary: text,
+            attachments,
         };
 
         const response = await fetch('https://provb3-intake.alfanoministries.workers.dev', {
