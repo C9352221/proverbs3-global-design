@@ -1884,6 +1884,44 @@ function handleDrop(e, category, maxFiles) {
     handleFiles(e.dataTransfer.files, category, maxFiles);
 }
 
+// Downscale + compress an image in the browser so uploads actually fit in the
+// notification email (Resend caps total size ~40MB). Web-res is plenty for a site.
+// Small files and logos are kept as-is to preserve quality/transparency.
+function processImage(file, category) {
+    const MAX_EDGE = 1800;          // longest edge in px
+    const JPEG_QUALITY = 0.82;
+    const KEEP_AS_IS_BYTES = 900 * 1024; // <900KB or a logo: leave untouched
+    return new Promise(function (resolve) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const original = e.target.result;
+            const keepAsIs = file.size <= KEEP_AS_IS_BYTES || category === 'logo';
+            if (keepAsIs) { resolve({ name: file.name, size: file.size, type: file.type, dataUrl: original }); return; }
+            const img = new Image();
+            img.onload = function () {
+                let w = img.naturalWidth, h = img.naturalHeight;
+                if (Math.max(w, h) > MAX_EDGE) {
+                    const s = MAX_EDGE / Math.max(w, h);
+                    w = Math.round(w * s); h = Math.round(h * s);
+                }
+                try {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = w; canvas.height = h;
+                    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                    const out = canvas.toDataURL('image/jpeg', JPEG_QUALITY);
+                    const jpgName = /\.jpe?g$/i.test(file.name) ? file.name : file.name.replace(/\.[^.]+$/, '') + '.jpg';
+                    resolve({ name: jpgName, size: Math.round(out.length * 0.75), type: 'image/jpeg', dataUrl: out });
+                } catch (err) {
+                    resolve({ name: file.name, size: file.size, type: file.type, dataUrl: original });
+                }
+            };
+            img.onerror = function () { resolve({ name: file.name, size: file.size, type: file.type, dataUrl: original }); };
+            img.src = original;
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
 function handleFiles(fileList, category, maxFiles) {
     const files = Array.from(fileList);
     const existing = uploadedFiles[category].length;
@@ -1895,23 +1933,16 @@ function handleFiles(fileList, category, maxFiles) {
     }
 
     const toAdd = files.slice(0, remaining);
-    toAdd.forEach(file => {
+    toAdd.forEach(function (file) {
         if (!file.type.startsWith('image/')) {
             showToast('Only image files are accepted');
             return;
         }
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            uploadedFiles[category].push({
-                name: file.name,
-                size: file.size,
-                type: file.type,
-                dataUrl: e.target.result
-            });
+        processImage(file, category).then(function (processed) {
+            uploadedFiles[category].push(processed);
             renderPreviews(category);
             saveDraft();
-        };
-        reader.readAsDataURL(file);
+        });
     });
 }
 
