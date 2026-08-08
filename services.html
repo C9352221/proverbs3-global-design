@@ -3,244 +3,303 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Design &amp; Branding Services — Proverbs 3 Global Design</title>
-  <meta name="description" content="Custom website design, brand identity, and digital platform building services for businesses and ministries. Responsive, SEO-optimized, and built to perform.">
-  <meta name="theme-color" content="#1e3a5f">
+  <title>Services — PROVB3 Global</title>
+  <meta name="description" content="Brand identity, custom website development, platform engineering, book design and production, translation, and audiobook narration — all in one studio.">
+  <meta name="theme-color" content="#0a0a0b">
   <link rel="canonical" href="https://provb3global.com/services.html">
-  <!-- Open Graph -->
-  <meta property="og:title" content="Web Design &amp; Branding Services — Proverbs 3 Global Design">
-  <meta property="og:description" content="Custom website design, brand identity, and digital platform building services for businesses and ministries. Responsive, SEO-optimized, and built to perform.">
+  <meta property="og:title" content="Services — PROVB3 Global">
+  <meta property="og:description" content="Design, code, print, and audio under one roof.">
   <meta property="og:image" content="https://provb3global.com/assets/images/og-default.png">
   <meta property="og:url" content="https://provb3global.com/services.html">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Proverbs 3 Global Design">
-  <!-- Twitter Card -->
+  <meta property="og:site_name" content="PROVB3 Global">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Web Design &amp; Branding Services — Proverbs 3 Global Design">
-  <meta name="twitter:description" content="Custom website design, brand identity, and digital platform building services for businesses and ministries. Responsive, SEO-optimized, and built to perform.">
+  <meta name="twitter:title" content="Services — PROVB3 Global">
+  <meta name="twitter:description" content="Design, code, print, and audio under one roof.">
   <meta name="twitter:image" content="https://provb3global.com/assets/images/og-default.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+  <style>
+    .svc {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 64px;
+      padding: 72px 0;
+      border-top: 1px solid var(--border);
+      align-items: start;
+    }
+    .svc-index {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .svc.cyan .svc-index { color: var(--cyan); }
+    .svc h2 { font-size: clamp(1.7rem, 2.8vw, 2.3rem); margin-bottom: 18px; }
+    .svc-lede { color: var(--text-body); font-size: 1.02rem; }
+    .svc-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 34px; }
+    .svc-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.94rem;
+      color: var(--text-body);
+    }
+    .svc-list li::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 9px;
+      flex-shrink: 0;
+    }
+    .svc.cyan .svc-list li::before { background: var(--cyan); }
+    @media (max-width: 900px) {
+      .svc { grid-template-columns: 1fr; gap: 28px; padding: 52px 0; }
+      .svc-list { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
 <!-- ═══ NAVIGATION ═══ -->
 <nav class="navbar">
   <div class="container">
-    <a href="index.html" class="nav-logo">Proverbs 3 <span>Global Design</span></a>
+    <a href="index.html" class="nav-logo"><i class="mark"></i>PROVB3 <span>Global</span></a>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
-      <a href="about.html">About</a>
+      <a href="portfolio.html">Work</a>
+      <a href="books.html">Publishing</a>
       <a href="services.html" class="active">Services</a>
-      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">Studio</a>
       <a href="shop.html">Packages</a>
-      <a href="books.html">Books</a>
-      <a href="moodboards/">Mood Boards</a>
-      <a href="shop.html" class="nav-cta">Start Your Project</a>
+      <a href="shop.html" class="nav-cta">Start a project</a>
     </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
 <!-- ═══ PAGE HERO ═══ -->
-<section class="hero" style="min-height:auto; padding: 140px 0 80px;">
+<section class="hero hero-page">
+  <div class="hero-grid"></div>
   <div class="container">
-    <div class="hero-content" style="max-width:800px;">
-      <div class="hero-badge">Our Services</div>
-      <h1>Strategic Digital Solutions That <span class="gold">Deliver Results.</span></h1>
-      <p>From custom website design to full digital platform building, every service is built with one goal: to help your organization grow and perform online.</p>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="dot"></i>Capabilities</div>
+      <h1>Design, code, print,<br>and <span class="cyan">audio.</span></h1>
+      <p>
+        Six disciplines, one studio, one invoice. Nothing gets lost in a handoff between
+        three vendors who have never spoken to each other.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ═══ CORE SERVICES ═══ -->
-<section class="section">
+<!-- ═══ SERVICES ═══ -->
+<section class="section" style="padding-top:20px;">
   <div class="container">
-    <div class="text-center" style="margin-bottom: 50px;">
-      <span class="section-badge">What We Offer</span>
-      <h2>Services Built for Growth</h2>
+
+    <div class="svc">
+      <div>
+        <div class="svc-index">01 / Brand</div>
+        <h2>Brand strategy &amp; identity</h2>
+        <p class="svc-lede">
+          A brand is more than a logo. We build the whole system — the marks, the palette,
+          the type, and the language — so everything you publish looks like it came from
+          the same company.
+        </p>
+      </div>
+      <ul class="svc-list">
+        <li>Logo and visual identity design</li>
+        <li>Color palette and type systems</li>
+        <li>Mood boards and direction sets</li>
+        <li>Brand voice and messaging</li>
+        <li>Style guides and asset kits</li>
+        <li>Print collateral and signage</li>
+      </ul>
     </div>
 
-    <!-- Service 1 -->
-    <div class="split-section" style="margin-bottom: 80px;">
+    <div class="svc">
       <div>
-        <span class="section-badge">01</span>
-        <h2>Website Design &amp; Development</h2>
-        <p>We create modern, responsive websites that look exceptional on every device and perform seamlessly. From layout and user experience to speed and functionality, every site is built to engage visitors, communicate clearly, and convert attention into action.</p>
-        <ul style="list-style:none;margin-top:20px;">
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Custom responsive design</li>
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Mobile-first development</li>
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> SEO-optimized structure</li>
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Fast load times &amp; performance</li>
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Cross-browser compatibility</li>
-        </ul>
+        <div class="svc-index">02 / Web</div>
+        <h2>Website design &amp; development</h2>
+        <p class="svc-lede">
+          Hand-written HTML, CSS, and JavaScript on edge hosting. No WordPress, no page
+          builder, no plugin that breaks your site at 3am because it auto-updated.
+        </p>
       </div>
-      <div class="split-image">
-        <div style="width:100%;height:420px;background:linear-gradient(135deg, #1e3a5f 0%, #0f1f35 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
-          <!-- Browser mockup -->
-          <div style="position:absolute;top:0;right:0;width:100%;height:100%;opacity:0.06;">
-            <div style="position:absolute;top:30px;left:30px;right:30px;bottom:30px;border:1px solid #fff;border-radius:8px;"></div>
-            <div style="position:absolute;top:30px;left:30px;right:30px;height:28px;border-bottom:1px solid #fff;display:flex;align-items:center;padding-left:10px;gap:6px;">
-              <div style="width:8px;height:8px;border-radius:50%;border:1px solid #fff;"></div>
-              <div style="width:8px;height:8px;border-radius:50%;border:1px solid #fff;"></div>
-              <div style="width:8px;height:8px;border-radius:50%;border:1px solid #fff;"></div>
-            </div>
-          </div>
-          <!-- Floating UI elements -->
-          <div style="position:relative;z-index:1;text-align:center;">
-            <div style="background:rgba(232,185,35,0.15);border:1px solid rgba(232,185,35,0.3);border-radius:12px;padding:24px 36px;margin-bottom:16px;backdrop-filter:blur(10px);">
-              <div style="color:var(--gold);font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;letter-spacing:-0.5px;">&#60;/&#62;</div>
-              <div style="color:rgba(255,255,255,0.7);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;margin-top:6px;">Design &amp; Code</div>
-            </div>
-            <div style="display:flex;gap:10px;justify-content:center;">
-              <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 16px;font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:1px;">HTML</div>
-              <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 16px;font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:1px;">CSS</div>
-              <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 16px;font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:1px;">JS</div>
-            </div>
-          </div>
-          <!-- Glow -->
-          <div style="position:absolute;top:-40%;right:-20%;width:300px;height:300px;background:radial-gradient(circle,rgba(232,185,35,0.12) 0%,transparent 70%);border-radius:50%;"></div>
-          <div style="position:absolute;bottom:-30%;left:-10%;width:250px;height:250px;background:radial-gradient(circle,rgba(56,161,105,0.1) 0%,transparent 70%);border-radius:50%;"></div>
-        </div>
-      </div>
+      <ul class="svc-list">
+        <li>Custom responsive design</li>
+        <li>Mobile-first development</li>
+        <li>Local SEO and schema markup</li>
+        <li>Core Web Vitals performance</li>
+        <li>Accessibility and cross-browser QA</li>
+        <li>Analytics and conversion tracking</li>
+      </ul>
     </div>
 
-    <!-- Service 2 -->
-    <div class="split-section reverse" style="margin-bottom: 80px;">
+    <div class="svc">
       <div>
-        <span class="section-badge">02</span>
-        <h2>Brand Strategy &amp; Identity</h2>
-        <p>Your brand is more than a logo. We build comprehensive brand systems that establish your voice, visual identity, and market positioning — creating a cohesive experience across every touchpoint.</p>
-        <ul style="list-style:none;margin-top:20px;">
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Logo &amp; visual identity design</li>
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Color palette &amp; typography systems</li>
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Brand voice &amp; messaging</li>
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Mood boards &amp; style guides</li>
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Brand consistency across platforms</li>
-        </ul>
+        <div class="svc-index">03 / Platform</div>
+        <h2>Platform engineering</h2>
+        <p class="svc-lede">
+          The site is the front door. We build the rest of the house — the forms that route,
+          the payments that clear, and the automations that follow up while you sleep.
+        </p>
       </div>
-      <div class="split-image">
-        <div style="width:100%;height:420px;background:linear-gradient(160deg, #e8b923 0%, #d4a41a 50%, #c49415 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
-          <!-- Color swatches -->
-          <div style="position:relative;z-index:1;text-align:center;">
-            <div style="font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;color:var(--navy-deep);line-height:1;margin-bottom:20px;">Aa</div>
-            <div style="display:flex;gap:8px;justify-content:center;margin-bottom:16px;">
-              <div style="width:40px;height:40px;border-radius:50%;background:#0f1f35;border:3px solid rgba(255,255,255,0.3);"></div>
-              <div style="width:40px;height:40px;border-radius:50%;background:#1e3a5f;border:3px solid rgba(255,255,255,0.3);"></div>
-              <div style="width:40px;height:40px;border-radius:50%;background:#e8b923;border:3px solid rgba(255,255,255,0.3);"></div>
-              <div style="width:40px;height:40px;border-radius:50%;background:#38a169;border:3px solid rgba(255,255,255,0.3);"></div>
-              <div style="width:40px;height:40px;border-radius:50%;background:#f5f5f0;border:3px solid rgba(255,255,255,0.3);"></div>
-            </div>
-            <div style="background:rgba(15,31,53,0.12);border-radius:10px;padding:14px 24px;display:inline-block;">
-              <div style="color:var(--navy-deep);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;">Brand Identity System</div>
-            </div>
-          </div>
-          <!-- Decorative lines -->
-          <div style="position:absolute;top:20px;left:20px;right:20px;bottom:20px;border:1px solid rgba(15,31,53,0.08);border-radius:12px;"></div>
-          <div style="position:absolute;top:40px;left:40px;right:40px;bottom:40px;border:1px solid rgba(15,31,53,0.05);border-radius:8px;"></div>
-        </div>
-      </div>
+      <ul class="svc-list">
+        <li>Serverless workers and API endpoints</li>
+        <li>Stripe checkout and payment links</li>
+        <li>CRM pipelines and email automation</li>
+        <li>Gated downloads and member areas</li>
+        <li>Progressive web apps and point of sale</li>
+        <li>Domain, DNS, and email authentication</li>
+      </ul>
     </div>
 
-    <!-- Service 3 -->
-    <div class="split-section">
+    <div class="svc cyan">
       <div>
-        <span class="section-badge">03</span>
-        <h2>Digital Platform Building</h2>
-        <p>We go beyond single websites to build complete digital ecosystems. From automation and integrations to scalable architecture, we create platforms designed to grow with your organization.</p>
-        <ul style="list-style:none;margin-top:20px;">
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Full digital ecosystem design</li>
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Workflow automation</li>
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Third-party integrations</li>
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Scalable architecture</li>
-          <li style="padding:8px 0;display:flex;gap:10px;align-items:center;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Ongoing maintenance &amp; support</li>
-        </ul>
+        <div class="svc-index">04 / Print</div>
+        <h2>Book design &amp; production</h2>
+        <p class="svc-lede">
+          Full book development, from raw manuscript to a listing customers can buy.
+          We speak printer, not just browser — spine math, bleed, gutter, and all.
+        </p>
       </div>
-      <div class="split-image">
-        <div style="width:100%;height:420px;background:linear-gradient(135deg, #0f1f35 0%, #0a1628 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
-          <!-- Connected nodes -->
-          <div style="position:relative;z-index:1;text-align:center;">
-            <!-- Center hub -->
-            <div style="width:80px;height:80px;border-radius:50%;background:rgba(56,161,105,0.15);border:2px solid rgba(56,161,105,0.4);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
-              <span style="color:var(--green);font-size:2rem;">&#9881;</span>
-            </div>
-            <!-- Connected items -->
-            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;max-width:280px;">
-              <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;text-align:center;">
-                <div style="color:var(--gold);font-size:1.2rem;margin-bottom:4px;">&#128279;</div>
-                <div style="color:rgba(255,255,255,0.5);font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;">APIs</div>
-              </div>
-              <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;text-align:center;">
-                <div style="color:var(--gold);font-size:1.2rem;margin-bottom:4px;">&#9889;</div>
-                <div style="color:rgba(255,255,255,0.5);font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;">Automation</div>
-              </div>
-              <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;text-align:center;">
-                <div style="color:var(--gold);font-size:1.2rem;margin-bottom:4px;">&#128200;</div>
-                <div style="color:rgba(255,255,255,0.5);font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;">Scale</div>
-              </div>
-              <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;text-align:center;">
-                <div style="color:var(--gold);font-size:1.2rem;margin-bottom:4px;">&#128274;</div>
-                <div style="color:rgba(255,255,255,0.5);font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;">Security</div>
-              </div>
-            </div>
-          </div>
-          <!-- Glows -->
-          <div style="position:absolute;top:-30%;right:-15%;width:250px;height:250px;background:radial-gradient(circle,rgba(56,161,105,0.12) 0%,transparent 70%);border-radius:50%;"></div>
-          <div style="position:absolute;bottom:-25%;left:-10%;width:200px;height:200px;background:radial-gradient(circle,rgba(232,185,35,0.08) 0%,transparent 70%);border-radius:50%;"></div>
-          <!-- Grid pattern -->
-          <div style="position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:24px 24px;"></div>
-        </div>
-      </div>
+      <ul class="svc-list">
+        <li>Interior typesetting and layout</li>
+        <li>Paperback, hardcover, and ebook builds</li>
+        <li>Cover design and wrap-around files</li>
+        <li>ISBN, metadata, and category strategy</li>
+        <li>Retail listing setup and author pages</li>
+        <li>Launch graphics and marketing assets</li>
+      </ul>
     </div>
+
+    <div class="svc cyan">
+      <div>
+        <div class="svc-index">05 / Global</div>
+        <h2>Translation &amp; world editions</h2>
+        <p class="svc-lede">
+          Your book, published properly in another language — not run through a machine and
+          shipped. Localized covers, correct typography, and edition-specific artwork.
+        </p>
+      </div>
+      <ul class="svc-list">
+        <li>Full-manuscript translation</li>
+        <li>Localized cover and spine artwork</li>
+        <li>Language-correct typography and hyphenation</li>
+        <li>Back-translation quality checks</li>
+        <li>Per-market metadata and keywords</li>
+        <li>Editions currently shipping in 4 languages</li>
+      </ul>
+    </div>
+
+    <div class="svc cyan">
+      <div>
+        <div class="svc-index">06 / Audio</div>
+        <h2>Audiobook production</h2>
+        <p class="svc-lede">
+          Narrated audiobooks produced in-house, including cloned-voice narration so the
+          author reads their own book without spending three weeks in a booth.
+        </p>
+      </div>
+      <ul class="svc-list">
+        <li>Voice cloning and narration</li>
+        <li>Chapter splitting and mastering</li>
+        <li>Retail-spec audio delivery</li>
+        <li>Audio cover art</li>
+        <li>Hosted, gated audio libraries</li>
+        <li>Podcast and episode production</li>
+      </ul>
+    </div>
+
   </div>
 </section>
 
 <!-- ═══ PROCESS ═══ -->
 <section class="section section-alt">
   <div class="container">
-    <div class="text-center" style="margin-bottom: 50px;">
-      <span class="section-badge">Our Process</span>
-      <h2>From Vision to Launch</h2>
-      <p class="section-subtitle">A proven process that turns your ideas into a polished, high-performing platform.</p>
+    <div class="section-head">
+      <div>
+        <span class="section-badge">Process</span>
+        <h2>From vision<br>to launch.</h2>
+      </div>
+      <p>The same four stages whether we are building a platform or a paperback.</p>
     </div>
     <div class="process-grid">
       <div class="process-step">
-        <div class="process-number">01</div>
+        <div class="process-number">01 / Discover</div>
         <h3>Discovery</h3>
-        <p>We start by understanding your business, your audience, and your goals through our in-depth intake process.</p>
+        <p>An in-depth intake on your business, your audience, and your goals. Nothing gets designed before we know what it has to accomplish.</p>
       </div>
       <div class="process-step">
-        <div class="process-number">02</div>
-        <h3>Strategy &amp; Design</h3>
-        <p>Mood boards, wireframes, and custom designs are created and refined until your vision is perfectly captured.</p>
+        <div class="process-number">02 / Design</div>
+        <h3>Strategy &amp; design</h3>
+        <p>Mood boards, wireframes, and custom mockups, refined until the direction is right. You approve before anything gets built.</p>
       </div>
       <div class="process-step">
-        <div class="process-number">03</div>
+        <div class="process-number">03 / Build</div>
         <h3>Development</h3>
-        <p>Clean, fast, responsive code is written to bring the design to life with full functionality.</p>
+        <p>Clean, fast, responsive code — or a press-ready interior and cover file. Built once, built properly.</p>
       </div>
       <div class="process-step">
-        <div class="process-number">04</div>
-        <h3>Launch &amp; Support</h3>
-        <p>We deploy, test thoroughly, and provide ongoing support to keep your platform performing.</p>
+        <div class="process-number">04 / Ship</div>
+        <h3>Launch &amp; support</h3>
+        <p>We deploy, test, list, and hand off with training. Ongoing maintenance available, never mandatory.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CTA ═══ -->
+<!-- ═══ FAQ ═══ -->
 <section class="section">
+  <div class="container-narrow">
+    <div class="text-center" style="margin-bottom:48px;">
+      <span class="section-badge">Common questions</span>
+      <h2>Before you ask.</h2>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">Do you use WordPress, Wix, or Squarespace?</button>
+      <div class="faq-a"><p>No. Every site is hand-coded and deployed to edge hosting. That means faster load times, better search performance, no monthly platform fees, and nothing that can break because a plugin updated itself overnight.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Do I own the site when it's finished?</button>
+      <div class="faq-a"><p>Yes. You own the domain, the code, and the content. We hand off everything and provide training so you are never locked into calling us. Maintenance is offered because it is useful, not because you are trapped.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How long does a project take?</button>
+      <div class="faq-a"><p>A standard business site runs two to four weeks from approved direction. A book, depending on length and whether it needs translation or narration, typically runs four to eight weeks. Both timelines depend mostly on how quickly content and approvals come back.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Can you do the website and the book together?</button>
+      <div class="faq-a"><p>That is the whole reason this studio exists. When the same team designs the cover, the interior, the author brand, and the site that sells it, everything matches and nothing gets lost between vendors.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Do you work with clients outside Florida?</button>
+      <div class="faq-a"><p>Yes. The studio is based in Riverview, Florida, and the work is global — we have shipped editions in four languages and built for clients across the country. Everything runs over email, calls, and shared previews.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="section" style="padding-top:0;">
   <div class="container">
     <div class="cta-banner">
-      <h2>Let's Build Your <span style="color:var(--gold);">Digital Platform.</span></h2>
-      <p>Tell us about your project and we'll create a strategy that fits your vision and budget.</p>
-      <div class="btn-group" style="justify-content:center;">
-        <a href="shop.html" class="btn btn-gold">Start Your Project</a>
-        <a href="shop.html" class="btn btn-outline">View Packages</a>
+      <span class="section-badge" style="justify-content:center;">Start here</span>
+      <h2>Let's build your platform.</h2>
+      <p>Tell us about your project and we'll come back with a strategy that fits your vision and your budget.</p>
+      <div class="btn-group">
+        <a href="shop.html" class="btn btn-accent">Start a project</a>
+        <a href="shop.html" class="btn btn-outline">View packages</a>
       </div>
     </div>
   </div>
@@ -251,31 +310,36 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <h3>Proverbs 3 <span>Global Design</span></h3>
-        <p>Strategic website design and branding for businesses and ministries ready to build with excellence and purpose.</p>
+        <h3><i class="mark" style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--accent);"></i>PROVB3 <span>Global</span></h3>
+        <p>
+          A design studio and book development company. We build brands, websites, and
+          published books for people who intend to be around a while.
+        </p>
       </div>
       <div class="footer-col">
-        <h4>Pages</h4>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
+        <h4>Studio</h4>
+        <a href="portfolio.html">Work</a>
         <a href="services.html">Services</a>
+        <a href="about.html">About</a>
         <a href="shop.html">Packages</a>
       </div>
       <div class="footer-col">
-        <h4>Get Started</h4>
-        <a href="onboarding.html">Project Onboarding</a>
-        <a href="moodboards/">View Mood Boards</a>
+        <h4>Publishing</h4>
+        <a href="books.html">Book services</a>
+        <a href="book-onboarding.html">Author intake</a>
+        <a href="moodboards/">Mood boards</a>
+        <a href="onboarding.html">Project onboarding</a>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
         <a href="mailto:sales@provb3global.com">sales@provb3global.com</a>
         <a href="tel:7244135224">(724) 413-5224</a>
-        <a>Riverview, FL</a>
+        <a>Riverview, Florida</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 Proverbs 3 Global Design. All rights reserved.</span>
-      <span>Built with excellence and purpose.</span>
+      <span>&copy; 2026 PROVB3 Global LLC. All rights reserved.</span>
+      <span>Client portal: <a href="https://alfanoministries.com" target="_blank" rel="noopener">Alfano Ministries</a></span>
     </div>
   </div>
 </footer>

@@ -3,152 +3,238 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Development &amp; KDP Publishing Services — Proverbs 3 Global Design</title>
-  <meta name="description" content="From manuscript to published author. KDP-ready book formatting, custom covers, and our exclusive Sermon-to-Book service for ministers. Pricing from $497 to $2,597.">
-  <meta name="theme-color" content="#1e3a5f">
+  <title>Publishing — Book Development by PROVB3 Global</title>
+  <meta name="description" content="Full-service book development: manuscript prep, cover design, KDP publishing, translation, and audiobooks. Published in four languages. You keep the rights and the royalties.">
+  <meta name="theme-color" content="#0a0a0b">
   <link rel="canonical" href="https://provb3global.com/books.html">
-  <!-- Open Graph -->
-  <meta property="og:title" content="Book Development &amp; KDP Publishing Services — Proverbs 3 Global Design">
-  <meta property="og:description" content="From manuscript to published author. KDP-ready book formatting, custom covers, and our exclusive Sermon-to-Book service for ministers.">
+  <meta property="og:title" content="Publishing — Book Development by PROVB3 Global">
+  <meta property="og:description" content="From manuscript to published author. Nine titles, four languages, audiobooks included.">
   <meta property="og:image" content="https://provb3global.com/assets/images/og-default.png">
   <meta property="og:url" content="https://provb3global.com/books.html">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Proverbs 3 Global Design">
-  <!-- Twitter Card -->
+  <meta property="og:site_name" content="PROVB3 Global">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Book Development &amp; KDP Publishing Services — Proverbs 3 Global Design">
-  <meta name="twitter:description" content="From manuscript to published author. KDP-ready book formatting, custom covers, and our exclusive Sermon-to-Book service for ministers.">
+  <meta name="twitter:title" content="Publishing — Book Development by PROVB3 Global">
+  <meta name="twitter:description" content="From manuscript to published author. Nine titles, four languages, audiobooks included.">
   <meta name="twitter:image" content="https://provb3global.com/assets/images/og-default.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
   <style>
-    /* Brighten pricing card text on dark sections */
-    .section-dark .pricing-card .pricing-features li {
-      color: #ffffff !important;
-      border-bottom-color: rgba(255,255,255,0.15);
+    /* Publishing pages lead with cyan */
+    .pub .section-badge { color: var(--cyan); }
+    .pub .section-badge::before { background: var(--cyan); }
+    .pub .pricing-tier { color: var(--cyan); }
+    .pub .pricing-features li::before { color: var(--cyan); }
+    .pub .pricing-card.featured {
+      border-color: rgba(45, 212, 232, 0.42);
+      box-shadow: 0 0 0 1px rgba(45, 212, 232, 0.12), 0 20px 60px rgba(45, 212, 232, 0.07);
     }
-    .section-dark .pricing-card .pricing-features li::before {
-      color: var(--gold);
+    .pub .pricing-card.featured::before { background: var(--cyan); color: #06232a; }
+    .pub .process-number { color: var(--cyan); }
+    .pub .process-step::before { background: var(--cyan); }
+    .pub .card-icon {
+      background: rgba(45, 212, 232, 0.09);
+      border-color: rgba(45, 212, 232, 0.2);
+      color: var(--cyan);
     }
-    .section-dark .pricing-card .pricing-tier {
-      color: var(--gold);
+    .pub .faq-q::after { color: var(--cyan); }
+    .pub .faq-q:hover { color: var(--cyan); }
+
+    .steps-list { counter-reset: step; max-width: 720px; }
+    .steps-list li {
+      counter-increment: step;
+      position: relative;
+      padding: 22px 0 22px 62px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-body);
+      font-size: 1rem;
     }
-    .section-dark ol {
-      color: #ffffff !important;
+    .steps-list li::before {
+      content: counter(step, decimal-leading-zero);
+      position: absolute;
+      left: 0; top: 24px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--cyan);
     }
-    .section-dark ol li {
-      color: #ffffff !important;
-      margin-bottom: 8px;
+    .addon-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
     }
-    /* Book cover thumbnails */
-    .book-cover-wrap {
+    .addon {
+      background: var(--bg-elevated);
+      padding: 34px 32px;
+      transition: background 0.3s ease;
+    }
+    .addon:hover { background: var(--surface); }
+    .addon h4 {
       display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      height: 220px;
-      margin-bottom: 18px;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
     }
-    .book-cover-wrap img {
-      max-height: 100%;
-      width: auto;
-      max-width: 100%;
-      display: block;
-      box-shadow: 0 12px 28px -8px rgba(15, 31, 53, 0.35);
-      border-radius: 3px;
+    .addon .price {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.85rem;
+      color: var(--cyan);
+      white-space: nowrap;
     }
+    .addon p { font-size: 0.92rem; color: var(--text-body); margin: 0; }
+    @media (max-width: 768px) { .addon-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
-<body>
+<body class="pub">
 
 <!-- ═══ NAVIGATION ═══ -->
 <nav class="navbar">
   <div class="container">
-    <a href="index.html" class="nav-logo">Proverbs 3 <span>Global Design</span></a>
+    <a href="index.html" class="nav-logo"><i class="mark"></i>PROVB3 <span>Global</span></a>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
-      <a href="about.html">About</a>
+      <a href="portfolio.html">Work</a>
+      <a href="books.html" class="active">Publishing</a>
       <a href="services.html">Services</a>
-      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">Studio</a>
       <a href="shop.html">Packages</a>
-      <a href="books.html" class="active">Books</a>
-      <a href="moodboards/">Mood Boards</a>
-      <a href="shop.html" class="nav-cta">Start Your Project</a>
+      <a href="#packages" class="nav-cta">Publish your book</a>
     </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
 <!-- ═══ PAGE HERO ═══ -->
-<section class="hero" style="min-height:auto; padding: 140px 0 80px;">
+<section class="hero hero-page">
+  <div class="hero-grid"></div>
   <div class="container">
-    <div class="hero-content" style="max-width:850px;">
-      <div class="hero-badge">Book Development &amp; Publishing</div>
-      <h1>From Manuscript to <span class="gold">Published Author.</span></h1>
-      <p>I've published books in four languages on KDP — paperback, hardcover, and Kindle. Now I help other authors do the same. Whether you have a finished manuscript or hours of preached messages, I'll get your book into readers' hands.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ MY STORY / PROOF ═══ -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="text-center" style="margin-bottom: 50px; max-width:750px; margin-left:auto; margin-right:auto;">
-      <span class="section-badge">Why Work With Me</span>
-      <h2>I've Done the Hard Part Already.</h2>
-      <p class="section-subtitle">Most KDP services have never published a book themselves. I have. Multiple times. In multiple languages.</p>
-    </div>
-    <div class="card-grid">
-      <div class="card">
-        <div class="book-cover-wrap">
-          <img src="https://alfanoministries.com/assets/books/faith-to-build-cover.jpg" alt="Faith to Build book cover" loading="lazy">
-        </div>
-        <div class="accent-bar"></div>
-        <h3>Faith to Build</h3>
-        <p>Published in English, Spanish, Italian, and Polish. Paperback, hardcover, and Kindle ebook on KDP.</p>
-      </div>
-      <div class="card">
-        <div class="book-cover-wrap">
-          <img src="https://alfanoministries.com/assets/books/go-cover.jpg" alt="GO book cover" loading="lazy">
-        </div>
-        <div class="accent-bar"></div>
-        <h3>GO</h3>
-        <p>A 14-chapter book built entirely from preached sermons — the same Sermon-to-Book process I now offer ministers.</p>
-      </div>
-      <div class="card">
-        <div class="book-cover-wrap">
-          <img src="https://alfanoministries.com/assets/books/now-faith-cover.jpg" alt="Now Faith book cover" loading="lazy">
-        </div>
-        <div class="accent-bar"></div>
-        <h3>Now Faith</h3>
-        <p>A faith-building manuscript drawn from teaching on Hebrews 11 — proof that faith is real and substantive.</p>
-      </div>
-      <div class="card">
-        <div class="book-cover-wrap">
-          <img src="https://alfanoministries.com/assets/books/wiser-than-ai-cover.jpg" alt="Wiser Than AI book cover" loading="lazy">
-        </div>
-        <div class="accent-bar"></div>
-        <h3>Wiser Than AI</h3>
-        <p>16 chapters on the wisdom, understanding, and knowledge God gave you that no machine can replicate. Written for Christian entrepreneurs.</p>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="dot"></i>Book development &amp; publishing</div>
+      <h1>From manuscript to<br><span class="cyan">published author.</span></h1>
+      <p>
+        We have published books in four languages — paperback, hardcover, Kindle, and
+        narrated audio. Now we do it for other authors. Whether you have a finished
+        manuscript or ten hours of preached messages, we'll get your book into readers' hands.
+      </p>
+      <div class="btn-group" style="margin-top:38px;">
+        <a href="#packages" class="btn btn-cyan">See packages</a>
+        <a href="book-onboarding.html" class="btn btn-outline">Start author intake</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ PRICING ═══ -->
+<!-- ═══ PROOF SHELF ═══ -->
 <section class="section">
   <div class="container">
-    <div class="text-center" style="margin-bottom: 50px;">
-      <span class="section-badge">Choose Your Package</span>
-      <h2>Three Ways to Get Published</h2>
+    <div class="section-head">
+      <div>
+        <span class="section-badge">Why work with us</span>
+        <h2>We've done the<br>hard part already.</h2>
+      </div>
+      <p>
+        Most publishing services have never published a book themselves. We have —
+        nine titles, multiple formats, four languages, and audiobooks to match.
+      </p>
+    </div>
+
+    <div class="shelf">
+      <div class="book">
+        <div class="book-cover"><img src="assets/books/the-last-convert-cover.jpg" alt="The Last Convert book cover" loading="lazy"></div>
+        <div class="book-title">The Last Convert</div>
+        <div class="book-meta">Novel · Paperback</div>
+      </div>
+      <div class="book">
+        <div class="book-cover"><img src="assets/books/faith-to-build-cover.jpg" alt="Faith to Build book cover" loading="lazy"></div>
+        <div class="book-title">Faith to Build</div>
+        <div class="book-meta">Paperback · Hardcover · Kindle · Audio</div>
+      </div>
+      <div class="book">
+        <div class="book-cover"><img src="assets/books/go-cover.jpg" alt="GO book cover" loading="lazy"></div>
+        <div class="book-title">GO</div>
+        <div class="book-meta">Built from preached sermons</div>
+      </div>
+      <div class="book">
+        <div class="book-cover"><img src="assets/books/wiser-than-ai-cover.jpg" alt="Wiser Than AI book cover" loading="lazy"></div>
+        <div class="book-title">Wiser Than AI</div>
+        <div class="book-meta">16 chapters · Audiobook</div>
+      </div>
+      <div class="book">
+        <div class="book-cover"><img src="assets/books/now-faith-cover.jpg" alt="Now Faith book cover" loading="lazy"></div>
+        <div class="book-title">Now Faith</div>
+        <div class="book-meta">Devotional</div>
+      </div>
+      <div class="book">
+        <div class="book-cover"><img src="assets/books/now-faith-journal-cover.jpg" alt="Now Faith Journal cover" loading="lazy"></div>
+        <div class="book-title">Now Faith Journal</div>
+        <div class="book-meta">365-day journal</div>
+      </div>
+      <div class="book">
+        <div class="book-cover"><img src="assets/books/sammy-comes-home-cover.jpg" alt="Sammy Comes Home book cover" loading="lazy"></div>
+        <div class="book-title">Sammy Comes Home</div>
+        <div class="book-meta">Children's · Illustrated</div>
+      </div>
+      <div class="book">
+        <div class="book-cover"><img src="assets/books/daily-sword-cover.jpg" alt="The Daily Sword book cover" loading="lazy"></div>
+        <div class="book-title">The Daily Sword</div>
+        <div class="book-meta">Devotional</div>
+      </div>
+    </div>
+
+    <div class="card-grid" style="margin-top:72px;">
+      <div class="card">
+        <div class="card-icon">01</div>
+        <h3>Published, not theoretical</h3>
+        <p>
+          Every format we sell, we have shipped ourselves — 6x9 paperbacks, hardcovers,
+          Kindle ebooks, and narrated audiobooks. We know where KDP rejects files, because
+          we have been rejected and fixed it.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-icon">02</div>
+        <h3>You keep everything</h3>
+        <p>
+          You own 100% of your manuscript, your cover, and all rights. The book is
+          published under your own account, and royalties go directly to you.
+          We never take a percentage of your sales.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-icon">03</div>
+        <h3>Global from day one</h3>
+        <p>
+          We produce world editions — full translation, localized cover artwork, and
+          language-correct typography — so your book can sell in markets most
+          self-published authors never reach.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PACKAGES ═══ -->
+<section class="section section-alt" id="packages">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:60px;">
+      <span class="section-badge" style="justify-content:center;">Choose your package</span>
+      <h2>Three ways to get published.</h2>
       <p class="section-subtitle">Pick the level of help that matches where you are in the journey.</p>
     </div>
+
     <div class="pricing-grid">
 
-      <!-- Tier 1 — Manuscript Prep -->
       <div class="pricing-card">
         <div class="pricing-tier">Manuscript Prep</div>
         <div class="pricing-price">$497</div>
@@ -162,10 +248,9 @@
           <li>Consistent chapter styling</li>
           <li>1 round of revisions</li>
         </ul>
-        <a href="pay.html#book-prep" class="btn btn-navy">Get Started</a>
+        <a href="pay.html#book-prep" class="btn btn-outline">Get started</a>
       </div>
 
-      <!-- Tier 2 — Author Launch -->
       <div class="pricing-card featured">
         <div class="pricing-tier">Author Launch</div>
         <div class="pricing-price">$997</div>
@@ -180,10 +265,9 @@
           <li>Upload to KDP on your behalf</li>
           <li>2 rounds of revisions</li>
         </ul>
-        <a href="pay.html#book-launch" class="btn btn-gold">Get Started</a>
+        <a href="pay.html#book-launch" class="btn btn-cyan">Get started</a>
       </div>
 
-      <!-- Tier 3 — Complete Publishing -->
       <div class="pricing-card">
         <div class="pricing-tier">Complete Publishing</div>
         <div class="pricing-price">$1,997</div>
@@ -198,36 +282,42 @@
           <li>Launch day checklist</li>
           <li>30 days of post-launch support</li>
         </ul>
-        <a href="pay.html#book-complete" class="btn btn-navy">Get Started</a>
+        <a href="pay.html#book-complete" class="btn btn-outline">Get started</a>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ═══ SERMON TO BOOK SPECIALTY ═══ -->
-<section class="section section-dark">
+<!-- ═══ SERMON-TO-BOOK ═══ -->
+<section class="section">
   <div class="container">
-    <div class="text-center" style="margin-bottom: 50px;">
-      <span class="section-badge">Specialty Service for Ministers</span>
-      <h2>Sermon-to-<span style="color:var(--gold);">Book</span></h2>
-      <p class="section-subtitle">You've preached the message a hundred times. Let's turn it into a book — without you writing a word.</p>
-    </div>
-
-    <div style="max-width:850px;margin:0 auto 50px;text-align:center;">
-      <p style="color:rgba(255,255,255,0.9);font-size:1.05rem;line-height:1.7;">
-        Most ministers have years of preached content sitting on YouTube doing nothing. They want to publish, but they don't have time to write a book from scratch. I've already done this for myself — turning four conference messages into a 14-chapter book. I can do the same for you.
+    <div class="section-head">
+      <div>
+        <span class="section-badge">Specialty service for ministers</span>
+        <h2>Sermon-to-Book.</h2>
+      </div>
+      <p>
+        You've preached the message a hundred times. Let's turn it into a book —
+        without you writing a word.
       </p>
     </div>
 
-    <div style="max-width:900px;margin:0 auto 50px;">
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(232,185,35,0.3);border-radius:12px;padding:30px;">
-        <h3 style="color:var(--gold);margin-bottom:20px;">How It Works</h3>
-        <ol style="color:rgba(255,255,255,0.9);line-height:1.9;padding-left:20px;">
-          <li>You send me 4-10 YouTube links to your sermons on a single theme</li>
-          <li>I pull the transcripts and organize the content into chapters</li>
-          <li>I edit the spoken style into clean, readable prose</li>
-          <li>I add scripture references, callouts, and study questions</li>
+    <div class="split-section" style="margin-bottom:72px;">
+      <div>
+        <p style="font-size:1.05rem;line-height:1.85;">
+          Most ministers have years of preached content sitting on YouTube doing nothing.
+          They want to publish, but they don't have time to write a book from scratch.
+          We have already done this ourselves — turning four conference messages into a
+          14-chapter published book. We can do the same with yours.
+        </p>
+      </div>
+      <div>
+        <ol class="steps-list">
+          <li>You send 4-10 YouTube links to your sermons on a single theme</li>
+          <li>We pull the transcripts and organize the content into chapters</li>
+          <li>We edit the spoken style into clean, readable prose</li>
+          <li>We add scripture references, callouts, and study questions</li>
           <li>You receive a polished manuscript ready for KDP — no writing required</li>
         </ol>
       </div>
@@ -235,12 +325,11 @@
 
     <div class="pricing-grid">
 
-      <!-- Sermon to Book Only -->
-      <div class="pricing-card" style="background:var(--navy);border-color:rgba(255,255,255,0.1);">
+      <div class="pricing-card">
         <div class="pricing-tier">Sermon-to-Book</div>
-        <div class="pricing-price" style="color:#fff;">$797</div>
-        <p class="pricing-desc" style="color:rgba(255,255,255,0.9);">Manuscript only — you handle KDP yourself.</p>
-        <ul class="pricing-features" style="color:rgba(255,255,255,0.95);">
+        <div class="pricing-price">$797</div>
+        <p class="pricing-desc">Manuscript only — you handle KDP yourself.</p>
+        <ul class="pricing-features">
           <li>4-10 YouTube transcripts pulled</li>
           <li>Content organized into chapters</li>
           <li>Spoken-to-written voice editing</li>
@@ -248,15 +337,14 @@
           <li>Study questions included</li>
           <li>Polished manuscript handoff</li>
         </ul>
-        <a href="pay.html#sermon-book" class="btn btn-gold">Get Started</a>
+        <a href="pay.html#sermon-book" class="btn btn-outline">Get started</a>
       </div>
 
-      <!-- Sermon to Book + Author Launch -->
-      <div class="pricing-card featured" style="background:var(--navy);border-color:var(--gold);">
+      <div class="pricing-card featured">
         <div class="pricing-tier">Sermon-to-Book + Launch</div>
-        <div class="pricing-price" style="color:#fff;">$1,597</div>
-        <p class="pricing-desc" style="color:rgba(255,255,255,0.9);">Everything above + cover design + KDP upload. Save $197.</p>
-        <ul class="pricing-features" style="color:rgba(255,255,255,0.95);">
+        <div class="pricing-price">$1,597</div>
+        <p class="pricing-desc">Everything above, plus cover design and KDP upload. Save $197.</p>
+        <ul class="pricing-features">
           <li>Everything in Sermon-to-Book</li>
           <li>Custom book cover design</li>
           <li>KDP account setup</li>
@@ -265,15 +353,14 @@
           <li>Upload to KDP on your behalf</li>
           <li>2 rounds of revisions</li>
         </ul>
-        <a href="pay.html#sermon-launch" class="btn btn-gold">Get Started</a>
+        <a href="pay.html#sermon-launch" class="btn btn-cyan">Get started</a>
       </div>
 
-      <!-- Sermon to Book + Complete -->
-      <div class="pricing-card" style="background:var(--navy);border-color:rgba(255,255,255,0.1);">
+      <div class="pricing-card">
         <div class="pricing-tier">Sermon-to-Book + Complete</div>
-        <div class="pricing-price" style="color:#fff;">$2,597</div>
-        <p class="pricing-desc" style="color:rgba(255,255,255,0.9);">Full white-glove from sermons to launched book. Save $197.</p>
-        <ul class="pricing-features" style="color:rgba(255,255,255,0.95);">
+        <div class="pricing-price">$2,597</div>
+        <p class="pricing-desc">Full white-glove from sermons to launched book. Save $197.</p>
+        <ul class="pricing-features">
           <li>Everything in Sermon + Launch</li>
           <li>Light copy editing</li>
           <li>Multiple cover concepts</li>
@@ -281,7 +368,7 @@
           <li>Launch checklist &amp; support</li>
           <li>30 days post-launch support</li>
         </ul>
-        <a href="pay.html#sermon-complete" class="btn btn-gold">Get Started</a>
+        <a href="pay.html#sermon-complete" class="btn btn-outline">Get started</a>
       </div>
 
     </div>
@@ -291,30 +378,29 @@
 <!-- ═══ ADD-ONS ═══ -->
 <section class="section section-alt">
   <div class="container">
-    <div class="text-center" style="margin-bottom: 50px;">
-      <span class="section-badge">Add-Ons</span>
-      <h2>Extra Touches</h2>
-      <p class="section-subtitle">Mix and match with any package.</p>
+    <div class="section-head">
+      <div>
+        <span class="section-badge">Add-ons</span>
+        <h2>Extra touches.</h2>
+      </div>
+      <p>Mix and match with any package above.</p>
     </div>
-    <div class="card-grid">
-      <div class="card">
-        <div class="accent-bar"></div>
-        <h3>Multi-Language Edition — $397</h3>
-        <p>Get your book translated and formatted for Spanish, Italian, Polish, or other languages on KDP.</p>
+
+    <div class="addon-grid">
+      <div class="addon">
+        <h4>Multi-Language Edition <span class="price">$397</span></h4>
+        <p>Your book translated and formatted for another market, with localized cover artwork and language-correct typography.</p>
       </div>
-      <div class="card">
-        <div class="accent-bar"></div>
-        <h3>Marketing Graphics — $197</h3>
-        <p>Social media launch kit: Instagram, Facebook, and Twitter graphics announcing your book.</p>
+      <div class="addon">
+        <h4>Marketing Graphics <span class="price">$197</span></h4>
+        <p>Social media launch kit: Instagram, Facebook, and X graphics announcing your book.</p>
       </div>
-      <div class="card">
-        <div class="accent-bar"></div>
-        <h3>Author Headshot Retouching — $97</h3>
+      <div class="addon">
+        <h4>Author Headshot Retouching <span class="price">$97</span></h4>
         <p>Professional retouching of your author photo for the back cover and Amazon author page.</p>
       </div>
-      <div class="card">
-        <div class="accent-bar"></div>
-        <h3>Additional Revisions — $97 each</h3>
+      <div class="addon">
+        <h4>Additional Revisions <span class="price">$97 each</span></h4>
         <p>Need more revision rounds beyond what's included in your package? Add as needed.</p>
       </div>
     </div>
@@ -323,35 +409,35 @@
 
 <!-- ═══ FAQ ═══ -->
 <section class="section">
-  <div class="container" style="max-width:750px;">
-    <div class="text-center" style="margin-bottom: 50px;">
-      <span class="section-badge">FAQ</span>
-      <h2>Common Questions</h2>
+  <div class="container-narrow">
+    <div class="text-center" style="margin-bottom:48px;">
+      <span class="section-badge" style="justify-content:center;">FAQ</span>
+      <h2>Common questions.</h2>
     </div>
 
-    <div style="margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);">
-      <h3 style="margin-bottom:8px;">How long does the process take?</h3>
-      <p style="margin-bottom:0;color:var(--text-light);">Manuscript Prep takes 1-2 weeks. Author Launch takes 2-3 weeks. Complete Publishing takes 3-4 weeks. Sermon-to-Book typically takes 3-4 weeks depending on the number of messages.</p>
+    <div class="faq-item">
+      <button class="faq-q">How long does the process take?</button>
+      <div class="faq-a"><p>Manuscript Prep takes 1-2 weeks. Author Launch takes 2-3 weeks. Complete Publishing takes 3-4 weeks. Sermon-to-Book typically takes 3-4 weeks depending on the number of messages.</p></div>
     </div>
-    <div style="margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);">
-      <h3 style="margin-bottom:8px;">Do I keep the rights to my book?</h3>
-      <p style="margin-bottom:0;color:var(--text-light);">Absolutely. You own 100% of your manuscript, your cover, and all rights. KDP is published under your account, and royalties go directly to you.</p>
+    <div class="faq-item">
+      <button class="faq-q">Do I keep the rights to my book?</button>
+      <div class="faq-a"><p>Absolutely. You own 100% of your manuscript, your cover, and all rights. KDP is published under your account, and royalties go directly to you.</p></div>
     </div>
-    <div style="margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);">
-      <h3 style="margin-bottom:8px;">For Sermon-to-Book, what kind of YouTube videos work?</h3>
-      <p style="margin-bottom:0;color:var(--text-light);">Any sermon, teaching, or message you've preached works as long as the audio is clear. We need 4-10 messages on a related theme to build a coherent book. Conference series, sermon series, or Sunday messages on a topic are all great starting points.</p>
+    <div class="faq-item">
+      <button class="faq-q">For Sermon-to-Book, what kind of videos work?</button>
+      <div class="faq-a"><p>Any sermon, teaching, or message you've preached works as long as the audio is clear. We need 4-10 messages on a related theme to build a coherent book. Conference series, sermon series, or Sunday messages on a topic are all great starting points.</p></div>
     </div>
-    <div style="margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);">
-      <h3 style="margin-bottom:8px;">What if I don't have a finished manuscript?</h3>
-      <p style="margin-bottom:0;color:var(--text-light);">If you have a draft, we can work with it. If you're starting from scratch, the Sermon-to-Book service is the easiest path — we build the book from your existing preached content.</p>
+    <div class="faq-item">
+      <button class="faq-q">What if I don't have a finished manuscript?</button>
+      <div class="faq-a"><p>If you have a draft, we can work with it. If you're starting from scratch, the Sermon-to-Book service is the easiest path — we build the book from your existing preached content.</p></div>
     </div>
-    <div style="margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);">
-      <h3 style="margin-bottom:8px;">How are royalties handled?</h3>
-      <p style="margin-bottom:0;color:var(--text-light);">All royalties go directly to you through your own KDP account. We do not take a percentage of your book sales.</p>
+    <div class="faq-item">
+      <button class="faq-q">How are royalties handled?</button>
+      <div class="faq-a"><p>All royalties go directly to you through your own KDP account. We do not take a percentage of your book sales.</p></div>
     </div>
-    <div style="margin-bottom:28px;">
-      <h3 style="margin-bottom:8px;">Can I pay in installments?</h3>
-      <p style="margin-bottom:0;color:var(--text-light);">Yes. For packages over $1,000, we can arrange a 50% upfront, 50% on completion payment plan. Contact us before purchasing.</p>
+    <div class="faq-item">
+      <button class="faq-q">Can I pay in installments?</button>
+      <div class="faq-a"><p>Yes. For packages over $1,000, we can arrange a 50% upfront, 50% on completion payment plan. Contact us before purchasing.</p></div>
     </div>
   </div>
 </section>
@@ -360,9 +446,13 @@
 <section class="section" style="padding-top:0;">
   <div class="container">
     <div class="cta-banner">
-      <h2>Ready to Become a <span style="color:var(--gold);">Published Author?</span></h2>
-      <p>Pick your package above and we'll send you the intake form right after payment. First contact within 24 hours.</p>
-      <a href="#" onclick="document.querySelector('.pricing-grid').scrollIntoView({behavior:'smooth'});return false;" class="btn btn-gold">Choose Your Package</a>
+      <span class="section-badge" style="justify-content:center;">Start here</span>
+      <h2>Ready to become a published author?</h2>
+      <p>Start the author intake and we'll come back with the right package, a price, and a timeline.</p>
+      <div class="btn-group">
+        <a href="book-onboarding.html" class="btn btn-cyan">Start author intake</a>
+        <a href="mailto:sales@provb3global.com" class="btn btn-outline">Ask a question</a>
+      </div>
     </div>
   </div>
 </section>
@@ -372,80 +462,40 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <h3>Proverbs 3 <span>Global Design</span></h3>
-        <p>Strategic website design, branding, and book publishing for businesses, ministries, and authors ready to build with excellence and purpose.</p>
+        <h3><i class="mark" style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--accent);"></i>PROVB3 <span>Global</span></h3>
+        <p>
+          A design studio and book development company. We build brands, websites, and
+          published books for people who intend to be around a while.
+        </p>
       </div>
       <div class="footer-col">
-        <h4>Pages</h4>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
+        <h4>Studio</h4>
+        <a href="portfolio.html">Work</a>
         <a href="services.html">Services</a>
-      <a href="portfolio.html">Portfolio</a>
+        <a href="about.html">About</a>
         <a href="shop.html">Packages</a>
-        <a href="books.html">Books</a>
       </div>
       <div class="footer-col">
-        <h4>Get Started</h4>
-        <a href="onboarding.html">Web Design Onboarding</a>
-        <a href="book-onboarding.html">Book Project Intake</a>
-        <a href="moodboards/">View Mood Boards</a>
+        <h4>Publishing</h4>
+        <a href="books.html">Book services</a>
+        <a href="book-onboarding.html">Author intake</a>
+        <a href="moodboards/">Mood boards</a>
+        <a href="onboarding.html">Project onboarding</a>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
         <a href="mailto:sales@provb3global.com">sales@provb3global.com</a>
         <a href="tel:7244135224">(724) 413-5224</a>
-        <a>Riverview, FL</a>
+        <a>Riverview, Florida</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 Proverbs 3 Global Design. All rights reserved.</span>
-      <span>Built with excellence and purpose.</span>
+      <span>&copy; 2026 PROVB3 Global LLC. All rights reserved.</span>
+      <span>Client portal: <a href="https://alfanoministries.com" target="_blank" rel="noopener">Alfano Ministries</a></span>
     </div>
   </div>
 </footer>
 
 <script src="js/main.js"></script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How long does the process take?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Manuscript Prep takes 1-2 weeks. Author Launch takes 2-3 weeks. Complete Publishing takes 3-4 weeks. Sermon-to-Book typically takes 3-4 weeks depending on the number of messages."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I keep the rights to my book?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. You own 100% of your manuscript, your cover, and all rights. KDP is published under your account, and royalties go directly to you."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "For Sermon-to-Book, what kind of YouTube videos work?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Any sermon, teaching, or message you've preached works as long as the audio is clear. We need 4-10 messages on a related theme to build a coherent book."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How are royalties handled?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "All royalties go directly to you through your own KDP account. We do not take a percentage of your book sales."
-      }
-    }
-  ]
-}
-</script>
-
 </body>
 </html>

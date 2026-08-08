@@ -3,226 +3,320 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio — Proverbs 3 Global Design</title>
-  <meta name="description" content="Selected website design and digital platform projects by Proverbs 3 Global Design — ministries, businesses, and boutique services.">
-  <meta name="theme-color" content="#1e3a5f">
+  <title>Work — PROVB3 Global</title>
+  <meta name="description" content="Selected websites, brands, and digital platforms built by PROVB3 Global — automotive, finance, nonprofit, trades, wellness, and publishing.">
+  <meta name="theme-color" content="#0a0a0b">
   <link rel="canonical" href="https://provb3global.com/portfolio.html">
-  <!-- Open Graph -->
-  <meta property="og:title" content="Portfolio — Proverbs 3 Global Design">
-  <meta property="og:description" content="Selected website design and digital platform projects by Proverbs 3 Global Design.">
+  <meta property="og:title" content="Work — PROVB3 Global">
+  <meta property="og:description" content="Selected websites, brands, and digital platforms built by PROVB3 Global.">
   <meta property="og:image" content="https://provb3global.com/assets/images/og-default.png">
   <meta property="og:url" content="https://provb3global.com/portfolio.html">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Proverbs 3 Global Design">
-  <!-- Twitter Card -->
+  <meta property="og:site_name" content="PROVB3 Global">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Portfolio — Proverbs 3 Global Design">
-  <meta name="twitter:description" content="Selected website design and digital platform projects.">
+  <meta name="twitter:title" content="Work — PROVB3 Global">
+  <meta name="twitter:description" content="Selected websites, brands, and digital platforms built by PROVB3 Global.">
   <meta name="twitter:image" content="https://provb3global.com/assets/images/og-default.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
-    }
-    .portfolio-card {
-      background: #fff;
-      border: 1px solid rgba(15, 31, 53, 0.08);
-      border-radius: 14px;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-    .portfolio-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 28px 60px -28px rgba(15, 31, 53, 0.25);
-      border-color: rgba(232, 185, 35, 0.4);
-    }
-    .portfolio-thumb {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, #1e3a5f 0%, #0f1f35 100%);
-    }
-    .portfolio-thumb img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-    .portfolio-card:hover .portfolio-thumb img { transform: scale(1.04); }
-    .portfolio-body { padding: 26px 28px 30px; }
-    .portfolio-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-    .portfolio-tag {
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: var(--gold);
-      background: rgba(232, 185, 35, 0.1);
-      padding: 4px 10px;
-      border-radius: 12px;
-    }
-    .portfolio-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.55rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--navy-deep);
-    }
-    .portfolio-client {
-      font-size: 0.85rem;
-      color: rgba(15, 31, 53, 0.55);
-      margin-bottom: 14px;
-      font-weight: 500;
-    }
-    .portfolio-card p {
-      font-size: 0.96rem;
-      color: rgba(15, 31, 53, 0.75);
-      margin-bottom: 20px;
-      line-height: 1.6;
-    }
-    .portfolio-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--navy);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-    .portfolio-link:hover { color: var(--gold); }
-    .portfolio-link::after {
-      content: '→';
-      transition: transform 0.2s ease;
-    }
-    .portfolio-link:hover::after { transform: translateX(4px); }
-
-    @media (max-width: 640px) {
-      .portfolio-grid { gap: 20px; }
-      .portfolio-body { padding: 22px 22px 26px; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <!-- ═══ NAVIGATION ═══ -->
 <nav class="navbar">
   <div class="container">
-    <a href="index.html" class="nav-logo">Proverbs 3 <span>Global Design</span></a>
+    <a href="index.html" class="nav-logo"><i class="mark"></i>PROVB3 <span>Global</span></a>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
-      <a href="about.html">About</a>
+      <a href="portfolio.html" class="active">Work</a>
+      <a href="books.html">Publishing</a>
       <a href="services.html">Services</a>
-      <a href="portfolio.html" class="active">Portfolio</a>
+      <a href="about.html">Studio</a>
       <a href="shop.html">Packages</a>
-      <a href="books.html">Books</a>
-      <a href="shop.html" class="nav-cta">Start Your Project</a>
+      <a href="shop.html" class="nav-cta">Start a project</a>
     </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
 <!-- ═══ PAGE HERO ═══ -->
-<section class="hero" style="min-height:auto; padding: 140px 0 70px;">
+<section class="hero hero-page">
+  <div class="hero-grid"></div>
   <div class="container">
-    <div class="hero-content" style="max-width:820px;">
-      <div class="hero-badge">Selected Work</div>
-      <h1>Websites that <span class="gold">perform and endure.</span></h1>
-      <p>A look at recent design and platform-building projects — from ministries to boutique businesses. Every site is custom-built, responsive, and engineered for the long haul.</p>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="dot"></i>Selected work</div>
+      <h1>Built to <span class="accent">outlast</span><br>the launch.</h1>
+      <p>
+        Every project below was designed and coded here — no templates, no page builders,
+        no handoff to a third party. Automotive, finance, nonprofit, trades, wellness,
+        and publishing.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ═══ PORTFOLIO GRID ═══ -->
-<section class="section" style="padding-top:40px;">
+<!-- ═══ WORK GRID ═══ -->
+<section class="section" style="padding-top:20px;">
   <div class="container">
 
-    <div class="portfolio-grid">
+    <div class="filter-bar">
+      <button class="filter-chip active" data-filter="all">All work</button>
+      <button class="filter-chip" data-filter="business">Business</button>
+      <button class="filter-chip" data-filter="trades">Trades</button>
+      <button class="filter-chip" data-filter="nonprofit">Nonprofit</button>
+      <button class="filter-chip" data-filter="platform">Platforms &amp; apps</button>
+    </div>
 
-      <!-- Armory Records -->
-      <article class="portfolio-card">
-        <div class="portfolio-thumb">
-          <img src="assets/portfolio/armory-records.jpg" alt="Armory Records Inc homepage screenshot" loading="lazy">
+    <div class="work-grid">
+
+      <!-- MX Detail -->
+      <article class="work-card" data-category="business">
+        <div class="work-thumb">
+          <img src="assets/portfolio/mxdetail.jpg" alt="MX Detail website homepage" loading="lazy" width="1000" height="625">
         </div>
-        <div class="portfolio-body">
-          <div class="portfolio-tags">
-            <span class="portfolio-tag">Boutique</span>
-            <span class="portfolio-tag">Application Form</span>
-            <span class="portfolio-tag">Email Pipeline</span>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag">Automotive</span>
+            <span class="work-tag">Booking</span>
+            <span class="work-tag">Multi-location</span>
           </div>
-          <h3>Armory Records Inc</h3>
-          <p class="portfolio-client">Wellness &amp; longevity consulting · Miami Beach, FL</p>
-          <p>Editorial single-page site for a boutique wellness practice serving celebrity and athlete clientele. Private application form routed through a custom Cloudflare Worker with domain-authenticated email delivery and anti-spam protection.</p>
-          <a href="https://armoryrecords.net" target="_blank" rel="noopener" class="portfolio-link">Visit Site</a>
+          <h3>MX Detail</h3>
+          <div class="work-client">Most Excellent Auto Detail · Tampa &amp; Orlando</div>
+          <p>
+            Premium dark-automotive redesign for a multi-location detailer. Online booking
+            integration, mobile-first service pages, and separate contact flows per location
+            so leads land with the right shop.
+          </p>
+          <a href="https://mxdetail.com" target="_blank" rel="noopener" class="link-arrow">Visit site</a>
         </div>
       </article>
 
-      <!-- MX Detail -->
-      <article class="portfolio-card">
-        <div class="portfolio-thumb">
-          <img src="assets/portfolio/mx-detail.jpg" alt="MX Detail homepage screenshot" loading="lazy">
+      <!-- Armory Records -->
+      <article class="work-card" data-category="business platform">
+        <div class="work-thumb">
+          <img src="assets/portfolio/armoryrecords.jpg" alt="Armory Records website homepage" loading="lazy" width="1000" height="625">
         </div>
-        <div class="portfolio-body">
-          <div class="portfolio-tags">
-            <span class="portfolio-tag">Automotive</span>
-            <span class="portfolio-tag">Booking Integration</span>
-            <span class="portfolio-tag">Multi-Location</span>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag">Wellness</span>
+            <span class="work-tag">Private intake</span>
+            <span class="work-tag">Edge worker</span>
           </div>
-          <h3>MX Detail</h3>
-          <p class="portfolio-client">Most Excellent Auto Detail · Tampa &amp; Orlando, FL</p>
-          <p>Premium dark-automotive redesign for a multi-location auto detailing company. Online booking integration, mobile-optimized service pages, and separate contact flows per location.</p>
-          <a href="https://mxdetail.com" target="_blank" rel="noopener" class="portfolio-link">Visit Site</a>
+          <h3>Armory Records</h3>
+          <div class="work-client">Longevity consulting · Miami Beach</div>
+          <p>
+            Editorial single-page site for a boutique practice serving celebrity and athlete
+            clientele. Private application form routed through a custom Cloudflare Worker
+            with domain-authenticated email delivery and anti-spam protection.
+          </p>
+          <a href="https://armoryrecords.net" target="_blank" rel="noopener" class="link-arrow">Visit site</a>
+        </div>
+      </article>
+
+      <!-- Wilson's Fencing -->
+      <article class="work-card" data-category="trades">
+        <div class="work-thumb">
+          <img src="assets/portfolio/wilsonsfencing.jpg" alt="Wilson's Fencing FL website homepage" loading="lazy" width="1000" height="625">
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag">Trades</span>
+            <span class="work-tag">Local SEO</span>
+            <span class="work-tag">Lead capture</span>
+          </div>
+          <h3>Wilson's Fencing FL</h3>
+          <div class="work-client">Family-owned fencing · Manatee &amp; Sarasota County</div>
+          <p>
+            Bold, high-contrast build for a family fence company. Material-by-material service
+            pages, county-level local SEO, and free-estimate capture placed everywhere a
+            homeowner is ready to call.
+          </p>
+          <a href="https://wilsonsfencingfl.com" target="_blank" rel="noopener" class="link-arrow">Visit site</a>
+        </div>
+      </article>
+
+      <!-- Wilson's Animal Removal -->
+      <article class="work-card" data-category="trades">
+        <div class="work-thumb">
+          <img src="assets/portfolio/wilsonsanimal.jpg" alt="Wilson's Animal Removal website homepage" loading="lazy" width="1000" height="625">
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag">Trades</span>
+            <span class="work-tag">5 counties</span>
+            <span class="work-tag">Urgent response</span>
+          </div>
+          <h3>Wilson's Animal Removal</h3>
+          <div class="work-client">Wildlife removal · Five Florida counties</div>
+          <p>
+            Sister brand to the fencing company, built for people who need help today.
+            Species-by-species pages, five county service areas, and a phone-first layout
+            tuned for panicked 2am searches.
+          </p>
+          <a href="https://wilsonsanimalremoval.com" target="_blank" rel="noopener" class="link-arrow">Visit site</a>
+        </div>
+      </article>
+
+      <!-- The Mortgage Man -->
+      <article class="work-card" data-category="business">
+        <div class="work-thumb">
+          <img src="assets/portfolio/themortgageman.jpg" alt="The Mortgage Man website homepage" loading="lazy" width="1000" height="625">
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag">Finance</span>
+            <span class="work-tag">Compliance</span>
+            <span class="work-tag">Personal brand</span>
+          </div>
+          <h3>The Mortgage Man</h3>
+          <div class="work-client">Josh McCombs, NMLS 336685 · Florida</div>
+          <p>
+            Personal-brand site for a loan originator with 25 years in Florida lending.
+            Trust-first layout, compliant NMLS disclosure handling, and a preapproval
+            path that finishes on a phone.
+          </p>
+          <a href="https://themortgageman.net" target="_blank" rel="noopener" class="link-arrow">Visit site</a>
         </div>
       </article>
 
       <!-- Majic Auto -->
-      <article class="portfolio-card">
-        <div class="portfolio-thumb">
-          <img src="assets/portfolio/majic-auto.jpg" alt="Majic Auto homepage screenshot" loading="lazy">
+      <article class="work-card" data-category="business">
+        <div class="work-thumb">
+          <img src="assets/portfolio/majicauto.jpg" alt="Majic Auto website homepage" loading="lazy" width="1000" height="625">
         </div>
-        <div class="portfolio-body">
-          <div class="portfolio-tags">
-            <span class="portfolio-tag">Automotive</span>
-            <span class="portfolio-tag">Fleet Services</span>
-            <span class="portfolio-tag">Multi-Service</span>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag">Automotive</span>
+            <span class="work-tag">Fleet</span>
+            <span class="work-tag">Multi-service</span>
           </div>
           <h3>Majic Auto</h3>
-          <p class="portfolio-client">Auto glass, ADAS, protection &amp; fleet services</p>
-          <p>Service-focused site for an auto aftermarket company offering glass repair, ADAS calibration, paint protection, truck caps, and fleet programs. Clean service grid with dedicated conversion paths for retail and fleet inquiries.</p>
-          <a href="https://majicauto.provb3global.com" target="_blank" rel="noopener" class="portfolio-link">Visit Site</a>
+          <div class="work-client">Auto glass, ADAS, protection &amp; fleet services</div>
+          <p>
+            Service-focused platform for an auto aftermarket company: glass repair, ADAS
+            calibration, paint protection, truck caps, and fleet programs — with separate
+            conversion paths for retail walk-ins and fleet managers.
+          </p>
+          <a href="https://majicauto.provb3global.com" target="_blank" rel="noopener" class="link-arrow">Visit site</a>
+        </div>
+      </article>
+
+      <!-- Brock Walker -->
+      <article class="work-card" data-category="business">
+        <div class="work-thumb">
+          <img src="assets/portfolio/brockwalker.jpg" alt="Brock Walker personal brand website" loading="lazy" width="1000" height="625">
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag">Personal brand</span>
+            <span class="work-tag">Editorial</span>
+            <span class="work-tag">Storytelling</span>
+          </div>
+          <h3>Brock Walker</h3>
+          <div class="work-client">Mortgage loan originator &amp; travel agent · Florida</div>
+          <p>
+            Warm editorial personal site for a mortgage professional who leads with his story
+            rather than his rate sheet. Long-form narrative layout with soft typographic
+            rhythm and a single clear next step.
+          </p>
+          <a href="https://brockwalker.com" target="_blank" rel="noopener" class="link-arrow">Visit site</a>
+        </div>
+      </article>
+
+      <!-- River Ministries -->
+      <article class="work-card" data-category="nonprofit">
+        <div class="work-thumb">
+          <img src="assets/portfolio/rivermin.jpg" alt="River Ministries International website design" loading="lazy" width="1000" height="625">
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag">Nonprofit</span>
+            <span class="work-tag">Giving</span>
+            <span class="work-tag">Launching soon</span>
+          </div>
+          <h3>River Ministries International</h3>
+          <div class="work-client">501(c)(3) nonprofit · Juárez to the nations</div>
+          <p>
+            Full platform for a global nonprofit — mission storytelling, service times,
+            media library, and a giving flow built to survive a traffic spike. Designed,
+            built, and staged; the public launch is next.
+          </p>
+        </div>
+      </article>
+
+      <!-- Alfano Ministries -->
+      <article class="work-card" data-category="nonprofit platform">
+        <div class="work-thumb">
+          <img src="assets/portfolio/alfanoministries.jpg" alt="Alfano Ministries website homepage" loading="lazy" width="1000" height="625">
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag">Nonprofit</span>
+            <span class="work-tag">Storefront</span>
+            <span class="work-tag">Audio library</span>
+            <span class="work-tag">Point of sale</span>
+          </div>
+          <h3>Alfano Ministries</h3>
+          <div class="work-client">Ministry platform · 20+ pages</div>
+          <p>
+            Our largest platform build: a book storefront, gated audiobook library,
+            donation flows, podcast and media pages, a travel map, and a phone-based
+            point-of-sale app for live book tables — all running on serverless workers.
+          </p>
+          <a href="https://alfanoministries.com" target="_blank" rel="noopener" class="link-arrow">Visit site</a>
+        </div>
+      </article>
+
+      <!-- Publishing platform (non-screenshot card) -->
+      <article class="work-card" data-category="platform">
+        <div class="work-thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#14232a 0%,#0a0a0b 100%);">
+          <div style="text-align:center;padding:30px;">
+            <div class="mono" style="color:var(--cyan);margin-bottom:14px;">In-house systems</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:1.9rem;font-weight:700;color:var(--text);letter-spacing:-0.03em;line-height:1.15;">
+              Workers, checkout,<br>and point of sale
+            </div>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag">Serverless</span>
+            <span class="work-tag">Stripe</span>
+            <span class="work-tag">CRM</span>
+            <span class="work-tag">PWA</span>
+          </div>
+          <h3>Platform engineering</h3>
+          <div class="work-client">Internal &amp; client systems</div>
+          <p>
+            Beyond websites: Cloudflare Workers for form intake and gated downloads,
+            Stripe checkout and payment links, CRM automation, a receipt-tracking PWA,
+            and a phone point-of-sale app with emailed receipts.
+          </p>
+          <a href="services.html" class="link-arrow">See capabilities</a>
         </div>
       </article>
 
     </div>
-
   </div>
 </section>
 
 <!-- ═══ CTA ═══ -->
-<section class="section">
+<section class="section" style="padding-top:0;">
   <div class="container">
     <div class="cta-banner">
-      <h2>Ready to <span style="color:var(--gold);">build yours?</span></h2>
-      <p>Tell us about your project and we'll create a strategy that fits your vision and budget.</p>
-      <div class="btn-group" style="justify-content:center;">
-        <a href="shop.html" class="btn btn-gold">Start Your Project</a>
-        <a href="services.html" class="btn btn-outline">Explore Services</a>
+      <span class="section-badge" style="justify-content:center;">Next project</span>
+      <h2>Yours could be next.</h2>
+      <p>
+        Tell us what you're building and we'll come back with a plan, a price,
+        and a timeline — no pressure, no retainer talk.
+      </p>
+      <div class="btn-group">
+        <a href="shop.html" class="btn btn-accent">Start a project</a>
+        <a href="services.html" class="btn btn-outline">Explore services</a>
       </div>
     </div>
   </div>
@@ -233,32 +327,36 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <h3>Proverbs 3 <span>Global Design</span></h3>
-        <p>Strategic website design and branding for businesses and ministries ready to build with excellence and purpose.</p>
+        <h3><i class="mark" style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--accent);"></i>PROVB3 <span>Global</span></h3>
+        <p>
+          A design studio and book development company. We build brands, websites, and
+          published books for people who intend to be around a while.
+        </p>
       </div>
       <div class="footer-col">
-        <h4>Pages</h4>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
+        <h4>Studio</h4>
+        <a href="portfolio.html">Work</a>
         <a href="services.html">Services</a>
-        <a href="portfolio.html">Portfolio</a>
+        <a href="about.html">About</a>
         <a href="shop.html">Packages</a>
       </div>
       <div class="footer-col">
-        <h4>Get Started</h4>
-        <a href="onboarding.html">Project Onboarding</a>
-        <a href="moodboards/">View Mood Boards</a>
+        <h4>Publishing</h4>
+        <a href="books.html">Book services</a>
+        <a href="book-onboarding.html">Author intake</a>
+        <a href="moodboards/">Mood boards</a>
+        <a href="onboarding.html">Project onboarding</a>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
         <a href="mailto:sales@provb3global.com">sales@provb3global.com</a>
         <a href="tel:7244135224">(724) 413-5224</a>
-        <a>Riverview, FL</a>
+        <a>Riverview, Florida</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 Proverbs 3 Global Design. All rights reserved.</span>
-      <span>Built with excellence and purpose.</span>
+      <span>&copy; 2026 PROVB3 Global LLC. All rights reserved.</span>
+      <span>Client portal: <a href="https://alfanoministries.com" target="_blank" rel="noopener">Alfano Ministries</a></span>
     </div>
   </div>
 </footer>

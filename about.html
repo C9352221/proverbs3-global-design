@@ -3,126 +3,222 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Proverbs 3 Global Design — Web Design for Businesses &amp; Ministries</title>
-  <meta name="description" content="Learn how Proverbs 3 Global Design helps businesses and ministries build strategic websites and brands that communicate clearly and drive real growth.">
-  <meta name="theme-color" content="#1e3a5f">
+  <title>Studio — PROVB3 Global</title>
+  <meta name="description" content="PROVB3 Global is a design studio and book development company in Riverview, Florida. Built by a builder, run on precision, purpose, and finished work.">
+  <meta name="theme-color" content="#0a0a0b">
   <link rel="canonical" href="https://provb3global.com/about.html">
-  <!-- Open Graph -->
-  <meta property="og:title" content="About Proverbs 3 Global Design — Web Design for Businesses &amp; Ministries">
-  <meta property="og:description" content="Learn how Proverbs 3 Global Design helps businesses and ministries build strategic websites and brands that communicate clearly and drive real growth.">
+  <meta property="og:title" content="Studio — PROVB3 Global">
+  <meta property="og:description" content="A design studio and book development company built on precision and purpose.">
   <meta property="og:image" content="https://provb3global.com/assets/images/og-default.png">
   <meta property="og:url" content="https://provb3global.com/about.html">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Proverbs 3 Global Design">
-  <!-- Twitter Card -->
+  <meta property="og:site_name" content="PROVB3 Global">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About Proverbs 3 Global Design — Web Design for Businesses &amp; Ministries">
-  <meta name="twitter:description" content="Learn how Proverbs 3 Global Design helps businesses and ministries build strategic websites and brands that communicate clearly and drive real growth.">
+  <meta name="twitter:title" content="Studio — PROVB3 Global">
+  <meta name="twitter:description" content="A design studio and book development company built on precision and purpose.">
   <meta name="twitter:image" content="https://provb3global.com/assets/images/og-default.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+  <style>
+    .story p { font-size: 1.06rem; line-height: 1.85; margin-bottom: 1.4rem; }
+    .story p:last-child { margin-bottom: 0; }
+    .pull {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      line-height: 1.3;
+      padding: 34px 0 34px 32px;
+      border-left: 2px solid var(--accent);
+      margin: 44px 0;
+    }
+    .value-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      align-items: start;
+    }
+    .value-row h3 { font-size: 1.35rem; }
+    .value-row p { margin: 0; color: var(--text-body); }
+    @media (max-width: 768px) {
+      .value-row { grid-template-columns: 1fr; gap: 14px; padding: 30px 0; }
+      .pull { padding-left: 22px; margin: 32px 0; }
+    }
+  </style>
 </head>
 <body>
 
 <!-- ═══ NAVIGATION ═══ -->
 <nav class="navbar">
   <div class="container">
-    <a href="index.html" class="nav-logo">Proverbs 3 <span>Global Design</span></a>
+    <a href="index.html" class="nav-logo"><i class="mark"></i>PROVB3 <span>Global</span></a>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
-      <a href="about.html" class="active">About</a>
+      <a href="portfolio.html">Work</a>
+      <a href="books.html">Publishing</a>
       <a href="services.html">Services</a>
-      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html" class="active">Studio</a>
       <a href="shop.html">Packages</a>
-      <a href="books.html">Books</a>
-      <a href="moodboards/">Mood Boards</a>
-      <a href="shop.html" class="nav-cta">Start Your Project</a>
+      <a href="shop.html" class="nav-cta">Start a project</a>
     </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
 <!-- ═══ PAGE HERO ═══ -->
-<section class="hero" style="min-height:auto; padding: 140px 0 80px;">
+<section class="hero hero-page">
+  <div class="hero-grid"></div>
   <div class="container">
-    <div class="hero-content" style="max-width:800px;">
-      <div class="hero-badge">About Us</div>
-      <h1>Built on Precision. Driven by <span class="gold">Purpose.</span></h1>
-      <p>We don't just design websites — we build strategic foundations that help businesses and ministries communicate clearly, establish credibility, and scale efficiently.</p>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="dot"></i>The studio</div>
+      <h1>Built on precision.<br>Driven by <span class="accent">purpose.</span></h1>
+      <p>
+        PROVB3 Global is a design studio and book development company in Riverview, Florida.
+        We build the things a company actually gets judged by — its brand, its platform,
+        and the book with its name on the spine.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ═══ ORIGIN STORY ═══ -->
+<!-- ═══ STORY ═══ -->
 <section class="section">
   <div class="container">
     <div class="split-section">
-      <div>
-        <span class="section-badge">Our Story</span>
-        <h2>From Builder to Digital Strategist</h2>
-        <p>I didn't start out as a web developer — I started as a builder.</p>
-        <p>My background is rooted in high-performance environments where precision, excellence, and execution matter. Early in my career, I worked in some of the most demanding professional settings, where details weren't optional and systems had to work flawlessly. That mindset shaped how I approach everything today.</p>
-        <p>Over time, I realized something: most businesses and organizations don't fail because they lack passion — they struggle because their digital presence doesn't match their vision.</p>
-        <p><strong>So I set out to fix that.</strong></p>
-        <p>What began as helping a few organizations improve their websites quickly turned into building full digital ecosystems — websites, branding, automation systems, and online platforms designed to actually work, not just look good.</p>
-      </div>
       <div class="split-image">
-        <img src="assets/images/marc-alfano.jpg" alt="Marc Alfano — Founder" style="width:100%;height:400px;object-fit:contain;background:#0a0a0a;">
+        <img src="assets/images/marc-alfano.jpg" alt="Marc Alfano, founder of PROVB3 Global" loading="lazy">
       </div>
+      <div class="story">
+        <span class="section-badge">Our story</span>
+        <h2 style="margin-bottom:28px;">From builder to digital strategist.</h2>
+        <p>
+          I didn't start out as a web developer. I started as a builder.
+        </p>
+        <p>
+          My background is rooted in high-performance environments where precision and
+          execution actually mattered — settings where details weren't optional and
+          systems had to work the first time. That mindset shaped how I approach
+          everything I make now.
+        </p>
+        <p>
+          Over time I noticed the same pattern everywhere: most businesses and
+          organizations don't struggle because they lack passion. They struggle because
+          their digital presence doesn't match their vision. So I set out to fix that.
+        </p>
+        <p>
+          What began as helping a few organizations improve their websites turned into
+          building full digital ecosystems — and then into publishing. Today the studio
+          ships both: platforms that perform, and books that make it onto real shelves
+          in four languages.
+        </p>
+      </div>
+    </div>
+
+    <div class="pull">
+      "Most agencies build you a website. Most publishers take your manuscript.
+      We do both, which is why nothing gets lost between them."
     </div>
   </div>
 </section>
 
-<!-- ═══ WHAT DRIVES US ═══ -->
+<!-- ═══ VALUES ═══ -->
 <section class="section section-alt">
   <div class="container">
-    <div class="split-section reverse">
+    <div class="section-head">
       <div>
-        <span class="section-badge">Our Mission</span>
-        <h2>Purpose Fuels Everything We Do</h2>
-        <p>What drives me every day is the opportunity to build something meaningful that actually helps people. I'm motivated by progress, excellence, and the challenge of turning ideas into real, working systems that make a difference.</p>
-        <p>Whether I'm developing a website, building a brand, or designing a digital platform, I wake up with one goal: to create solutions that move people and organizations forward.</p>
-        <p><strong>I believe work should have purpose, and that purpose fuels everything I do.</strong></p>
+        <span class="section-badge">What we believe</span>
+        <h2>How we work.</h2>
       </div>
-      <div class="split-image">
-        <div style="width:100%;height:400px;background:linear-gradient(135deg, #e8b923 0%, #d4a41a 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;">
-          <span style="color:var(--navy-deep);font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;text-align:center;padding:0 40px;">Excellence &amp; Purpose</span>
-        </div>
-      </div>
+      <p>Four things that decide every call we make on a project.</p>
+    </div>
+
+    <div class="value-row">
+      <h3>Purpose first</h3>
+      <p>
+        What drives the work is the chance to build something that actually helps people.
+        Progress, excellence, and the challenge of turning an idea into a real working
+        system. Work should have a point, and that point fuels the rest.
+      </p>
+    </div>
+    <div class="value-row">
+      <h3>Finished, not launched</h3>
+      <p>
+        Anyone can put a page online. We ship things that keep working a year later —
+        tested, documented, handed off with training, and built so you are never held
+        hostage by the person who made it.
+      </p>
+    </div>
+    <div class="value-row">
+      <h3>Owned by you</h3>
+      <p>
+        You own the domain, the code, the covers, the manuscript, the rights, and the
+        royalties. We keep no leverage. Maintenance exists because it's useful, not
+        because you're stuck.
+      </p>
+    </div>
+    <div class="value-row">
+      <h3>A calling, not a career</h3>
+      <p>
+        This isn't just work. The platforms and books we make should help people reach
+        further and say what they mean more clearly. That perspective shapes everything
+        designed, built, and delivered here.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ═══ VISION ═══ -->
-<section class="section section-dark">
-  <div class="container text-center" style="max-width:800px;">
-    <span class="section-badge">Our Vision</span>
-    <h2>Where We're Headed</h2>
-    <p style="font-size:1.1rem;line-height:1.9;">In five years, we see our company as a leading force in digital strategy and web development, partnering with organizations across industries to build platforms that don't just look exceptional — they perform at the highest level. We will have expanded our reach, refined our systems, and developed proven frameworks that help clients grow faster, communicate more clearly, and operate more efficiently online.</p>
-    <p style="color:var(--gold);font-weight:600;font-size:1.15rem;margin-top:20px;">Our goal is simple: to become the trusted digital partner organizations rely on when they're ready to scale.</p>
-  </div>
-</section>
-
-<!-- ═══ DIFFERENTIATOR ═══ -->
+<!-- ═══ REACH ═══ -->
 <section class="section">
-  <div class="container text-center" style="max-width:700px;">
-    <span class="section-badge">What Makes Us Different</span>
-    <h2>A Calling, Not Just a Career</h2>
-    <p style="font-size:1.1rem;line-height:1.9;">What makes me different is that I don't see this as just work — I see it as a calling to build with excellence and purpose. I believe the platforms we create should help people reach further, communicate more clearly, and fulfill their mission. That perspective shapes everything I design, build, and deliver.</p>
+  <div class="container">
+    <div class="text-center" style="margin-bottom:56px;">
+      <span class="section-badge">Where we're headed</span>
+      <h2>Global by design.</h2>
+      <p class="section-subtitle">
+        The goal is simple: to be the studio organizations call when they are ready to
+        scale — and the press authors call when they are ready to be read in more than
+        one language.
+      </p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-number"><span data-count="16" data-suffix="">16</span><span class="unit">+</span></div>
+        <div class="stat-label">Platforms built</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number"><span data-count="9" data-suffix="">9</span></div>
+        <div class="stat-label">Books published</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number"><span data-count="4" data-suffix="">4</span></div>
+        <div class="stat-label">Languages shipped</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">1</div>
+        <div class="stat-label">Studio, start to finish</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ═══ CTA ═══ -->
-<section class="section">
+<section class="section" style="padding-top:0;">
   <div class="container">
     <div class="cta-banner">
-      <h2>Ready to Build With <span style="color:var(--gold);">Purpose?</span></h2>
-      <p>Let's create a digital platform that matches the quality of your vision.</p>
-      <a href="shop.html" class="btn btn-gold">Start Your Project</a>
+      <span class="section-badge" style="justify-content:center;">Work with us</span>
+      <h2>Ready to build with purpose?</h2>
+      <p>Let's create a platform, a brand, or a book that matches the quality of your vision.</p>
+      <div class="btn-group">
+        <a href="shop.html" class="btn btn-accent">Start a project</a>
+        <a href="portfolio.html" class="btn btn-outline">See the work</a>
+      </div>
     </div>
   </div>
 </section>
@@ -132,32 +228,36 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <h3>Proverbs 3 <span>Global Design</span></h3>
-        <p>Strategic website design and branding for businesses and ministries ready to build with excellence and purpose.</p>
+        <h3><i class="mark" style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--accent);"></i>PROVB3 <span>Global</span></h3>
+        <p>
+          A design studio and book development company. We build brands, websites, and
+          published books for people who intend to be around a while.
+        </p>
       </div>
       <div class="footer-col">
-        <h4>Pages</h4>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
+        <h4>Studio</h4>
+        <a href="portfolio.html">Work</a>
         <a href="services.html">Services</a>
-      <a href="portfolio.html">Portfolio</a>
+        <a href="about.html">About</a>
         <a href="shop.html">Packages</a>
       </div>
       <div class="footer-col">
-        <h4>Get Started</h4>
-        <a href="onboarding.html">Project Onboarding</a>
-        <a href="moodboards/">View Mood Boards</a>
+        <h4>Publishing</h4>
+        <a href="books.html">Book services</a>
+        <a href="book-onboarding.html">Author intake</a>
+        <a href="moodboards/">Mood boards</a>
+        <a href="onboarding.html">Project onboarding</a>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
         <a href="mailto:sales@provb3global.com">sales@provb3global.com</a>
         <a href="tel:7244135224">(724) 413-5224</a>
-        <a>Riverview, FL</a>
+        <a>Riverview, Florida</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 Proverbs 3 Global Design. All rights reserved.</span>
-      <span>Built with excellence and purpose.</span>
+      <span>&copy; 2026 PROVB3 Global LLC. All rights reserved.</span>
+      <span>Client portal: <a href="https://alfanoministries.com" target="_blank" rel="noopener">Alfano Ministries</a></span>
     </div>
   </div>
 </footer>

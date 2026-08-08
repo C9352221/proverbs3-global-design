@@ -3,47 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proverbs 3 Global Design — Client Onboarding</title>
-    <meta name="description" content="Complete your project onboarding form to get started with Proverbs 3 Global Design. Share your vision, goals, and brand preferences.">
-    <meta name="theme-color" content="#1e3a5f">
+    <title>PROVB3 Global — Client Onboarding</title>
+    <meta name="description" content="Complete your project onboarding form to get started with PROVB3 Global. Share your vision, goals, and brand preferences.">
+    <meta name="theme-color" content="#0a0a0b">
     <link rel="canonical" href="https://provb3global.com/onboarding.html">
     <!-- Open Graph -->
-    <meta property="og:title" content="Proverbs 3 Global Design — Client Onboarding">
-    <meta property="og:description" content="Complete your project onboarding form to get started with Proverbs 3 Global Design. Share your vision, goals, and brand preferences.">
+    <meta property="og:title" content="PROVB3 Global — Client Onboarding">
+    <meta property="og:description" content="Complete your project onboarding form to get started with PROVB3 Global. Share your vision, goals, and brand preferences.">
     <meta property="og:image" content="https://provb3global.com/assets/images/og-default.png">
     <meta property="og:url" content="https://provb3global.com/onboarding.html">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Proverbs 3 Global Design">
+    <meta property="og:site_name" content="PROVB3 Global">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Proverbs 3 Global Design — Client Onboarding">
-    <meta name="twitter:description" content="Complete your project onboarding form to get started with Proverbs 3 Global Design. Share your vision, goals, and brand preferences.">
+    <meta name="twitter:title" content="PROVB3 Global — Client Onboarding">
+    <meta name="twitter:description" content="Complete your project onboarding form to get started with PROVB3 Global. Share your vision, goals, and brand preferences.">
     <meta name="twitter:image" content="https://provb3global.com/assets/images/og-default.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         /* ── Design Tokens ── */
         :root {
-            --royal-blue: #1e3a5f;
-            --royal-blue-light: #2a4f7a;
-            --royal-blue-dark: #152c49;
-            --gold: #e8b923;
-            --gold-light: #f0cc55;
-            --gold-warm: #d4a41a;
-            --cream: #fdf8ef;
-            --warm-white: #fffcf5;
+            --royal-blue: #141418;
+            --royal-blue-light: #1f1f26;
+            --royal-blue-dark: #0a0a0b;
+            --gold: #ff5c28;
+            --gold-light: #ff7d52;
+            --gold-warm: #e63f0c;
+            --cream: #0f0f11;
+            --warm-white: #1a1a20;
             --white: #ffffff;
-            --text-dark: #1e3a5f;
-            --text-body: #4a5568;
-            --text-light: #718096;
-            --border: #e8dcc8;
-            --error: #c53030;
-            --error-bg: #fff5f5;
-            --success: #38a169;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
-            --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
-            --shadow-lg: 0 12px 40px rgba(0,0,0,0.1);
+            --surface: #141418;
+            --text-dark: #f2f2f4;
+            --text-body: #a4a4b0;
+            --text-light: #7e7e8c;
+            --border: rgba(255,255,255,0.10);
+            --border-strong: rgba(255,255,255,0.18);
+            --error: #f87171;
+            --error-bg: rgba(248,113,113,0.1);
+            --success: #34d399;
+            --shadow-sm: 0 2px 12px rgba(0,0,0,0.4);
+            --shadow-md: 0 12px 32px rgba(0,0,0,0.5);
+            --shadow-lg: 0 28px 70px rgba(0,0,0,0.6);
             --radius: 12px;
             --radius-lg: 16px;
             --transition: all 0.3s ease;
@@ -53,16 +55,16 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: var(--text-body);
             line-height: 1.7;
-            background: var(--cream);
+            background: var(--bg, #0a0a0b);
             -webkit-font-smoothing: antialiased;
             min-height: 100vh;
         }
 
         /* ── Typography ── */
-        h1, h2, h3, h4 { font-family: 'Lora', serif; color: var(--text-dark); }
+        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; color: var(--text-dark); }
         h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.2; }
         h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 700; margin-bottom: 8px; }
         h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 6px; }
@@ -85,7 +87,7 @@
             top: -30%; right: -15%;
             width: 700px; height: 700px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(232,185,35,0.06) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,92,40,0.10) 0%, transparent 70%);
         }
         #welcome::after {
             content: '';
@@ -102,10 +104,10 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--gold);
-            background: rgba(232,185,35,0.1);
+            background: rgba(255,92,40,0.10);
             padding: 8px 24px;
             border-radius: 100px;
-            border: 1px solid rgba(232,185,35,0.2);
+            border: 1px solid rgba(255,92,40,0.22);
             margin-bottom: 32px;
             font-weight: 600;
         }
@@ -119,12 +121,12 @@
             display: inline-block;
             padding: 16px 44px;
             background: var(--gold);
-            color: var(--royal-blue-dark);
-            font-family: 'Open Sans', sans-serif;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
             font-weight: 700;
             font-size: 15px;
             border: none;
-            border-radius: var(--radius);
+            border-radius: 100px;
             cursor: pointer;
             transition: var(--transition);
             text-decoration: none;
@@ -137,7 +139,7 @@
             padding: 14px 36px;
             background: transparent;
             color: rgba(255,255,255,0.85);
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 600;
             font-size: 14px;
             border: 2px solid rgba(255,255,255,0.25);
@@ -157,7 +159,7 @@
             text-decoration: underline;
             margin-top: 16px;
             display: block;
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         .btn-link:hover { color: rgba(255,255,255,0.8); }
         .btn-primary {
@@ -165,7 +167,7 @@
             padding: 14px 36px;
             background: var(--royal-blue);
             color: var(--white);
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 600;
             font-size: 15px;
             border: none;
@@ -180,7 +182,7 @@
             padding: 14px 36px;
             background: transparent;
             color: var(--royal-blue);
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 600;
             font-size: 15px;
             border: 2px solid var(--border);
@@ -196,7 +198,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: var(--white);
+            background: var(--surface);
             border-bottom: 1px solid var(--border);
             padding: 16px 24px;
             box-shadow: var(--shadow-sm);
@@ -220,7 +222,7 @@
             transition: var(--transition);
             border: none;
             background: none;
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         .progress-step:hover { background: var(--cream); }
         .progress-step:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
@@ -235,7 +237,7 @@
             font-weight: 700;
             border: 2px solid var(--border);
             color: var(--text-light);
-            background: var(--white);
+            background: var(--surface);
             transition: var(--transition);
             flex-shrink: 0;
         }
@@ -303,10 +305,10 @@
             padding: 14px 16px;
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 15px;
             color: var(--text-dark);
-            background: var(--white);
+            background: var(--surface);
             transition: var(--transition);
         }
         .form-group input:focus,
@@ -350,7 +352,7 @@
             height: 36px;
             border-radius: 50%;
             border: 1px solid var(--border);
-            background: var(--white);
+            background: var(--surface);
             color: var(--text-light);
             cursor: pointer;
             font-size: 18px;
@@ -375,7 +377,7 @@
             cursor: pointer;
             transition: var(--transition);
             margin-top: 8px;
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         .add-btn:hover { background: var(--warm-white); border-color: var(--royal-blue); }
 
@@ -389,13 +391,13 @@
             padding: 10px 20px;
             border: 2px solid var(--border);
             border-radius: 100px;
-            background: var(--white);
+            background: var(--surface);
             color: var(--text-body);
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         .tag-option:hover { border-color: var(--royal-blue-light); }
         .tag-option.selected {
@@ -413,7 +415,7 @@
             padding: 10px 14px;
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            background: var(--white);
+            background: var(--surface);
             min-height: 48px;
             cursor: text;
             transition: var(--transition);
@@ -441,7 +443,7 @@
             border: none;
             outline: none;
             font-size: 15px;
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             min-width: 120px;
             flex: 1;
             color: var(--text-dark);
@@ -457,13 +459,13 @@
             padding: 12px 28px;
             border: 2px solid var(--border);
             border-radius: var(--radius);
-            background: var(--white);
+            background: var(--surface);
             color: var(--text-body);
             font-weight: 600;
             font-size: 14px;
             cursor: pointer;
             transition: var(--transition);
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         .toggle-btn.active {
             background: var(--royal-blue);
@@ -490,7 +492,7 @@
             border-radius: var(--radius);
             cursor: pointer;
             transition: var(--transition);
-            background: var(--white);
+            background: var(--surface);
         }
         .radio-option:hover, .check-option:hover { border-color: var(--royal-blue-light); }
         .radio-option input, .check-option input { accent-color: var(--royal-blue); width: 18px; height: 18px; cursor: pointer; }
@@ -508,7 +510,7 @@
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
-            background: var(--white);
+            background: var(--surface);
             margin-bottom: 12px;
         }
         .upload-zone:hover, .upload-zone.dragover {
@@ -531,7 +533,7 @@
             border-radius: var(--radius);
             overflow: hidden;
             border: 1px solid var(--border);
-            background: var(--white);
+            background: var(--surface);
         }
         .preview-item img {
             width: 100%;
@@ -576,7 +578,7 @@
 
         /* ── Review Screen ── */
         .review-section {
-            background: var(--white);
+            background: var(--surface);
             border-radius: var(--radius-lg);
             padding: 32px;
             margin-bottom: 24px;
@@ -600,7 +602,7 @@
             background: none;
             border: none;
             text-decoration: underline;
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         .edit-link:hover { color: var(--gold); }
         .review-field { margin-bottom: 14px; }
@@ -652,14 +654,14 @@
             cursor: pointer;
             transition: var(--transition);
             border: none;
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         .export-btn:disabled { opacity: 0.4; cursor: not-allowed; }
         .export-btn.copy { background: var(--gold); color: var(--royal-blue-dark); }
         .export-btn.copy:hover:not(:disabled) { background: var(--gold-light); }
         .export-btn.download { background: var(--royal-blue); color: var(--white); }
         .export-btn.download:hover:not(:disabled) { background: var(--royal-blue-light); }
-        .export-btn.print { background: var(--white); color: var(--royal-blue); border: 2px solid var(--border); }
+        .export-btn.print { background: var(--surface); color: var(--royal-blue); border: 2px solid var(--border); }
         .export-btn.print:hover:not(:disabled) { border-color: var(--royal-blue); }
 
         /* ── Thank You ── */
@@ -667,7 +669,7 @@
             display: none;
             text-align: center;
             padding: 60px 24px;
-            background: var(--white);
+            background: var(--surface);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-md);
             margin-top: 32px;
@@ -678,7 +680,7 @@
 
         /* ── Privacy Section ── */
         .privacy-section {
-            background: var(--white);
+            background: var(--surface);
             border-radius: var(--radius-lg);
             padding: 32px;
             margin-top: 40px;
@@ -735,14 +737,14 @@
             bottom: 20px;
             right: 20px;
             padding: 10px 18px;
-            background: var(--white);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
             font-size: 12px;
             color: var(--text-light);
             cursor: pointer;
             transition: var(--transition);
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             z-index: 50;
             box-shadow: var(--shadow-sm);
             display: none;
@@ -777,6 +779,7 @@
             .tag-option { padding: 8px 14px; font-size: 13px; }
         }
     </style>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
 
@@ -790,7 +793,7 @@
 <!-- ═══════════════════════════════════════════ -->
 <section id="welcome">
     <div class="welcome-content">
-        <div class="welcome-badge">Proverbs 3 Global Design</div>
+        <div class="welcome-badge">PROVB3 Global</div>
         <h1>Welcome to Your Website Project</h1>
         <p>This questionnaire takes about 10-15 minutes. Your answers help us design a website that perfectly represents your brand. You can save and come back anytime.</p>
         <button class="btn-gold" id="btnStart" onclick="startForm()">Let's Get Started</button>
