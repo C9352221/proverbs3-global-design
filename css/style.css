@@ -1355,6 +1355,34 @@ strong { color: var(--text); font-weight: 600; }
 .footer-bottom a:hover { color: var(--text-light); }
 
 /* ═══════════════════════════════════════ */
+/* ═══════════════════════════════════════ */
+/* BEAM-REACTIVE EDGES                     */
+/* Panels catch the light as a beam passes. */
+/* JS writes --edge-a (0-1), --edge-rgb,   */
+/* --lit-c and --lit-o each frame.         */
+/* ═══════════════════════════════════════ */
+.pillar,
+.card,
+.work-card,
+.pricing-card {
+  --edge-a: 0;
+  --edge-rgb: 77, 232, 255;
+  --lit-c: 0;
+  --lit-o: 0;
+  border-color: rgba(var(--edge-rgb), calc(0.14 + var(--edge-a) * 0.74));
+  box-shadow:
+    0 0 calc(var(--lit-c) * 34px) rgba(77, 232, 255, calc(var(--lit-c) * 0.34)),
+    inset 0 0 calc(var(--lit-c) * 30px) rgba(77, 232, 255, calc(var(--lit-c) * 0.10)),
+    0 0 calc(var(--lit-o) * 34px) rgba(255, 122, 24, calc(var(--lit-o) * 0.32)),
+    inset 0 0 calc(var(--lit-o) * 30px) rgba(255, 122, 24, calc(var(--lit-o) * 0.09));
+  /* Edge response is near-instant; the rest keeps the slower easing. */
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.1s linear,
+    box-shadow 0.1s linear;
+}
+
 /* SCROLL REVEAL                           */
 /* ═══════════════════════════════════════ */
 .reveal {
