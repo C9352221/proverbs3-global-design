@@ -26,7 +26,7 @@
   --text:          #eaf7fb;
   --text-body:     #94aab8;
   --text-light:    #6d8494;
-  --text-faint:    #4a5f6d;
+  --text-faint:    #66808f;
 
   /* Lines & shadow */
   --border:        rgba(77, 232, 255, 0.14);
@@ -222,6 +222,17 @@ strong { color: var(--text); font-weight: 600; }
 .section-dark h2, .section-dark h3 { color: var(--text); }
 .section-dark p { color: var(--text-body); }
 .text-center { text-align: center; }
+
+/* Visually hidden, still announced by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* Hairline rule that spans the container */
 .rule { height: 1px; background: var(--border); border: 0; }
