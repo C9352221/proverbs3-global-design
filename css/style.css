@@ -75,20 +75,32 @@ body {
   position: relative;
 }
 
-/* ── The Grid ── a faint circuit lattice under the whole site, plus
-   atmospheric bloom, so no area ever reads as dead flat black. */
+/* ══════════════════════════════════════════════════════════ */
+/* THE GRID — a live circuit lattice beneath the entire site   */
+/* ══════════════════════════════════════════════════════════ */
+
+/* Lattice. Horizontal rules drift downward so the floor always
+   reads as moving toward you; verticals hold the perspective. */
 body::before {
   content: '';
   position: fixed;
-  inset: 0;
+  inset: -10vh -10vw;
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(77, 232, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(77, 232, 255, 0.055) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 130% 100% at 50% 0%, #000 0%, rgba(0,0,0,0.5) 55%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 130% 100% at 50% 0%, #000 0%, rgba(0,0,0,0.5) 55%, transparent 85%);
+    linear-gradient(rgba(77, 232, 255, 0.13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77, 232, 255, 0.10) 1px, transparent 1px),
+    linear-gradient(rgba(77, 232, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77, 232, 255, 0.05) 1px, transparent 1px);
+  /* Major lattice over a finer sub-grid */
+  background-size: 128px 128px, 128px 128px, 32px 32px, 32px 32px;
+  mask-image: radial-gradient(ellipse 140% 110% at 50% 0%, #000 0%, rgba(0,0,0,0.62) 60%, rgba(0,0,0,0.28) 88%);
+  -webkit-mask-image: radial-gradient(ellipse 140% 110% at 50% 0%, #000 0%, rgba(0,0,0,0.62) 60%, rgba(0,0,0,0.28) 88%);
+  animation: grid-drift 14s linear infinite;
+}
+@keyframes grid-drift {
+  from { background-position: 0 0, 0 0, 0 0, 0 0; }
+  to   { background-position: 0 128px, 0 0, 0 32px, 0 0; }
 }
 body::after {
   content: '';
@@ -101,6 +113,67 @@ body::after {
     radial-gradient(ellipse 65% 50% at 92% 18%,  rgba(255, 122, 24, 0.11), transparent 62%),
     radial-gradient(ellipse 95% 65% at 50% 102%, rgba(77, 232, 255, 0.10), transparent 66%);
 }
+
+/* ── Light beams ── a cyan scan falling, an orange trace crossing.
+   These ride on <html> so no page needs extra markup. */
+html::before,
+html::after {
+  content: '';
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+/* Cyan scan falling down the Grid */
+html::before {
+  left: -5vw; right: -5vw;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(77, 232, 255, 0.25) 14%,
+    rgba(77, 232, 255, 0.85) 36%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(77, 232, 255, 0.85) 64%,
+    rgba(77, 232, 255, 0.25) 86%,
+    transparent 100%);
+  filter: drop-shadow(0 0 6px rgba(77, 232, 255, 1))
+          drop-shadow(0 0 18px rgba(77, 232, 255, 0.8))
+          drop-shadow(0 0 46px rgba(77, 232, 255, 0.5));
+  animation: beam-fall 9s linear infinite;
+}
+/* Orange trace crossing it */
+html::after {
+  top: -5vh; bottom: -5vh;
+  left: 0;
+  width: 3px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(255, 122, 24, 0.25) 14%,
+    rgba(255, 122, 24, 0.85) 36%,
+    rgba(255, 236, 214, 1) 50%,
+    rgba(255, 122, 24, 0.85) 64%,
+    rgba(255, 122, 24, 0.25) 86%,
+    transparent 100%);
+  filter: drop-shadow(0 0 6px rgba(255, 122, 24, 1))
+          drop-shadow(0 0 18px rgba(255, 122, 24, 0.75))
+          drop-shadow(0 0 46px rgba(255, 122, 24, 0.45));
+  animation: beam-cross 14s linear infinite;
+  animation-delay: -5s;
+}
+@keyframes beam-fall {
+  0%   { transform: translateY(-4vh);  opacity: 0; }
+  9%   { opacity: 0.72; }
+  86%  { opacity: 0.72; }
+  100% { transform: translateY(104vh); opacity: 0; }
+}
+@keyframes beam-cross {
+  0%   { transform: translateX(-4vw);  opacity: 0; }
+  10%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateX(104vw); opacity: 0; }
+}
+
 /* Content rides above the atmosphere */
 body > * { position: relative; z-index: 1; }
 img { max-width: 100%; height: auto; display: block; }
@@ -145,7 +218,7 @@ strong { color: var(--text); font-weight: 600; }
 .section { padding: 120px 0; position: relative; }
 .section-sm { padding: 80px 0; }
 .section-alt { background: rgba(7, 12, 19, 0.72); }
-.section-dark { background: var(--bg); }
+.section-dark { background: transparent; }
 .section-dark h2, .section-dark h3 { color: var(--text); }
 .section-dark p { color: var(--text-body); }
 .text-center { text-align: center; }
@@ -395,7 +468,7 @@ strong { color: var(--text); font-weight: 600; }
   align-items: center;
   padding: 150px 0 100px;
   overflow: hidden;
-  background: var(--bg);
+  background: transparent;
 }
 .hero-page { min-height: auto; padding: 190px 0 90px; }
 
@@ -557,9 +630,10 @@ strong { color: var(--text); font-weight: 600; }
 .marquee {
   overflow: hidden;
   padding: 30px 0;
+  backdrop-filter: blur(2px);
   border-top: 1px solid var(--border-strong);
   border-bottom: 1px solid var(--border-strong);
-  background: var(--bg-elevated);
+  background: rgba(7, 12, 19, 0.6);
   position: relative;
   mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
@@ -927,7 +1001,7 @@ strong { color: var(--text); font-weight: 600; }
   overflow: hidden;
 }
 .stat {
-  background: var(--bg-elevated);
+  background: rgba(7, 12, 19, 0.66);
   padding: 44px 32px;
   text-align: center;
   transition: background 0.3s ease, box-shadow 0.3s ease;
@@ -1016,7 +1090,7 @@ strong { color: var(--text); font-weight: 600; }
 /* CTA BANNER                              */
 /* ═══════════════════════════════════════ */
 .cta-banner {
-  background: var(--bg-elevated);
+  background: rgba(7, 12, 19, 0.62);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-xl);
   padding: 88px 60px;
@@ -1228,7 +1302,7 @@ strong { color: var(--text); font-weight: 600; }
 /* FOOTER                                  */
 /* ═══════════════════════════════════════ */
 .footer {
-  background: var(--bg-elevated);
+  background: rgba(7, 12, 19, 0.7);
   border-top: 1px solid var(--border-strong);
   box-shadow: 0 -1px 24px rgba(77, 232, 255, 0.12);
   color: var(--text-light);
@@ -1298,6 +1372,8 @@ strong { color: var(--text); font-weight: 600; }
     scroll-behavior: auto !important;
   }
   .reveal { opacity: 1; transform: none; }
+  /* The Grid stays; the moving beams do not. */
+  html::before, html::after { display: none; }
 }
 
 /* ═══════════════════════════════════════ */
