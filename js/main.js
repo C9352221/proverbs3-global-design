@@ -272,4 +272,54 @@
       });
     });
   });
+
+  /* ── Split hero: sweep the mouse left/right across PROVB3 Design to flip
+        the device screens through client homepages ── */
+  document.addEventListener('DOMContentLoaded', () => {
+    const side = document.querySelector('.split-design');
+    if (!side || !window.matchMedia('(hover: hover)').matches) return;
+    const sites = [
+      ['freedomgathering', 'Freedom Gathering'],
+      ['rivermin', 'River Ministries'],
+      ['wilsonsanimal', "Wilson's Animal Removal"],
+      ['brockwalker', 'Brock Walker'],
+      ['mxdetail', 'MX Detail'],
+      ['majicauto', 'Majic Auto'],
+      ['armoryrecords', 'Armory Records'],
+      ['themortgageman', 'The Mortgage Man'],
+      ['wilsonsfencing', "Wilson's Fencing"],
+      ['alfanoministries', 'Alfano Ministries'],
+    ];
+    const src = (k) => `assets/portfolio/${k}.jpg`;
+    sites.forEach(([k]) => { const i = new Image(); i.src = src(k); });   // preload
+    // laptop shows site i, tablet i+1, phone i+2 (so at rest: FG / River / Wilson's)
+    const screens = [['.dev-laptop', 0], ['.dev-tablet', 1], ['.dev-phone', 2]].map(([sel, off]) => {
+      const box = side.querySelector(sel);
+      const cur = box.querySelector('img');
+      const next = cur.cloneNode();
+      next.classList.add('dev-next');
+      box.appendChild(next);
+      return { box, off, cur, next };
+    });
+    const caption = side.querySelector('.dev-caption');
+    let shown = 0;
+    const show = (i) => {
+      if (i === shown) return;
+      shown = i;
+      screens.forEach((s) => {
+        const k = sites[(i + s.off) % sites.length][0];
+        s.next.src = src(k);
+        s.next.classList.remove('dev-next');
+        s.cur.classList.add('dev-next');
+        [s.cur, s.next] = [s.next, s.cur];
+      });
+      if (caption) caption.textContent = sites[i][1];
+    };
+    side.addEventListener('mousemove', (e) => {
+      const r = side.getBoundingClientRect();
+      const x = Math.min(Math.max((e.clientX - r.left) / r.width, 0), 0.9999);
+      show(Math.floor(x * sites.length));
+    });
+    side.addEventListener('mouseleave', () => show(0));
+  });
 })();
