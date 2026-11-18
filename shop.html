@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="css/style.css?v=20261117e">
+<link rel="stylesheet" href="css/style.css?v=20261118a">
 </head>
 <body>
 
@@ -235,7 +235,7 @@
         margin: 0 auto;
       }
       .addon-card {
-        background: var(--white);
+        background: linear-gradient(165deg, var(--surface) 0%, rgba(4, 7, 12, 0.94) 100%);
         border: 1px solid var(--border);
         border-radius: 10px;
         padding: 22px 22px 20px;
@@ -245,8 +245,8 @@
       }
       .addon-card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 10px 26px -10px rgba(15, 31, 53, 0.25);
-        border-color: var(--gold);
+        box-shadow: 0 10px 26px -10px rgba(0, 0, 0, 0.6), var(--glow-cyan-sm);
+        border-color: var(--border-strong);
       }
       .addon-head {
         display: flex;
@@ -271,7 +271,7 @@
       }
       .addon-desc {
         font-size: 0.9rem;
-        color: var(--text-light);
+        color: var(--text-body);
         line-height: 1.5;
         margin-bottom: 16px;
         flex-grow: 1;
@@ -284,25 +284,25 @@
         font-weight: 600;
         letter-spacing: 0.04em;
         text-transform: uppercase;
-        color: var(--text);
-        background: transparent;
-        border: 1.5px solid var(--border-strong);
-        border-radius: 4px;
+        color: var(--cyan-light);
+        background: rgba(77, 232, 255, 0.08);
+        border: 1.5px solid var(--cyan);
+        border-radius: 100px;
         text-decoration: none;
         font-family: inherit;
         cursor: pointer;
         transition: background 0.18s ease, color 0.18s ease;
       }
-      .addon-btn:hover {
+      .addon-btn:hover, .addon-btn:focus-visible {
         background: var(--cyan);
         color: #04070c;
         border-color: var(--cyan);
         box-shadow: var(--glow-cyan-sm);
       }
       .addon-btn.added {
-        background: var(--gold);
-        color: #fff;
-        border-color: var(--gold);
+        background: var(--accent);
+        color: #06070a;
+        border-color: var(--accent);
       }
 
       /* === Cart toggle in nav === */
@@ -762,7 +762,7 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=20261117e"></script>
+<script src="js/main.js?v=20261118a"></script>
 
 <!-- ═══ CART LOGIC ═══ -->
 <script>
