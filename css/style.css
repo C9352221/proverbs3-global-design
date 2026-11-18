@@ -1556,7 +1556,19 @@ strong { color: var(--text); font-weight: 600; }
 .stage-orange { background: rgba(255, 122, 24, 0.3); }
 
 .dev { position: absolute; overflow: hidden; background: #050b13; z-index: 1; transition: transform 0.7s var(--ease-out); }
-.dev img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+.dev { container-type: size; }
+/* full-length page captures: they rest at the top and scroll through the whole site on hover */
+.dev img {
+  position: absolute; top: 0; left: 0; width: 100%; height: auto; display: block;
+  transform: translateY(0);
+  transition: transform 1.4s var(--ease-out);
+  will-change: transform;
+}
+.split-design:hover .dev img, .split-design:focus-visible .dev img {
+  transform: translateY(calc(-100% + 100cqh));
+  transition: transform 9s cubic-bezier(0.45, 0, 0.55, 1) 0.35s;
+}
+.split-design:hover .dev-phone img, .split-design:focus-visible .dev-phone img { transition-duration: 12s; }
 .dev-laptop {
   left: 16%; bottom: 46px; width: 62%; aspect-ratio: 16 / 10;
   border: 2px solid rgba(77, 232, 255, 0.55); border-radius: 12px; z-index: 2;
@@ -1574,8 +1586,7 @@ strong { color: var(--text); font-weight: 600; }
   transform: rotate(6deg);
   box-shadow: 0 0 22px rgba(77, 232, 255, 0.4), 0 20px 40px rgba(0, 0, 0, 0.6);
 }
-.dev-phone img { object-position: 30% top; }
-.dev-tablet img { object-position: 50% top; }
+
 
 .bk {
   position: absolute; bottom: 40px; width: 25%; aspect-ratio: 5 / 8; object-fit: cover;
@@ -1654,6 +1665,7 @@ strong { color: var(--text); font-weight: 600; }
 }
 @media (prefers-reduced-motion: reduce) {
   .split-side, .dev, .bk { transition: none; }
+  .split-design:hover .dev img { transform: none; transition: none; }
   .lh-beam, .lh-glow { animation: none; }
   .lh-beam { opacity: 0.5; }
 }
