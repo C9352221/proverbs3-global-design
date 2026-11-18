@@ -1747,3 +1747,6 @@ strong { color: var(--text); font-weight: 600; }
   .work-section .filter-bar::-webkit-scrollbar { display: none; }
   .work-section .filter-chip { flex: 0 0 auto; }
 }
+
+.pricing-note { font-size: 0.82rem; color: var(--text-body); margin-top: 12px; text-align: center; line-height: 1.5; }
+.pricing-features li.addon-line { color: var(--accent-light); }

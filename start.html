@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="css/style.css?v=20261118b">
+<link rel="stylesheet" href="css/style.css?v=20261118c">
   <style>
     .svc {
       display: grid;
@@ -182,6 +182,15 @@
     .choice-row label:has(input:checked) { border-color: var(--accent); background: rgba(255,122,24,0.1); color: var(--text); }
     .hp { position: absolute; left: -9999px; }
     .next-steps { color: var(--text-body); font-size: 0.92rem; margin-top: 16px; text-align: center; }
+    #startToast { position: static; transform: none; margin-top: 16px; text-align: center; box-shadow: none; }
+    @media (max-width: 700px) {
+      .start-hero { padding: 104px 0 18px !important; }
+      .start-hero .hero-content { padding-bottom: 0; }
+      .start-hero .hero-badge { margin-bottom: 14px; }
+      .start-hero h1 { font-size: 2.1rem; margin-bottom: 10px; }
+      .start-hero p { font-size: 0.95rem; line-height: 1.55; }
+      .form-section { padding: 22px 18px; }
+    }
   </style>
 </head>
 <body>
@@ -206,7 +215,7 @@
 </nav>
 
 <!-- ═══ PAGE HERO ═══ -->
-<section class="hero hero-page" style="padding-bottom:40px;">
+<section class="hero hero-page start-hero" style="padding-bottom:40px;">
   <div class="hero-grid"></div>
   <div class="container" style="max-width:800px;">
     <div class="hero-content">
@@ -344,8 +353,17 @@
       toast.textContent = msg;
       toast.className = 'toast ' + (ok ? 'success' : 'error');
       toast.style.display = 'block';
-      setTimeout(() => { toast.style.display = 'none'; }, 6000);
     };
+    // Coming from "Request a Premium quote": preselect a website and note the package
+    const params = new URLSearchParams(location.search);
+    if (params.get('package') === 'premium') {
+      form.querySelector('input[name=need][value="Website"]').checked = true;
+      const pkg = document.createElement('input');
+      pkg.type = 'hidden'; pkg.name = 'package'; pkg.value = 'Premium (quote request)';
+      form.appendChild(pkg);
+      form.budget.value = '$3,000 or more';
+      document.getElementById('details').placeholder = 'Premium quote: what should the site do? Store, bookings, member area, integrations, number of pages.';
+    }
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (form._honey.value) return;               // bots fill the hidden field
@@ -368,13 +386,15 @@
         btn.textContent = 'Sent. Talk soon!';
         say('Got it! Marc will reply within one business day.', true);
       } catch (err) {
-        say('Something went wrong. Please email sales@provb3global.com directly.', false);
+        toast.innerHTML = 'Something went wrong on our end. Please email <a href="mailto:sales@provb3global.com" style="color:#fff;text-decoration:underline;">sales@provb3global.com</a> and we\'ll take it from there.';
+        toast.className = 'toast error';
+        toast.style.display = 'block';
         btn.disabled = false;
         btn.textContent = 'Send my project';
       }
     });
   })();
 </script>
-<script src="js/main.js?v=20261118b"></script>
+<script src="js/main.js?v=20261118c"></script>
 </body>
 </html>
