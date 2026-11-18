@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="css/style.css?v=20261118a">
+<link rel="stylesheet" href="css/style.css?v=20261118b">
 </head>
 <body>
 
@@ -38,7 +38,7 @@
       <a href="services.html">Services</a>
       <a href="about.html">Studio</a>
       <a href="shop.html" class="active">Packages</a>
-      <a href="shop.html" class="nav-cta">Start a project</a>
+      <a href="start.html" class="nav-cta">Start a project</a>
       <button class="cart-toggle" id="cartToggle" aria-label="Open cart">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="9" cy="21" r="1"></circle>
@@ -80,18 +80,36 @@
 </aside>
 
 <!-- ═══ PAGE HERO ═══ -->
-<section class="hero" style="min-height:auto; padding: 140px 0 80px;">
+<section class="hero" style="min-height:auto; padding: 140px 0 60px;">
   <div class="container">
-    <div class="hero-content" style="max-width:800px;">
+    <div class="hero-content" style="max-width:900px;padding-bottom:0;">
       <div class="hero-badge">Packages &amp; Pricing</div>
-      <h1>Invest in a Platform That <span class="gold">Pays for Itself.</span></h1>
-      <p>Transparent pricing for every stage of growth. Each package is designed to deliver real results, not just a pretty page.</p>
+      <h1>Website packages from <span class="gold">$515.</span></h1>
+      <p>One-time price, custom built, no templates. Compare the three below, or tell us about your project and we'll point you to the right one.</p>
+      <table class="tier-compare">
+        <thead>
+          <tr><th scope="col"><span class="sr-only">Compare</span></th><th scope="col">Starter</th><th scope="col" class="hot">Professional</th><th scope="col">Premium</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">One-time price</th><td>$515</td><td class="hot">$1,030</td><td>$2,575+</td></tr>
+          <tr><th scope="row">Best for</th><td>A first professional site</td><td class="hot">A business or ministry ready to grow</td><td>Stores, bookings, automation</td></tr>
+          <tr><th scope="row">Pages</th><td>Up to 3</td><td class="hot">Up to 6</td><td>Unlimited</td></tr>
+          <tr><th scope="row">Design</th><td>Clean, responsive</td><td class="hot">Custom brand design</td><td>Full brand system</td></tr>
+          <tr><th scope="row">Revisions</th><td>1 round</td><td class="hot">2 rounds</td><td>3 rounds</td></tr>
+        </tbody>
+      </table>
+      <div class="tier-jumps">
+        <a href="#packages" class="btn btn-gold btn-sm">See full packages</a>
+        <a href="start.html" class="btn btn-outline btn-sm">Not sure? Tell us about your project</a>
+        <a href="#maintenance" class="link-arrow">Monthly care plans</a>
+        <a href="#addons" class="link-arrow">Add-ons</a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ═══ PRICING ═══ -->
-<section class="section">
+<section class="section" id="packages">
   <div class="container">
     <div class="text-center" style="margin-bottom: 50px;">
       <span class="section-badge">Choose Your Package</span>
@@ -113,7 +131,7 @@
           <li>Mobile-friendly</li>
           <li>1 round of revisions</li>
         </ul>
-        <a href="pay.html#starter" class="btn btn-navy">Get Started</a>
+        <a href="pay.html#starter" class="btn btn-navy">Continue to payment</a>
       </div>
 
       <!-- Professional -->
@@ -130,7 +148,7 @@
           <li>Speed optimization</li>
           <li>2 rounds of revisions</li>
         </ul>
-        <a href="pay.html#professional" class="btn btn-gold">Get Started</a>
+        <a href="pay.html#professional" class="btn btn-gold">Continue to payment</a>
       </div>
 
       <!-- Premium -->
@@ -148,7 +166,7 @@
           <li>Priority support</li>
           <li>3 rounds of revisions</li>
         </ul>
-        <a href="pay.html#premium" class="btn btn-navy">Get Started</a>
+        <a href="pay.html#premium" class="btn btn-navy">Continue to payment</a>
       </div>
 
     </div>
@@ -156,7 +174,7 @@
 </section>
 
 <!-- ═══ MONTHLY MAINTENANCE ═══ -->
-<section class="section section-dark">
+<section class="section section-dark" id="maintenance">
   <div class="container">
     <div class="text-center" style="margin-bottom: 50px;">
       <span class="section-badge">After Launch</span>
@@ -218,7 +236,7 @@
 </section>
 
 <!-- ═══ ADD-ONS / À LA CARTE ═══ -->
-<section class="section">
+<section class="section" id="addons">
   <div class="container">
     <div class="text-center" style="margin-bottom: 50px;">
       <span class="section-badge">À La Carte</span>
@@ -762,7 +780,7 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=20261118a"></script>
+<script src="js/main.js?v=20261118b"></script>
 
 <!-- ═══ CART LOGIC ═══ -->
 <script>
@@ -771,8 +789,9 @@
   // Replace with your deployed Cloudflare Worker URL
   const CHECKOUT_WORKER_URL = 'https://provb3-cart.alfanoministries.workers.dev';
   const STORAGE_KEY = 'p3_cart_v1';
-  const SUCCESS_URL = window.location.origin + '/thank-you.html';
-  const CANCEL_URL  = window.location.origin + '/shop.html';
+  // The cart is only cleared once Stripe sends the buyer to the success page (?paid=cart).
+  const SUCCESS_URL = window.location.origin + '/thank-you.html?paid=cart';
+  const CANCEL_URL  = window.location.origin + '/shop.html?checkout=cancelled';
 
   // === STATE ===
   let cart = loadCart();
@@ -935,9 +954,7 @@
       if (!res.ok || !data.url) {
         throw new Error(data.error || 'Checkout failed. Try again.');
       }
-      // Clear cart on successful redirect (so back button doesn't re-show items)
-      cart = [];
-      saveCart();
+      // Keep the cart: if checkout is cancelled or fails, the items are still here.
       window.location.href = data.url;
     } catch (err) {
       errorEl.textContent = err.message || 'Something went wrong. Please try again.';
@@ -946,6 +963,14 @@
       checkoutBtn.textContent = 'Checkout';
     }
   });
+
+  // Back from a cancelled checkout: reopen the cart with the items still in it
+  if (new URLSearchParams(location.search).get('checkout') === 'cancelled' && cart.length) {
+    openCart();
+    errorEl.textContent = 'Checkout was cancelled. Your items are still in your cart.';
+    errorEl.hidden = false;
+    history.replaceState(null, '', location.pathname + location.hash);
+  }
 
   // Initial render
   render();

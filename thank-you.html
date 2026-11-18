@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="css/style.css?v=20261118a">
+<link rel="stylesheet" href="css/style.css?v=20261118b">
 </head>
 <body>
 
@@ -38,7 +38,7 @@
       <a href="services.html">Services</a>
       <a href="about.html">Studio</a>
       <a href="shop.html">Packages</a>
-      <a href="shop.html" class="nav-cta">Start a project</a>
+      <a href="start.html" class="nav-cta">Start a project</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
       <span></span><span></span><span></span>
@@ -155,6 +155,12 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=20261118a"></script>
+<script>
+  // Paid through the add-on cart: empty it now that payment went through
+  if (new URLSearchParams(location.search).get('paid') === 'cart') {
+    try { localStorage.removeItem('p3_cart_v1'); } catch (e) {}
+  }
+</script>
+<script src="js/main.js?v=20261118b"></script>
 </body>
 </html>
