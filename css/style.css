@@ -1582,10 +1582,53 @@ strong { color: var(--text); font-weight: 600; }
   box-shadow: -6px 0 0 rgba(255, 255, 255, 0.06) inset, 0 24px 48px rgba(0, 0, 0, 0.65), 0 0 22px rgba(255, 122, 24, 0.18);
   transition: transform 0.7s var(--ease-out);
 }
-.bk1 { left: 14%; transform: rotate(-12deg); z-index: 1; }
-.bk2 { left: 33%; width: 30%; bottom: 48px; transform: rotate(-2deg); z-index: 4; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 34px rgba(255, 122, 24, 0.35); }
-.bk3 { left: 52%; transform: rotate(7deg); z-index: 3; }
-.bk4 { left: 64%; transform: rotate(14deg); z-index: 2; }
+.bk1 { left: 2%;  width: 22%; transform: rotate(-14deg); z-index: 1; }
+.bk2 { left: 15%; width: 24%; bottom: 44px; transform: rotate(-6deg); z-index: 3; }
+.bk3 { left: 29%; width: 28%; bottom: 50px; transform: rotate(0deg); z-index: 5; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 36px rgba(255, 122, 24, 0.38); }
+.bk4 { left: 46%; width: 23%; transform: rotate(7deg); z-index: 4; }
+.bk5 { left: 57%; width: 22%; transform: rotate(14deg); z-index: 2; }
+
+/* PROVB3 Publishing lighthouse: the lamp actually turns */
+.lighthouse { position: absolute; right: 1%; bottom: 26px; height: 94%; aspect-ratio: 309 / 669; z-index: 3; }
+.lighthouse img { position: relative; z-index: 2; width: 100%; height: 100%; display: block; filter: drop-shadow(0 0 10px rgba(255, 160, 77, 0.35)); }
+.lh-glow {
+  position: absolute; z-index: 3; left: 50%; top: 12.3%; width: 26%; aspect-ratio: 1; border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, #fff 0%, #ffd29a 30%, rgba(255, 122, 24, 0.5) 55%, transparent 72%);
+  mix-blend-mode: screen;
+  animation: lh-flash 7s linear infinite;
+}
+.lh-beam {
+  position: absolute; z-index: 1; left: 50%; top: 12.3%;
+  width: 900%; height: 26%;
+  transform-origin: 0 50%;
+  translate: 0 -50%;
+  clip-path: polygon(0 44%, 100% 0, 100% 100%, 0 56%);
+  background: linear-gradient(90deg, rgba(255, 244, 222, 0.95) 0%, rgba(255, 196, 120, 0.45) 22%, rgba(255, 122, 24, 0.12) 60%, transparent 100%);
+  mix-blend-mode: screen;
+  filter: blur(1.5px);
+  animation: lh-turn 7s linear infinite;
+}
+/* scaleX traces cos(angle): out to the right, toward you, out to the left, behind the tower */
+@keyframes lh-turn {
+  0%     { transform: scaleX(1);     opacity: 0.85; }
+  12.5%  { transform: scaleX(0.71);  opacity: 0.95; }
+  25%    { transform: scaleX(0.02);  opacity: 1; }
+  37.5%  { transform: scaleX(-0.71); opacity: 0.95; }
+  50%    { transform: scaleX(-1);    opacity: 0.85; }
+  62.5%  { transform: scaleX(-0.71); opacity: 0.4; }
+  75%    { transform: scaleX(-0.02); opacity: 0.05; }
+  87.5%  { transform: scaleX(0.71);  opacity: 0.4; }
+  100%   { transform: scaleX(1);     opacity: 0.85; }
+}
+/* the lamp flares when the beam swings straight at you */
+@keyframes lh-flash {
+  0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+  20%      { opacity: 0.9;  transform: translate(-50%, -50%) scale(1.6); }
+  25%      { opacity: 1;    transform: translate(-50%, -50%) scale(3.2); }
+  30%      { opacity: 0.9;  transform: translate(-50%, -50%) scale(1.6); }
+  75%      { opacity: 0.3;  transform: translate(-50%, -50%) scale(0.8); }
+}
 
 .split-meta-wrap .hero-meta { margin-top: 0; padding: 30px 0 40px; justify-content: center; }
 
@@ -1594,10 +1637,11 @@ strong { color: var(--text); font-weight: 600; }
   .split-side:hover { flex-grow: 1.85; }
   .split-design:hover .dev-laptop { transform: translateY(-6px); }
   .split-design:hover .dev-phone { transform: rotate(3deg) translateY(-10px); }
-  .split-publishing:hover .bk1 { transform: rotate(-16deg) translateX(-14px); }
-  .split-publishing:hover .bk2 { transform: rotate(-2deg) translateY(-10px); }
-  .split-publishing:hover .bk3 { transform: rotate(10deg) translateX(10px); }
-  .split-publishing:hover .bk4 { transform: rotate(19deg) translateX(22px); }
+  .split-publishing:hover .bk1 { transform: rotate(-18deg) translateX(-16px); }
+  .split-publishing:hover .bk2 { transform: rotate(-9deg) translateX(-8px); }
+  .split-publishing:hover .bk3 { transform: translateY(-12px); }
+  .split-publishing:hover .bk4 { transform: rotate(10deg) translateX(10px); }
+  .split-publishing:hover .bk5 { transform: rotate(19deg) translateX(20px); }
 }
 
 @media (max-width: 1024px) {
@@ -1609,4 +1653,6 @@ strong { color: var(--text); font-weight: 600; }
 }
 @media (prefers-reduced-motion: reduce) {
   .split-side, .dev, .bk { transition: none; }
+  .lh-beam, .lh-glow { animation: none; }
+  .lh-beam { opacity: 0.5; }
 }
