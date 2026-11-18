@@ -1575,6 +1575,7 @@ strong { color: var(--text); font-weight: 600; }
   box-shadow: 0 0 22px rgba(77, 232, 255, 0.4), 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 .dev-phone img { object-position: 30% top; }
+.dev-tablet img { object-position: 6% top; }
 
 .bk {
   position: absolute; bottom: 40px; width: 25%; aspect-ratio: 5 / 8; object-fit: cover;
