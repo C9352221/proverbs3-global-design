@@ -1657,3 +1657,13 @@ strong { color: var(--text); font-weight: 600; }
   .lh-beam, .lh-glow { animation: none; }
   .lh-beam { opacity: 0.5; }
 }
+
+/* Publishing page hero: copy left, the PROVB3 Publishing lighthouse right */
+.pub-hero::before { background: radial-gradient(circle, rgba(255, 122, 24, 0.22) 0%, transparent 65%); }
+.pub-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 48px; }
+.lighthouse.lh-hero { position: relative; right: auto; bottom: auto; height: clamp(380px, 62vh, 580px); margin-bottom: -20px; }
+.lh-hero .lh-beam { width: 1000%; }
+@media (max-width: 900px) {
+  .pub-hero-grid { grid-template-columns: 1fr; }
+  .lighthouse.lh-hero { height: 300px; justify-self: center; margin: 10px 0 0; }
+}
