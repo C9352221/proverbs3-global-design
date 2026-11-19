@@ -26,6 +26,8 @@ const GHL_LOCATION_ID = 'AIPTqymDwrSMF9zx8Pul';
 
 const DESIGN_TAG = 'design intake';
 const BOOK_TAG = 'book intake';
+// "Start a project" form (start.html): its own tag so it does NOT fire the design-intake autoresponder
+const PROJECT_TAG = 'project inquiry';
 
 function ghlHeaders(apiKey) {
   return {
@@ -186,8 +188,10 @@ export default {
     }
 
     const formType = body.formType || 'design-intake';
-    const activeTag = formType === 'book-intake' ? BOOK_TAG : DESIGN_TAG;
-    const activeSource = formType === 'book-intake' ? 'Book intake form' : 'Design intake form';
+    const isProject = formType === 'project-inquiry';
+    const activeTag = isProject ? PROJECT_TAG : (formType === 'book-intake' ? BOOK_TAG : DESIGN_TAG);
+    const activeSource = isProject ? 'Start a project form' : (formType === 'book-intake' ? 'Book intake form' : 'Design intake form');
+    const kindLabel = isProject ? 'Project Inquiry' : (formType === 'book-intake' ? 'Book Intake' : 'Design Intake');
 
     const email = body.email || body.contactEmail || '';
     const phone = body.phone || body.contactPhone || '';
@@ -218,7 +222,7 @@ export default {
     if (email) ghlPayload.email = email;
     if (phone) ghlPayload.phone = phone;
 
-    const noteText = `${formType === 'book-intake' ? 'Book Intake' : 'Design Intake'}\n${buildNote(body)}`;
+    const noteText = `${kindLabel}\n${buildNote(body)}`;
     const resendAttachments = buildResendAttachments(body.attachments);
 
     try {
@@ -234,7 +238,7 @@ export default {
         if (contactId && noteText) {
           await appendNote(contactId, noteText, env.GHL_API_KEY);
         }
-        const subject = `New ${formType === 'book-intake' ? 'Book' : 'Design'} Intake: ${contactName || email || 'Unknown'}`;
+        const subject = `New ${kindLabel}: ${contactName || email || 'Unknown'}`;
         const emailBody = [
           `A new intake just came through provb3global.com.`,
           ``,
@@ -278,7 +282,7 @@ export default {
           }
         }
 
-        const subject = `Returning ${formType === 'book-intake' ? 'Book' : 'Design'} Intake: ${contactName || email || 'Unknown'}`;
+        const subject = `Returning ${kindLabel}: ${contactName || email || 'Unknown'}`;
         const emailBody = [
           `A returning contact just submitted an intake on provb3global.com.`,
           ``,

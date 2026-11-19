@@ -370,8 +370,8 @@
       if (!form.reportValidity()) return;
       const data = { inquiry: 'Start a project form' };
       new FormData(form).forEach((v, k) => { if (k !== '_honey' && v) data[k] = v; });
-      // book-only inquiries go to the book pipeline, everything else to design
-      data.formType = data.need === 'Book' ? 'book-intake' : 'design-intake';
+      // its own GHL tag ("project inquiry") so the design-intake autoresponder doesn't fire
+      data.formType = 'project-inquiry';
       btn.disabled = true;
       btn.textContent = 'Sending…';
       try {
