@@ -1750,3 +1750,14 @@ strong { color: var(--text); font-weight: 600; }
 
 .pricing-note { font-size: 0.82rem; color: var(--text-body); margin-top: 12px; text-align: center; line-height: 1.5; }
 .pricing-features li.addon-line { color: var(--accent-light); }
+
+/* Client quotes near the buying decision */
+.client-quote { max-width: 760px; margin: -24px auto 54px; padding: 28px 32px 24px; border-radius: 18px;
+  background: linear-gradient(165deg, var(--surface) 0%, rgba(4, 7, 12, 0.94) 100%);
+  border: 1px solid var(--border-strong); box-shadow: var(--glow-cyan-sm); position: relative; }
+.client-quote.orange { border-color: rgba(255, 122, 24, 0.45); box-shadow: 0 0 10px rgba(255, 122, 24, 0.3); }
+.client-quote blockquote p { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.5; color: var(--text); margin: 0; }
+.client-quote figcaption { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.client-quote figcaption strong { color: var(--accent-light); font-family: 'Space Grotesk', sans-serif; }
+.client-quote figcaption span { color: var(--text-body); font-size: 0.9rem; }
+@media (max-width: 700px) { .client-quote { padding: 22px 20px 18px; margin: -30px auto 40px; } }
